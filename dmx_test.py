@@ -32,6 +32,7 @@ class SimpleFadeController(object):
 
         if self._ascending:
             self._data.extend([255, 0, 0])
+            print('added 3 values to array')
         else: 
             i = self._data_length - 1
             
@@ -41,9 +42,12 @@ class SimpleFadeController(object):
                 x += 1
             
             self._data_length -= 3
-            
+            print('deleted 3 values from array')
+
+        # Checks if the led strip is full (ie, it has 60 pixel values)    
         if self._iterable > 60:
             self._ascending = False
+            print('ascending set false!')
 
         self._iterable += 1
 
