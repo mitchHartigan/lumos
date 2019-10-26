@@ -4,7 +4,6 @@ import random
 
 UPDATE_INTERVAL = 25 # In ms, this comes about to ~40 frames a second
 SHUTDOWN_INTERVAL = 3600 # in ms
-DMX_DATA_SIZE = 60
 UNIVERSE = 1
 
 class SimpleFadeController(object):
