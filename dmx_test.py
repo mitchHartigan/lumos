@@ -34,7 +34,7 @@ class SimpleFadeController(object):
             self._data.extend([255, 0, 0])
             print('added 3 values to array')
         else: 
-            i = self._data_length - 1
+            i = self._data_length/2 - 1
             
             x = 0
             while x < 3:
