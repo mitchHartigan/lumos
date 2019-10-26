@@ -34,7 +34,12 @@ class SimpleFadeController(object):
             self._data.extend([255, 0, 0])
         else: 
             i = self._data_length - 1
-            self._data[i:i-3] = [0, 0, 0]
+            
+            x = 0
+            while x < 3:
+                self._data[i-x] = 0
+                x += 1
+            
             self._data_length -= 3
             
         if self._iterable > 60:
