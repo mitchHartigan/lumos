@@ -8,21 +8,18 @@ UPDATE_INTERVAL = 25 # In ms, this comes about to ~40 frames a second
 SHUTDOWN_INTERVAL = 3600 # in ms
 UNIVERSE = 1
 
-if __name__ == '__main__':
-        wrapper = ClientWrapper()
-        controller = SimpleFadeController(UNIVERSE, UPDATE_INTERVAL, wrapper)
-        # Call it initially
-        wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
-        # Start the wrapper
-        wrapper.Run()
-        
-        wrapper = None
-        controller = None
-        time.sleep(1)
+def run_animation():
+    wrapper = ClientWrapper()
+    controller = SimpleFadeController(UNIVERSE, UPDATE_INTERVAL, wrapper)
+    # Call it initially
+    wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
+    # Start the wrapper
+    wrapper.Run()
 
-        wrapper = ClientWrapper()
-        controller = SimpleFadeController(UNIVERSE, UPDATE_INTERVAL, wrapper)
-        # Call it initially
-        wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
-        # Start the wrapper
-        wrapper.Run()
+    wrapper = None
+    controller = None
+    time.sleep(1)
+
+if __name__ == '__main__':
+    for i in range(3):
+        run_animation()
