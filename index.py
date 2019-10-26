@@ -2,6 +2,7 @@ from dmx_test import SimpleFadeController
 from array import array
 from ola.ClientWrapper import ClientWrapper
 import random
+import time
 
 UPDATE_INTERVAL = 25 # In ms, this comes about to ~40 frames a second
 SHUTDOWN_INTERVAL = 3600 # in ms
@@ -14,3 +15,5 @@ if __name__ == '__main__':
         wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
         # Start the wrapper
         wrapper.Run()
+        time.sleep(4)
+        print('ready to run some new code')
