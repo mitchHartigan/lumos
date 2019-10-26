@@ -58,10 +58,3 @@ if __name__ == '__main__':
         wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
         # Start the wrapper
         wrapper.Run()
-
-
-
-    length = 120
-
-    for i in range(3):
-        self._data
