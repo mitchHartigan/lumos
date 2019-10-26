@@ -60,4 +60,5 @@ if __name__ == '__main__':
         # Call it initially
         wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
         # Start the wrapper
+        print('am I getting run?*****************************')
         wrapper.Run()
