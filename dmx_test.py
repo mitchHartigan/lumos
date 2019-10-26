@@ -3,7 +3,7 @@ from ola.ClientWrapper import ClientWrapper
 import random
 
 UPDATE_INTERVAL = 25 # In ms, this comes about to ~40 frames a second
-SHUTDOWN_INTERVAL = 3550 # in ms, This is 12 seconds
+SHUTDOWN_INTERVAL = 3600 # in ms
 DMX_DATA_SIZE = 60
 UNIVERSE = 1
 
