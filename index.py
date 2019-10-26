@@ -15,5 +15,6 @@ if __name__ == '__main__':
         wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
         # Start the wrapper
         wrapper.Run()
-        time.sleep(4)
-        print('ready to run some new code')
+        wrapper = None
+        controller = None
+        
