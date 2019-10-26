@@ -5,7 +5,7 @@ import random
 import time
 
 UPDATE_INTERVAL = 25 # In ms, this comes about to ~40 frames a second
-SHUTDOWN_INTERVAL = 3800 # in ms
+SHUTDOWN_INTERVAL = 4100 # in ms
 
 def run_animation():
     wrapper = ClientWrapper()
