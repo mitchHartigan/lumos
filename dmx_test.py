@@ -8,9 +8,7 @@ DMX_DATA_SIZE = 60
 UNIVERSE = 1
 
 class SimpleFadeController(object):
-    def __init__(self, universe, update_interval, client_wrapper,
-               dmx_data_size=DMX_UNIVERSE_SIZE):
-        dmx_data_size = min(dmx_data_size, DMX_UNIVERSE_SIZE)
+    def __init__(self, universe, update_interval, client_wrapper):
         self._universe = universe
         self._update_interval = update_interval
         self._data = array('B', [])
@@ -59,8 +57,7 @@ class SimpleFadeController(object):
 
 if __name__ == '__main__':
         wrapper = ClientWrapper()
-        controller = SimpleFadeController(UNIVERSE, UPDATE_INTERVAL, wrapper,
-                                        DMX_DATA_SIZE)
+        controller = SimpleFadeController(UNIVERSE, UPDATE_INTERVAL, wrapper)
         # Call it initially
         wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
         # Start the wrapper
