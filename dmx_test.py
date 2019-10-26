@@ -9,7 +9,6 @@ SHUTDOWN_INTERVAL = 10000 # in ms, This is 10 seconds
 DMX_DATA_SIZE = 60
 UNIVERSE = 1
 
-
 class SimpleFadeController(object):
   def __init__(self, universe, update_interval, client_wrapper,
                dmx_data_size=DMX_UNIVERSE_SIZE):
@@ -37,7 +36,7 @@ class SimpleFadeController(object):
       self._iterable = 10
     print(self._iterable)
     """
-    self._data.extend([random.randrange(0, 200), random.randrange(0, 20), random.randrange(100, 255)])
+    self._data.extend([255, random.randrange(0, 20), random.randrange(0, 10)])
     print(self._data)
     
     # Send the DMX data
