@@ -9,16 +9,17 @@ SHUTDOWN_INTERVAL = 4300 # in ms
 
 def run_animation():
     wrapper = ClientWrapper()
-    controller = SimpleFadeController(1, UPDATE_INTERVAL, wrapper)
-    # Call it initially
-    # Start the wrapper
-    controller2 = SimpleFadeController(2, UPDATE_INTERVAL, wrapper )
 
-    controller3 = SimpleFadeController(3, UPDATE_INTERVAL, wrapper)
+    controller = SimpleFadeController(1, UPDATE_INTERVAL, wrapper, 0)
+
+    controller2 = SimpleFadeController(2, UPDATE_INTERVAL, wrapper, 1 )
+
+    controller3 = SimpleFadeController(3, UPDATE_INTERVAL, wrapper, 2)
 
     wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
 
     wrapper.Run()
+
 if __name__ == '__main__':
     i = 0
     while i < 10:

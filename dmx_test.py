@@ -1,13 +1,10 @@
 from array import array
 from ola.ClientWrapper import ClientWrapper
 import random
-
-UPDATE_INTERVAL = 25 # In ms, this comes about to ~40 frames a second
-SHUTDOWN_INTERVAL = 3600 # in ms
-UNIVERSE = 1
+import time
 
 class SimpleFadeController(object):
-    def __init__(self, universe, update_interval, client_wrapper):
+    def __init__(self, universe, update_interval, client_wrapper, time_offset):
         self._universe = universe
         self._update_interval = update_interval
         self._data = array('B', [])
@@ -17,6 +14,10 @@ class SimpleFadeController(object):
         self._iterable = 1
         self._ascending = True
         self._data_length = 180
+        self._time_offset = time_offset
+
+        # sleep for the desired amt of seconds, before running.
+        time.sleep(time_offset)
 
     def UpdateDmx(self):
         """
@@ -52,13 +53,3 @@ class SimpleFadeController(object):
         # For more information on Add Event, reference the OlaClient
         # Add our event again so it becomes periodic
         self._wrapper.AddEvent(self._update_interval, self.UpdateDmx)
-
-
-if __name__ == '__main__':
-        wrapper = ClientWrapper()
-        controller = SimpleFadeController(UNIVERSE, UPDATE_INTERVAL, wrapper)
-        # Call it initially
-        wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
-        # Start the wrapper
-        print('am I getting run?*****************************')
-        wrapper.Run()
