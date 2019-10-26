@@ -15,6 +15,14 @@ if __name__ == '__main__':
         wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
         # Start the wrapper
         wrapper.Run()
+        
         wrapper = None
         controller = None
-        
+        time.sleep(1)
+
+        wrapper = ClientWrapper()
+        controller = SimpleFadeController(UNIVERSE, UPDATE_INTERVAL, wrapper)
+        # Call it initially
+        wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
+        # Start the wrapper
+        wrapper.Run()
