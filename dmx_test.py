@@ -23,7 +23,7 @@ class SimpleFadeController(object):
         self._iterable = 0
         self._ascending = True
         self._index = 0
-        self._data_length = 60
+        self._data_length = 180
 
     def UpdateDmx(self):
         """
@@ -45,7 +45,7 @@ class SimpleFadeController(object):
             print('deleted 3 values from array')
 
         # Checks if the led strip is full (ie, it has 60 pixel values)    
-        if self._iterable > 60:
+        if self._iterable > 90:
             self._ascending = False
             print('ascending set false!')
 
