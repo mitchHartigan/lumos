@@ -22,6 +22,8 @@ class SimpleFadeController(object):
         self._wrapper.AddEvent(self._update_interval, self.UpdateDmx)
         self._iterable = 0
         self._ascending = True
+        self._index = 0
+        self._data_length = 120
 
     def UpdateDmx(self):
         """
@@ -31,11 +33,10 @@ class SimpleFadeController(object):
         if self._ascending:
             self._data.extend([255, 0, 0])
         else: 
-            i = 0
-            while i < 3:
-                self._data.pop()
-                i += 1
-
+            i = self._data_length - 1
+            self._data[i:i-3] = [0, 0, 0]
+            self._data_length -= 3
+            
         if self._iterable > 60:
             self._ascending = False
 
@@ -57,3 +58,10 @@ if __name__ == '__main__':
         wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
         # Start the wrapper
         wrapper.Run()
+
+
+
+    length = 120
+
+    for i in range(3):
+        self._data
