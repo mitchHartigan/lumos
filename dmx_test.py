@@ -8,6 +8,7 @@ UPDATE_INTERVAL = 100 # In ms, this comes about to ~40 frames a second
 SHUTDOWN_INTERVAL = 10000 # in ms, This is 10 seconds
 DMX_DATA_SIZE = 60
 UNIVERSE = 1
+movingUpwards = True
 
 class SimpleFadeController(object):
   def __init__(self, universe, update_interval, client_wrapper,
@@ -19,7 +20,7 @@ class SimpleFadeController(object):
     self._wrapper = client_wrapper
     self._client = client_wrapper.Client()
     self._wrapper.AddEvent(self._update_interval, self.UpdateDmx)
-    self._iterable = 10
+    self._iterable = 0
 
   def UpdateDmx(self):
     """
@@ -36,9 +37,17 @@ class SimpleFadeController(object):
       self._iterable = 10
     print(self._iterable)
     """
-    self._data.extend([75, 249, 145, 239, 180, 63, 247, 121, 125])
-    print(self._data)
     
+    while self._iterable <= SHUTDOWN_INTERVAL/2:
+        movingUpwards = False
+    if movingUpwards:
+        self._data.extend([75, 249, 145, 239, 180, 63, 247, 121, 125])
+    else:
+        i = 0
+        while i < 3:
+            self._data.pop()
+            i+= 1
+    print(self._data)
     # Send the DMX data
     self._client.SendDmx(self._universe, self._data)
     # For more information on Add Event, reference the OlaClient
