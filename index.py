@@ -6,7 +6,7 @@ import time
 
 UPDATE_INTERVAL = 25 # In ms, this comes about to ~40 frames a second
 SHUTDOWN_INTERVAL = 3600 # in ms
-UNIVERSE = 1
+UNIVERSE = 3
 
 def run_animation():
     wrapper = ClientWrapper()
