@@ -45,7 +45,7 @@ class SimpleFadeController(object):
             print('deleted 3 values from array')
 
         # Checks if the led strip is full (ie, it has 60 pixel values)    
-        if self._iterable > 90:
+        if self._iterable > 60:
             self._ascending = False
             print('ascending set false!')
 
