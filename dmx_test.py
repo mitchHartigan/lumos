@@ -36,7 +36,7 @@ class SimpleFadeController(object):
       self._iterable = 10
     print(self._iterable)
     """
-    self._data.extend([75, 249, 145, 239, 180, 63, 247, 121, 125])
+    self._data.extend([142, 45, 226, 74, 0, 224, 255, 0, 153])
     print(self._data)
     
     # Send the DMX data
