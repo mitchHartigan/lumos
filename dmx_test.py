@@ -4,8 +4,8 @@ from ola.DMXConstants import DMX_MIN_SLOT_VALUE, DMX_MAX_SLOT_VALUE, \
     DMX_UNIVERSE_SIZE
 import random
 
-UPDATE_INTERVAL = 100 # In ms, this comes about to ~40 frames a second
-SHUTDOWN_INTERVAL = 13000 # in ms, This is 12 seconds
+UPDATE_INTERVAL = 25 # In ms, this comes about to ~40 frames a second
+SHUTDOWN_INTERVAL = 325 # in ms, This is 12 seconds
 DMX_DATA_SIZE = 60
 UNIVERSE = 1
 movingUpwards = True
@@ -22,7 +22,6 @@ class SimpleFadeController(object):
         self._wrapper.AddEvent(self._update_interval, self.UpdateDmx)
         self._iterable = 1
         self._ascending = True
-        self._index = 0
         self._data_length = 180
 
     def UpdateDmx(self):
