@@ -21,5 +21,7 @@ def run_animation():
     time.sleep(1)
 
 if __name__ == '__main__':
-    for i in range(3):
+    i = 0
+    while i < 10:
         run_animation()
+        i += 1
