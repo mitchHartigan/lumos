@@ -7,22 +7,22 @@ import time
 UPDATE_INTERVAL = 25 # In ms, this comes about to ~40 frames a second
 SHUTDOWN_INTERVAL = 3600 # in ms
 
-def run_animation(output_universe):
+def run_animation():
     wrapper = ClientWrapper()
-    controller = SimpleFadeController(output_universe, UPDATE_INTERVAL, wrapper)
+    controller = SimpleFadeController(1, UPDATE_INTERVAL, wrapper)
     # Call it initially
     wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
     # Start the wrapper
+
+    controller2 = SimpleFadeController(2, UPDATE_INTERVAL, wrapper )
+    wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
+
+    controller3 = SimpleFadeController(3, UPDATE_INTERVAL, wrapper)
+    wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
+
     wrapper.Run()
-
-    wrapper = None
-    controller = None
-    time.sleep(1)
-
 if __name__ == '__main__':
     i = 0
     while i < 10:
-        run_animation(1)
-        run_animation(2)
-        run_animation(3)
+        run_animation()
         i += 1
