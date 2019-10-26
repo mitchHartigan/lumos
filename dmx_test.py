@@ -39,10 +39,11 @@ class SimpleFadeController(object):
             x = 0
             while x < 3:
                 self._data[i-x] = 0
-                x += 1
-                print(self._data_length)
-            
+                x += 1            
             self._data_length -= 3
+        
+        print(self._data_length)
+        
             print('deleted 3 values from array')
 
         # Checks if the led strip is full (ie, it has 60 pixel values)    
