@@ -11,13 +11,11 @@ def run_animation():
     wrapper = ClientWrapper()
     controller = SimpleFadeController(1, UPDATE_INTERVAL, wrapper)
     # Call it initially
-    wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
     # Start the wrapper
-
     controller2 = SimpleFadeController(2, UPDATE_INTERVAL, wrapper )
-    wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
 
     controller3 = SimpleFadeController(3, UPDATE_INTERVAL, wrapper)
+    
     wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
 
     wrapper.Run()
