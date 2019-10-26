@@ -39,7 +39,7 @@ class SimpleFadeController(object):
         if self._iterable > 60:
             self._ascending = False
 
-        self._iterable += 10
+        self._iterable += 1
 
         print(self._data)
         # Send the DMX data
