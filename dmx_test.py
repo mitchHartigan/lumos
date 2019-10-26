@@ -5,7 +5,7 @@ from ola.DMXConstants import DMX_MIN_SLOT_VALUE, DMX_MAX_SLOT_VALUE, \
 import random
 
 UPDATE_INTERVAL = 100 # In ms, this comes about to ~40 frames a second
-SHUTDOWN_INTERVAL = 12000 # in ms, This is 10 seconds
+SHUTDOWN_INTERVAL = 12000 # in ms, This is 12 seconds
 DMX_DATA_SIZE = 60
 UNIVERSE = 1
 movingUpwards = True
@@ -20,7 +20,7 @@ class SimpleFadeController(object):
         self._wrapper = client_wrapper
         self._client = client_wrapper.Client()
         self._wrapper.AddEvent(self._update_interval, self.UpdateDmx)
-        self._iterable = 0
+        self._iterable = 1
         self._ascending = True
         self._index = 0
         self._data_length = 180
@@ -45,7 +45,7 @@ class SimpleFadeController(object):
             print('deleted 3 values from array')
 
         # Checks if the led strip is full (ie, it has 60 pixel values)    
-        if self._iterable > 60:
+        if self._iterable == 60:
             self._ascending = False
             print('ascending set false!')
 
