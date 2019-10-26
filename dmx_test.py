@@ -9,6 +9,8 @@ SHUTDOWN_INTERVAL = 10000 # in ms, This is 10 seconds
 DMX_DATA_SIZE = 60
 UNIVERSE = 1
 
+# will git see my changes?
+
 class SimpleFadeController(object):
   def __init__(self, universe, update_interval, client_wrapper,
                dmx_data_size=DMX_UNIVERSE_SIZE):
