@@ -40,6 +40,7 @@ class SimpleFadeController(object):
             while x < 3:
                 self._data[i-x] = 0
                 x += 1
+                print(self._data_length)
             
             self._data_length -= 3
             print('deleted 3 values from array')
