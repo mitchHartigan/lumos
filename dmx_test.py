@@ -5,7 +5,7 @@ from ola.DMXConstants import DMX_MIN_SLOT_VALUE, DMX_MAX_SLOT_VALUE, \
 import random
 
 UPDATE_INTERVAL = 25 # In ms, this comes about to ~40 frames a second
-SHUTDOWN_INTERVAL = 3500 # in ms, This is 12 seconds
+SHUTDOWN_INTERVAL = 3550 # in ms, This is 12 seconds
 DMX_DATA_SIZE = 60
 UNIVERSE = 1
 movingUpwards = True
