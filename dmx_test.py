@@ -38,7 +38,7 @@ class SimpleFadeController(object):
         step = (end_val - current_val) / self._num_pixels
         new_val = current_val + step
         self._num_pixels -= 1
-        if self._num_pixels == 0:
+        if self._num_pixels <= 1:
             return new_val
         return self.GenerateRGBValue(end_val, new_val)
 
