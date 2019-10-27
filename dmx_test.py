@@ -13,46 +13,36 @@ class SimpleFadeController(object):
         self._client = client_wrapper.Client()
         self._wrapper.AddEvent(self._update_interval, self.UpdateDmx)
         self._iterable = 1
-        self._ascending = True
-        self._data_length = 180
+
+        self._strip_one_array = array('B', [])
+        self._strip_two_array = array('B', [])
+        self._strip_three_array = array('B', [])
+        self._strip_four_array = array('B', [])
 
     def UpdateDmx(self):
         """
         This function gets called periodically based on UPDATE_INTERVAL
         """ 
         
-        #adds one value to the array, making it bigger, and appearing to ascend
-        if self._ascending:
-            self._data.extend([255, 0, 0])
-            print('added 3 values to array')
+        if(self._iterable >= 1):
+            self._strip_one_array.extend([255, 0, 0])
 
-        # Keeps track of the last value in the array with color. If descending,
-        # sets that value to 0, 0 0, and then moves on to the next element.
+        if(self._iterable >= 2):
+            self._strip_two_array.extend([255, 0, 0])
 
-        else:
-            i = self._data_length - 1
-            x = 0
-            while x < 3:
-                self._data[i-x] = 0
-                x += 1            
-            self._data_length -= 3
-        
-            print('deleted 3 values from array')
+        if(self._iterable >= 3):
+            self._strip_three_array.extend([255, 0, 0])
 
-        print(self._data_length)
-
-        # Checks if the led strip is full (ie, it has 60 pixel values)    
-        if self._iterable == 60:
-            self._ascending = False
-            print('ascending set false!')
+        if(self._iterable >= 4):
+            self._strip_four_array.extend([255, 0, 0])
 
         self._iterable += 1
-
-        print(self._data)
         # Send the DMX data
-        self._client.SendDmx(1, self._data)
+        self._client.SendDmx(1, self._strip_one_array)
         self._client.SendDmx(2, self._data)
         self._client.SendDmx(3, self._data)
+        self._client.SendDmx(4, self._data)
+
         # For more information on Add Event, reference the OlaClient
         # Add our event again so it becomes periodic
         self._wrapper.AddEvent(self._update_interval, self.UpdateDmx)
