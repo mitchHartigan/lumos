@@ -44,7 +44,7 @@ class SimpleFadeController(object):
                     x += 1
                 self._strip_one_data_length -= 3
             else:    
-                self._strip_one_array.extend([255, 0, 0])
+                self._strip_one_array.extend([0, 0, 255])
 
         if(self._iterable >= 10):
             if (self._iterable >= 70): # checks if the strip has reached the end.
@@ -69,7 +69,7 @@ class SimpleFadeController(object):
                     x += 1
                 self._strip_three_data_length -= 3
             else:    
-                self._strip_three_array.extend([255, 0, 0])
+                self._strip_three_array.extend([0, 255, 0])
 
 
         if(self._iterable >= 20):
@@ -82,7 +82,7 @@ class SimpleFadeController(object):
                     x += 1
                 self._strip_four_data_length -= 3
             else:    
-                self._strip_four_array.extend([255, 0, 0])
+                self._strip_four_array.extend([255, 150, 0])
 
         self._iterable += 1
         # Send the DMX data
