@@ -11,7 +11,7 @@ UNIVERSE_1 = 1
 UNIVERSE_2 = 2
 UNIVERSE_3 = 3
 
-def run_strip_animation():
+def run_animation():
     wrapper = ClientWrapper()
     controller = SimpleFadeController(UPDATE_INTERVAL, wrapper)
     wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
@@ -24,5 +24,5 @@ def run_strip_animation():
 if __name__ == '__main__':
     i = 0
     while i < 10:
-        run_strip_animation()
+        run_animation()
         i += 1
