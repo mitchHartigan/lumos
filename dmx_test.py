@@ -24,16 +24,16 @@ class SimpleFadeController(object):
         This function gets called periodically based on UPDATE_INTERVAL
         """ 
         
-        if(self._iterable >= 1):
+        if(self._iterable >= 2):
             self._strip_one_array.extend([255, 0, 0])
 
-        if(self._iterable >= 2):
+        if(self._iterable >= 4):
             self._strip_two_array.extend([255, 0, 0])
 
-        if(self._iterable >= 3):
+        if(self._iterable >= 6):
             self._strip_three_array.extend([255, 0, 0])
 
-        if(self._iterable >= 4):
+        if(self._iterable >= 8):
             self._strip_four_array.extend([255, 0, 0])
 
         self._iterable += 1
