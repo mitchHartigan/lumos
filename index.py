@@ -13,35 +13,11 @@ UNIVERSE_3 = 3
 
 def run_strip_animation():
     wrapper = ClientWrapper()
-    controller = SimpleFadeController(1, UPDATE_INTERVAL, wrapper)
+    controller = SimpleFadeController(UPDATE_INTERVAL, wrapper)
     wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
     wrapper.Run()
 
     #Clears the variables, to prevent scope pollution
-    wrapper = None
-    controller = None
-
-    wrapper = ClientWrapper()
-    controller = SimpleFadeController(2, UPDATE_INTERVAL, wrapper)
-    wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
-    wrapper.Run()
-
-    wrapper = None
-    controller = None
-
-    wrapper = ClientWrapper()
-    controller = SimpleFadeController(3, UPDATE_INTERVAL, wrapper)
-    wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
-    wrapper.Run()
-
-    wrapper = None
-    controller = None
-
-    wrapper = ClientWrapper()
-    controller = SimpleFadeController(4, UPDATE_INTERVAL, wrapper)
-    wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
-    wrapper.Run()
-
     wrapper = None
     controller = None
 
