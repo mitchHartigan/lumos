@@ -30,14 +30,14 @@ class SimpleFadeController(object):
         """ 
         
         if(self._iterable >= 5):
-            if (self._iterable >= 60): # checks if the strip has reached the end.
+            if (self._iterable >= 65): # checks if the strip has reached the end.
                 print('strip has reached end of loop')
                 print('strip_one_array', self._strip_one_array)
                 print('length of this strip: ', len(self._strip_one_array))
                 i = self._strip_one_data_length - 1
                 
                 print('i', i)
-                
+
                 x = 0
                 while x < 3:
                     self._strip_one_array[i-x] = 0
@@ -47,7 +47,7 @@ class SimpleFadeController(object):
                 self._strip_one_array.extend([255, 0, 0])
 
         if(self._iterable >= 10):
-            if (self._iterable >= 60): # checks if the strip has reached the end.
+            if (self._iterable >= 70): # checks if the strip has reached the end.
                 i = self._strip_two_data_length - 1
                 
                 x = 0
@@ -60,7 +60,7 @@ class SimpleFadeController(object):
 
 
         if(self._iterable >= 15):
-            if (self._iterable >= 60): # checks if the strip has reached the end.
+            if (self._iterable >= 75): # checks if the strip has reached the end. offset by 15 from 60
                 i = self._strip_three_data_length - 1
                 
                 x = 0
@@ -73,7 +73,7 @@ class SimpleFadeController(object):
 
 
         if(self._iterable >= 20):
-            if (self._iterable >= 60): # checks if the strip has reached the end.
+            if (self._iterable >= 80): # checks if the strip has reached the end. offset by 20 from 60 (full strip)
                 i = self._strip_four_data_length - 1
                 
                 x = 0
