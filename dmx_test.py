@@ -82,7 +82,7 @@ class SimpleFadeController(object):
                     x += 1
                 self._strip_four_data_length -= 3
             else:    
-                self._strip_four_array.extend([255, 150, 0])
+                self._strip_four_array.extend([210, 10, 255])
 
         self._iterable += 1
         # Send the DMX data
