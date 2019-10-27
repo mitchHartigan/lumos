@@ -126,10 +126,10 @@ class SimpleFadeController(object):
         self._iterable += 1
 
         # Send each array, a frame of animation, to each respective universe.
-        # self._client.SendDmx(1, self._strip_one_array)
-        # self._client.SendDmx(2, self._strip_two_array)
-        # self._client.SendDmx(3, self._strip_three_array)
-        # self._client.SendDmx(4, self._strip_four_array)
+        self._client.SendDmx(1, self._strip_one_array)
+        self._client.SendDmx(2, self._strip_two_array)
+        self._client.SendDmx(3, self._strip_three_array)
+        self._client.SendDmx(4, self._strip_four_array)
         # self._client.SendDmx(1, self._strip_test_gradient_math)
         # self._client.SendDmx(2, self._strip_test_gradient_chosen_values)
 
