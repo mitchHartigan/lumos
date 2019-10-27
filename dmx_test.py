@@ -21,8 +21,8 @@ class SimpleFadeController(object):
         self._strip_four_array = array('B', [])
 
         # Testing gradient
-        self._strip_test_gradient_math = array('B', [217,120,0,206,114,13,195,108,26,184,102,38,174,96,51,163,90,64,152,84,77,141,78,89,130,72,102,119,66,115,109,60,128,98,54,140,87,48,153,76,42,166,65,36,179,54,30,191,43,24,204,33,18,217,22,12,230,11,6,242,0,0,255])
-        self._strip_test_gradient_values = array('B',[217,120,0,200,114,13,195,108,26,170,89,26,160,84,41,149,78,54,138,72,67,126,66,80,115,60,93,104,50,106,90,48,119,82,42,132,71,36,145,60,30,158,49,24,171,38,18,184,27,12,197,16,6,210,5,0,223,0,0,255])
+        # self._strip_test_gradient_math = array('B', [217,120,0,206,114,13,195,108,26,184,102,38,174,96,51,163,90,64,152,84,77,141,78,89,130,72,102,119,66,115,109,60,128,98,54,140,87,48,153,76,42,166,65,36,179,54,30,191,43,24,204,33,18,217,22,12,230,11,6,242,0,0,255])
+        # self._strip_test_gradient_chosen_values = array('B',[217,120,0,200,114,13,195,108,26,170,89,26,160,84,41,149,78,54,138,72,67,126,66,80,115,60,93,104,50,106,90,48,119,82,42,132,71,36,145,60,30,158,49,24,171,38,18,184,27,12,197,16,6,210,5,0,223,0,0,255])
 
         # Initialize a data length for each strip.
         # These will update at different rates, as the strips remove
@@ -31,6 +31,14 @@ class SimpleFadeController(object):
         self._strip_two_data_length = 180
         self._strip_three_data_length = 180
         self._strip_four_data_length = 180
+
+        self._current_no_lights = 20
+
+    def GenerateRGBValue(self, end_val, current_val, current_no_lights):
+        step = (end_val - start_val) / current_no_lights
+        new_val = current_val + step
+        self._current_no_lights -= 1
+        return new_val
 
     def UpdateDmx(self):
         """
@@ -63,7 +71,8 @@ class SimpleFadeController(object):
             else:  
                 # if not at 65 iterations, the strip isn't full yet, and therefore is still ascending.
                 # Adds a pixel to the array if so.  
-                self._strip_one_array.extend([0, 0, 255])
+                # self._strip_one_array.extend([0, 0, 255])
+                self._strip_one_array.extend([GenerateRGBValue(74, 142, self._current_no_lights), GenerateRGBValue(0, 45, self._current_no_lights), GenerateRGBValue(224, 226, self._current_no_lights)])
         
         #----------------------------------
         # Strip two controller
@@ -119,8 +128,8 @@ class SimpleFadeController(object):
         # self._client.SendDmx(2, self._strip_two_array)
         # self._client.SendDmx(3, self._strip_three_array)
         # self._client.SendDmx(4, self._strip_four_array)
-        self._client.SendDmx(1, self._strip_test_gradient_math)
-        self._client.SendDmx(2, self._strip_test_gradient_values)
+        # self._client.SendDmx(1, self._strip_test_gradient_math)
+        # self._client.SendDmx(2, self._strip_test_gradient_chosen_values)
 
 
         self._wrapper.AddEvent(self._update_interval, self.UpdateDmx)
