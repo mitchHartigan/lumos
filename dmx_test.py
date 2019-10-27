@@ -32,13 +32,12 @@ class SimpleFadeController(object):
         self._strip_three_data_length = 180
         self._strip_four_data_length = 180
 
-        self._current_no_lights = 20
+        self._num_pixels = 30
 
-    def GenerateRGBValue(self, end_val, current_val, current_no_lights):
-        step = (end_val - start_val) / current_no_lights
+    def GenerateRGBValue(self, end_val, current_val):
+        step = (end_val - current_val) / self._num_pixels
         new_val = current_val + step
-        self._current_no_lights -= 1
-        return new_val
+        return self.GenerateRGBValue(end_val, new_val)
 
     def UpdateDmx(self):
         """
@@ -72,7 +71,7 @@ class SimpleFadeController(object):
                 # if not at 65 iterations, the strip isn't full yet, and therefore is still ascending.
                 # Adds a pixel to the array if so.  
                 # self._strip_one_array.extend([0, 0, 255])
-                self._strip_one_array.extend([GenerateRGBValue(74, 142, self._current_no_lights), GenerateRGBValue(0, 45, self._current_no_lights), GenerateRGBValue(224, 226, self._current_no_lights)])
+                self._strip_one_array.extend([self.GenerateRGBValue(74, 142), self.GenerateRGBValue(0, 45), self.GenerateRGBValue(224, 226)])
         
         #----------------------------------
         # Strip two controller
