@@ -4,7 +4,7 @@ import random
 import time
 
 class SimpleFadeController(object):
-    def __init__(self, universe, update_interval, client_wrapper, time_offset):
+    def __init__(self, universe, update_interval, client_wrapper):
         self._universe = universe
         self._update_interval = update_interval
         self._data = array('B', [])
@@ -14,17 +14,11 @@ class SimpleFadeController(object):
         self._iterable = 1
         self._ascending = True
         self._data_length = 180
-        self._time_offset = time_offset
-        self._is_first_update = True
 
     def UpdateDmx(self):
         """
         This function gets called periodically based on UPDATE_INTERVAL
         """
-
-        if self._is_first_update:
-            time.sleep(self._time_offset)
-            self._is_first_update = False
 
         if self._ascending:
             self._data.extend([255, 0, 0])
