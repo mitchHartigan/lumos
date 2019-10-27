@@ -19,22 +19,65 @@ class SimpleFadeController(object):
         self._strip_three_array = array('B', [])
         self._strip_four_array = array('B', [])
 
+        self._strip_one_data_length = 180
+        self._strip_two_data_length = 180
+        self._strip_three_data_length = 180
+        self._strip_four_data_length = 180
+
     def UpdateDmx(self):
         """
         This function gets called periodically based on UPDATE_INTERVAL
         """ 
         
         if(self._iterable >= 5):
-            self._strip_one_array.extend([255, 0, 0])
+            if (self._iterable >= 60): # checks if the strip has reached the end.
+                i = self._strip_one_data_length - 1
+                
+                x = 0
+                while x < 3:
+                    self._strip_one_array[i-x] = 0
+                    x += 1
+                self._strip_one_data_length -= 3
+            else:    
+                self._strip_one_array.extend([255, 0, 0])
 
         if(self._iterable >= 10):
-            self._strip_two_array.extend([255, 0, 0])
+            if (self._iterable >= 60): # checks if the strip has reached the end.
+                i = self._strip_two_data_length - 1
+                
+                x = 0
+                while x < 3:
+                    self._strip_two_array[i-x] = 0
+                    x += 1
+                self._strip_two_data_length -= 3
+            else:    
+                self._strip_two_array.extend([255, 0, 0])            
+
 
         if(self._iterable >= 15):
-            self._strip_three_array.extend([255, 0, 0])
+            if (self._iterable >= 60): # checks if the strip has reached the end.
+                i = self._strip_three_data_length - 1
+                
+                x = 0
+                while x < 3:
+                    self._strip_three_array[i-x] = 0
+                    x += 1
+                self._strip_three_data_length -= 3
+            else:    
+                self._strip_three_array.extend([255, 0, 0])
+
 
         if(self._iterable >= 20):
-            self._strip_four_array.extend([255, 0, 0])
+            if (self._iterable >= 60): # checks if the strip has reached the end.
+                i = self._strip_four_data_length - 1
+                
+                x = 0
+                while x < 3:
+                    self._strip_four_array[i-x] = 0
+                    x += 1
+                self._strip_four_data_length -= 3
+            else:    
+                self._strip_four_array.extend([255, 0, 0])
 
         self._iterable += 1
         # Send the DMX data
