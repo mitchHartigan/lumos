@@ -11,9 +11,9 @@ UNIVERSE_1 = 1
 UNIVERSE_2 = 2
 UNIVERSE_3 = 3
 
-def run_strip_animation(universe, time_offset):
+def run_strip_animation():
     wrapper = ClientWrapper()
-    controller = SimpleFadeController(universe, UPDATE_INTERVAL, wrapper)
+    controller = SimpleFadeController(1, UPDATE_INTERVAL, wrapper)
     wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
     wrapper.Run()
 
@@ -21,10 +21,32 @@ def run_strip_animation(universe, time_offset):
     wrapper = None
     controller = None
 
+    wrapper = ClientWrapper()
+    controller = SimpleFadeController(2, UPDATE_INTERVAL, wrapper)
+    wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
+    wrapper.Run()
+
+    wrapper = None
+    controller = None
+
+    wrapper = ClientWrapper()
+    controller = SimpleFadeController(3, UPDATE_INTERVAL, wrapper)
+    wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
+    wrapper.Run()
+
+    wrapper = None
+    controller = None
+
+    wrapper = ClientWrapper()
+    controller = SimpleFadeController(4, UPDATE_INTERVAL, wrapper)
+    wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
+    wrapper.Run()
+
+    wrapper = None
+    controller = None
+
 if __name__ == '__main__':
     i = 0
     while i < 10:
-        run_strip_animation(UNIVERSE_1, 0)
-        run_strip_animation(UNIVERSE_2, 1)
-        run_strip_animation(UNIVERSE_3, 2)
+        run_strip_animation()
         i += 1
