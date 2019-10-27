@@ -37,9 +37,9 @@ class SimpleFadeController(object):
     def GenerateRGBValue(self, end_val, current_val):
         step = (end_val - current_val) / self._num_pixels
         new_val = current_val + step
-        self._num_pixels -= 1
         if self._num_pixels <= 1:
             return new_val
+        self._num_pixels -= 1
         return self.GenerateRGBValue(end_val, new_val)
 
     def UpdateDmx(self):
