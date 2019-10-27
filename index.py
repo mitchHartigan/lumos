@@ -5,7 +5,7 @@ import random
 import time
 
 UPDATE_INTERVAL = 25 # In ms, this comes about to ~40 frames a second
-SHUTDOWN_INTERVAL = 5000 # in ms
+SHUTDOWN_INTERVAL = 5200 # in ms
 
 UNIVERSE_1 = 1
 UNIVERSE_2 = 2
