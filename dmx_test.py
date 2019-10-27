@@ -39,9 +39,9 @@ class SimpleFadeController(object):
         self._iterable += 1
         # Send the DMX data
         self._client.SendDmx(1, self._strip_one_array)
-        self._client.SendDmx(2, self._data)
-        self._client.SendDmx(3, self._data)
-        self._client.SendDmx(4, self._data)
+        self._client.SendDmx(2, self._strip_two_array)
+        self._client.SendDmx(3, self._strip_three_array)
+        self._client.SendDmx(4, self._strip_four_array)
 
         # For more information on Add Event, reference the OlaClient
         # Add our event again so it becomes periodic
