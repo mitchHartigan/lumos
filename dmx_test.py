@@ -47,7 +47,7 @@ class SimpleFadeController(object):
 
         gradient = []
 
-        for i in range(pixels - 1):
+        for i in range(pixels):
             gradient.extend([R1 + r_step, G1 + g_step, B1 + b_step])
         
         return gradient
