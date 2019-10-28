@@ -35,6 +35,7 @@ class SimpleFadeController(object):
         Returns the step value to convert one RGB color to another.
         """
         step = (end_val - start_val) / pixels
+        print('generated step', step)
         return step
     
     def generate_single_gradient(self, R1, G1, B1, R2, G2, B2, pixels):
@@ -69,7 +70,6 @@ class SimpleFadeController(object):
 
         i = 0
         while i < 3:
-            print('value set appended to!')
             value_set.append(gradient_list[i])
             i += 1
         
@@ -80,8 +80,6 @@ class SimpleFadeController(object):
                 print('gradient 1 popped')
                 self.gradient1.pop(i)
                 i += 1
-
-        print('value set')
         return value_set
 
     def UpdateDmx(self):
