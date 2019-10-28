@@ -29,6 +29,8 @@ class SimpleFadeController(object):
         self._strip_four_data_length = 180
 
         self.gradient1 = self.generate_multicolor_gradient(255, 0, 0, 0, 255, 0, 0, 0, 255)
+        print('\n')
+        print(self.gradient1)
 
     def generate_rgb_step(self, end_val, start_val, pixels):
         """
