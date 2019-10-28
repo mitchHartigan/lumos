@@ -74,11 +74,12 @@ class SimpleFadeController(object):
             value_set.append(gradient_list[i])
             i += 1
         
-        i = 0
-        while i < 3:
-            print('gradient 1 popped')
-            self.gradient1.pop(i)
-            i += 1
+        if (len(self.gradient1) >= 3):
+            i = 0
+            while i < 3:
+                print('gradient 1 popped')
+                self.gradient1.pop(i)
+                i += 1
 
         print('value set')
         return value_set
