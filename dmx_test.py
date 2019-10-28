@@ -106,7 +106,7 @@ class SimpleFadeController(object):
                 # if not at 65 iterations, the strip isn't full yet, and therefore is still ascending.
                 # Adds a pixel to the array if so.  
                 # self._strip_one_array.extend([0, 0, 255])
-                self._strip_one_array.extend([self.GenerateRGBValue(74, 142), self.GenerateRGBValue(0, 45), self.GenerateRGBValue(224, 226)])
+                self._strip_one_array.extend(self.print_gradient_vals(self.gradient1))
         
         #----------------------------------
         # Strip two controller
