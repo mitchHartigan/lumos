@@ -73,7 +73,7 @@ class SimpleFadeController(object):
         
         for i in range(0, 2):
             print('popped')
-            value_set.pop(i)
+            self.gradient1.pop(i)
 
         return value_set
 
