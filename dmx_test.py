@@ -29,8 +29,6 @@ class SimpleFadeController(object):
         self._strip_four_data_length = 180
 
         self.gradient1 = self.generate_multicolor_gradient(255, 0, 0, 0, 255, 0, 0, 0, 255)
-        print('\n')
-        print(self.gradient1)
 
     def generate_rgb_step(self, end_val, start_val, pixels):
         """
@@ -50,7 +48,7 @@ class SimpleFadeController(object):
         gradient = []
 
         for i in range(pixels - 1):
-            gradient.extend([R1 + (r_step * i), G1 + (g_step * i), B1 + (b_step * i)])
+            gradient.extend([R1 + r_step, G1 + g_step, B1 + b_step])
         
         return gradient
 
@@ -63,6 +61,7 @@ class SimpleFadeController(object):
 
         first_gradient.extend(second_gradient)
         print('first_gradient from gen_multicolor', first_gradient)
+        print('lenght of first_gradient', len(first_gradient))
         return first_gradient
 
     def print_gradient_vals(self, gradient_list):
@@ -75,6 +74,7 @@ class SimpleFadeController(object):
             i += 1
         
         if (len(self.gradient1) >= 3):
+
             i = 0
             while i < 3:
                 print('gradient 1 popped')
@@ -117,7 +117,9 @@ class SimpleFadeController(object):
                 # Adds a pixel to the array if so.  
                 # self._strip_one_array.extend([0, 0, 255])
                 new_val = self.print_gradient_vals(self.gradient1)
+                print('\n')
                 print('new val', new_val)
+                print('\n')
                 self._strip_one_array.extend(new_val)
         
         #----------------------------------
