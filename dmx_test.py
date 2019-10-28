@@ -69,12 +69,14 @@ class SimpleFadeController(object):
         value_set = []
 
         for i in range(0, 2):
+            print('value set appended to!')
             value_set.append(gradient_list[i])
         
         for i in range(0, 2):
-            print('popped')
+            print('gradient 1 popped')
             self.gradient1.pop(i)
 
+        print('value set')
         return value_set
 
     def UpdateDmx(self):
