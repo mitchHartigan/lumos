@@ -20,10 +20,6 @@ class SimpleFadeController(object):
         self._strip_three_array = array('B', [])
         self._strip_four_array = array('B', [])
 
-        # Testing gradient
-        # self._strip_test_gradient_math = array('B', [217,120,0,206,114,13,195,108,26,184,102,38,174,96,51,163,90,64,152,84,77,141,78,89,130,72,102,119,66,115,109,60,128,98,54,140,87,48,153,76,42,166,65,36,179,54,30,191,43,24,204,33,18,217,22,12,230,11,6,242,0,0,255])
-        # self._strip_test_gradient_chosen_values = array('B',[217,120,0,200,114,13,195,108,26,170,89,26,160,84,41,149,78,54,138,72,67,126,66,80,115,60,93,104,50,106,90,48,119,82,42,132,71,36,145,60,30,158,49,24,171,38,18,184,27,12,197,16,6,210,5,0,223,0,0,255])
-
         # Initialize a data length for each strip.
         # These will update at different rates, as the strips remove
         # array elements at different rates.
@@ -32,15 +28,51 @@ class SimpleFadeController(object):
         self._strip_three_data_length = 180
         self._strip_four_data_length = 180
 
-        self._num_pixels = 30
+        self.gradient1 = self.generate_multicolor_gradient(255, 0, 0, 0, 255, 0, 0, 0, 255)
 
-    def GenerateRGBValue(self, end_val, current_val):
-        step = (end_val - current_val) / self._num_pixels
-        new_val = current_val + step
-        if self._num_pixels <= 1:
-            return new_val
-        self._num_pixels -= 1
-        return self.GenerateRGBValue(end_val, new_val)
+    def generate_rgb_step(self, end_val, start_val, pixels):
+        """
+        Returns the step value to convert one RGB color to another.
+        """
+        step = (end_val - start_val) / pixels
+        return step
+    
+    def generate_single_gradient(self, R1, G1, B1, R2, G2, B2, pixels):
+        """
+        Creates a gradient from one color to another over the range of pixels provided.
+        """
+        r_step = self.generate_rgb_step(R2, R1, pixels)
+        g_step = self.generate_rgb_step(G2, G1, pixels)
+        b_step = self.generate_rgb_step(B2, B1, pixels)
+
+        gradient = []
+
+        for i in range(pixels - 1):
+            gradient.extend([R1 + (r_step * i), G1 + (g_step * i), B1 + (b_step * i)])
+        
+        return gradient
+
+    def generate_multicolor_gradient(self, R1, G1, B1, R2, G2, B2, R3, G3, B3):
+        """
+        Creates a gradient between three colors, by combining two single color gradients.
+        """
+        first_gradient = self.generate_single_gradient(R1, G1, B1, R2, G2, B2, 30)
+        second_gradient = self.generate_single_gradient(R2, G2, B2, R3, G3, B3, 30)
+
+        first_gradient.extend(second_gradient)
+
+        return first_gradient
+
+    def print_gradient_vals(self, gradient_list):
+        value_set = []
+
+        for i in range(0, 2):
+            value_set.append(gradient_list[i])
+        
+        for i in range(0, 2):
+            value_set.pop(i)
+
+        return value_set
 
     def UpdateDmx(self):
         """
