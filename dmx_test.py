@@ -62,7 +62,7 @@ class SimpleFadeController(object):
         second_gradient = self.generate_single_gradient(R2, G2, B2, R3, G3, B3, 30)
 
         first_gradient.extend(second_gradient)
-
+        print('first_gradient from gen_multicolor', first_gradient)
         return first_gradient
 
     def print_gradient_vals(self, gradient_list):
@@ -109,7 +109,9 @@ class SimpleFadeController(object):
                 # if not at 65 iterations, the strip isn't full yet, and therefore is still ascending.
                 # Adds a pixel to the array if so.  
                 # self._strip_one_array.extend([0, 0, 255])
-                self._strip_one_array.extend(self.print_gradient_vals(self.gradient1))
+                new_val = self.print_gradient_vals(self.gradient1)
+                print('new val', new_val)
+                self._strip_one_array.extend(new_val)
         
         #----------------------------------
         # Strip two controller
