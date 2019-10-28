@@ -68,13 +68,17 @@ class SimpleFadeController(object):
     def print_gradient_vals(self, gradient_list):
         value_set = []
 
-        for i in range(0, 2):
+        i = 0
+        while i < 3:
             print('value set appended to!')
             value_set.append(gradient_list[i])
+            i += 1
         
-        for i in range(0, 2):
+        i = 0
+        while i < 3:
             print('gradient 1 popped')
             self.gradient1.pop(i)
+            i += 1
 
         print('value set')
         return value_set
