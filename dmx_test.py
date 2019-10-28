@@ -49,7 +49,7 @@ class SimpleFadeController(object):
         gradient = []
 
         for i in range(pixels):
-            gradient.extend([R1 + r_step, G1 + g_step, B1 + b_step])
+            gradient.extend([R1 + (r_step * i), G1 + (g_step * i), B1 + (b_step * i)])
         
         return gradient
 
@@ -77,7 +77,6 @@ class SimpleFadeController(object):
 
             i = 0
             while i < 3:
-                print('gradient 1 popped')
                 self.gradient1.pop(i)
                 i += 1
         return value_set
