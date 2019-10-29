@@ -20,9 +20,7 @@ def run_strip_animation():
     controller = SimpleFadeController(UPDATE_INTERVAL, wrapper)
     wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
     wrapper.Run()
-
-def reset_variables():
-    #Clears the variables, to prevent scope pollution
+    
     wrapper = None
     controller = None
 
