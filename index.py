@@ -16,7 +16,7 @@ UNIVERSE_1 = 1
 UNIVERSE_2 = 2
 UNIVERSE_3 = 3
 
-def run_strip_animation():
+def run_strip_animation(wrapper):
     controller = SimpleFadeController(UPDATE_INTERVAL, wrapper)
     wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
     wrapper.Run()
@@ -36,9 +36,8 @@ if __name__ == '__main__':
             # nothing has changed.
             i = 0
             while i < 10:
-                run_strip_animation()
+                run_strip_animation(wrapper)
                 i += 1
-                reset_variables()
         else:
             # the value has changed.
             pot_val = pot.value * 100
