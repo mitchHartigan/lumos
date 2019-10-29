@@ -167,7 +167,7 @@ class SimpleFadeController(object):
             if (self._iterable >= 70): # checks if the strip has reached the end.
 
                 if self._strip_two_data_length >= 3:
-                i = self._strip_two_data_length - 1
+                    i = self._strip_two_data_length - 1
                 
                 x = 0
                 while x < 3:
