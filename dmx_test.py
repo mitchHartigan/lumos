@@ -159,6 +159,7 @@ class SimpleFadeController(object):
                 # Adds a pixel to the array if so.  
                 # self._strip_one_array.extend([0, 0, 255])
                 new_value = self.read_values(5, self.gradient1)
+                print(new_value)
                 self._strip_one_array.extend(new_value)
         #----------------------------------
         # Strip two controller
@@ -208,10 +209,6 @@ class SimpleFadeController(object):
 
         # updates the iterable at the end of this iteration. (lel tf did I just write)
         self._iterable += 1
-
-        print('strip_one_array before reassignment', self._strip_one_array)
-        self._strip_one_array = array('B', self._strip_one_array)
-        print('strip_one_array after reassignment', self._strip_one_array)
 
         # Send each array, a frame of animation, to each respective universe.
         self._client.SendDmx(1, self._strip_one_array)
