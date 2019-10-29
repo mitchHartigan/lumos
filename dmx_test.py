@@ -153,6 +153,9 @@ class SimpleFadeController(object):
         # Strip two controller
         #----------------------------------
         if(self._iterable >= 10):
+            curr_r = self.gradient1[self._index]
+            curr_g = self.gradient1[self._index + 1]
+            curr_b = self.gradient1[self._index + 2]
             if (self._iterable >= 70): # checks if the strip has reached the end.
                 i = self._strip_two_data_length - 1
                 
@@ -162,7 +165,8 @@ class SimpleFadeController(object):
                     x += 1
                 self._strip_two_data_length -= 3
             else:    
-                self._strip_two_array.extend([255, 0, 0])            
+                self._strip_two_array.extend([curr_r, curr_g, curr_b])
+            self._index += 3        
 
         #----------------------------------
         # Strip three controller
@@ -200,7 +204,7 @@ class SimpleFadeController(object):
 
         # Send each array, a frame of animation, to each respective universe.
         self._client.SendDmx(1, self._strip_one_array)
-        self._client.SendDmx(2, self.gradient2)
+        self._client.SendDmx(2, self._strip_two_array)
         self._client.SendDmx(3, self._strip_three_array)
         self._client.SendDmx(4, self._strip_four_array)
         # # self._client.SendDmx(1, self._strip_test_gradient_math)
