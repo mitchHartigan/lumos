@@ -25,10 +25,10 @@ def run_strip_animation():
     controller = None
 
 if __name__ == '__main__':
-    while True:
-        print(pot.value)
-    # i = 0
-    # while i < 10:
-    #     run_strip_animation()
-    #     i += 1
+    i = 0
+    while i < 10:
+        while True:
+            print(pot.value)
+            # run_strip_animation()
+            # i += 1
 
