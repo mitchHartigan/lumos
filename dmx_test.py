@@ -30,6 +30,19 @@ class SimpleFadeController(object):
 
         # self.gradient1 = self.generate_multicolor_gradient(142, 45, 226, 74, 0, 224, 255, 0, 153)
 
+        self.gradient1 = [255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 
+                          255, 43, 0, 255, 43, 0, 255, 43, 0, 255, 43, 0, 255, 43, 0,
+                          255, 85, 0, 255, 85, 0, 255, 85, 0, 255, 85, 0, 255, 85, 0,
+                          255, 128, 0, 255, 128, 0, 255, 128, 0, 255, 128, 0, 255, 128, 0,
+                          255, 170, 0, 255, 170, 0, 255, 170, 0, 255, 170, 0, 255, 170, 0,
+                          255, 213, 0, 255, 213, 0, 255, 213, 0, 255, 213, 0, 255, 213, 0,
+                          255, 255, 0, 255, 255, 0, 255, 255, 0, 255, 255, 0, 255, 255, 0,
+                          213, 255, 0, 213, 255, 0, 213, 255, 0, 213, 255, 0, 213, 255, 0,
+                          170, 255, 0, 170, 255, 0, 170, 255, 0, 170, 255, 0, 170, 255, 0,
+                          128, 255, 0, 128, 255, 0, 128, 255, 0, 128, 255, 0, 128, 255, 0,
+                          85, 255, 0, 85, 255, 0, 85, 255, 0, 85, 255, 0, 85, 255, 0,
+                          43, 255, 0, 43, 255, 0, 43, 255, 0, 43, 255, 0, 43, 255, 0,
+                          0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0 ]
 
     def generate_rgb_step(self, end_val, start_val, pixels):
         """
@@ -114,8 +127,9 @@ class SimpleFadeController(object):
                 # if not at 65 iterations, the strip isn't full yet, and therefore is still ascending.
                 # Adds a pixel to the array if so.  
                 # self._strip_one_array.extend([0, 0, 255])
-                self._strip_one_array.extend([255, 0, 0])
-        
+
+                values = self.print_gradient_vals(self.gradient1)
+                self._strip_one_array.extend(values)
         #----------------------------------
         # Strip two controller
         #----------------------------------
