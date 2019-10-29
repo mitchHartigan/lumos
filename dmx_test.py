@@ -176,7 +176,8 @@ class SimpleFadeController(object):
                 self._strip_three_data_length -= 3
             else:    
                 self._strip_three_array.extend([0, 255, 0])
-            print(self.pot.value)
+            while True:
+                print(self.pot.value)
 
         #----------------------------------
         # Strip four controller
@@ -192,6 +193,8 @@ class SimpleFadeController(object):
                 self._strip_four_data_length -= 3
             else:    
                 self._strip_four_array.extend([210, 10, 255])
+            while True:
+                print(self.pot.value)
 
 
         # updates the iterable at the end of this iteration. (lel tf did I just write)
