@@ -143,7 +143,7 @@ class SimpleFadeController(object):
                     x += 1
                 self._strip_two_data_length -= 3
             else:    
-                self._strip_two_array.extend([255, 0, 0])            
+                self._strip_two_array.extend([204, 0, 204])            
 
         #----------------------------------
         # Strip three controller
