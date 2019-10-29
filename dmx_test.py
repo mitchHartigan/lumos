@@ -13,14 +13,16 @@ class SimpleFadeController(object):
         self._client = client_wrapper.Client()
         self._wrapper.AddEvent(self._update_interval, self.UpdateDmx)
         self._iterable = 1
-        self._index1 = 0
-        self._index2 = 0
 
+        # Initialize the unique array for each strip
         self._strip_one_array = array('B', [])
         self._strip_two_array = array('B', [])
         self._strip_three_array = array('B', [])
         self._strip_four_array = array('B', [])
 
+        # Initialize a data length for each strip.
+        # These will update at different rates, as the strips remove
+        # array elements at different rates.
         self._strip_one_data_length = 180
         self._strip_two_data_length = 180
         self._strip_three_data_length = 180
@@ -42,98 +44,83 @@ class SimpleFadeController(object):
                           43, 255, 0, 43, 255, 0, 43, 255, 0, 43, 255, 0, 43, 255, 0,
                           0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0 ] )
 
-        self.gradient2 = array('B', [130, 0, 144, 130, 0, 144, 130, 0, 144, 130, 0, 144, 130, 0, 144, 
-                        202, 0, 144, 202, 0, 144, 202, 0, 144, 202, 0, 144, 202, 0, 144, 
-                        246, 0, 103, 246, 0, 103, 246, 0, 103, 246, 0, 103, 246, 0, 103,
-                        255, 0, 79, 255, 0, 79, 255, 0, 79, 255, 0, 79, 255, 0, 79, 
-                        255, 0, 51, 255, 0, 51, 255, 0, 51, 255, 0, 51, 255, 0, 51, 
-                        255, 0, 17, 255, 0, 17, 255, 0, 17, 255, 0, 17, 255, 0, 17, 
-                        255, 95, 15, 255, 95, 15, 255, 95, 15, 255, 95, 15, 255, 95, 15, 
-                        255, 197, 2, 255, 197, 2, 255, 197, 2, 255, 197, 2, 255, 197, 2, #change
-                        243, 96, 0, 243, 96, 0, 243, 96, 0, 243, 96, 0, 243, 96, 0, #change
-                        255, 135, 0, 255, 135, 0, 255, 135, 0, 255, 135, 0, 255, 135, 0, 
-                        255, 154, 0, 255, 154, 0, 255, 154, 0, 255, 154, 0, 255, 154, 0, 
-                        255, 195, 0, 255, 195, 0, 255, 195, 0, 255, 195, 0, 255, 195, 0] )
-
-    # def generate_rgb_step(self, end_val, start_val, pixels):
-    #     """
-    #     Returns the step value to convert one RGB color to another.
-    #     """
-    #     step = (end_val - start_val) / pixels
-    #     print('generated step', step)
-    #     return step
+    def generate_rgb_step(self, end_val, start_val, pixels):
+        """
+        Returns the step value to convert one RGB color to another.
+        """
+        step = (end_val - start_val) / pixels
+        print('generated step', step)
+        return step
     
-    # def generate_single_gradient(self, R1, G1, B1, R2, G2, B2, pixels):
-    #     """
-    #     Creates a gradient from one color to another over the range of pixels provided.
-    #     """
-    #     r_step = self.generate_rgb_step(R2, R1, pixels)
-    #     g_step = self.generate_rgb_step(G2, G1, pixels)
-    #     b_step = self.generate_rgb_step(B2, B1, pixels)
+    def generate_single_gradient(self, R1, G1, B1, R2, G2, B2, pixels):
+        """
+        Creates a gradient from one color to another over the range of pixels provided.
+        """
+        r_step = self.generate_rgb_step(R2, R1, pixels)
+        g_step = self.generate_rgb_step(G2, G1, pixels)
+        b_step = self.generate_rgb_step(B2, B1, pixels)
 
-    #     gradient = []
+        gradient = []
 
-    #     for i in range(pixels):
-    #         gradient.extend([R1 + (r_step * i), G1 + (g_step * i), B1 + (b_step * i)])
+        for i in range(pixels):
+            gradient.extend([R1 + (r_step * i), G1 + (g_step * i), B1 + (b_step * i)])
         
-    #     return gradient
+        return gradient
 
-    # def generate_multicolor_gradient(self, R1, G1, B1, R2, G2, B2, R3, G3, B3):
-    #     """
-    #     Creates a gradient between three colors, by combining two single color gradients.
-    #     """
-    #     first_gradient = self.generate_single_gradient(R1, G1, B1, R2, G2, B2, 30)
-    #     second_gradient = self.generate_single_gradient(R2, G2, B2, R3, G3, B3, 30)
+    def generate_multicolor_gradient(self, R1, G1, B1, R2, G2, B2, R3, G3, B3):
+        """
+        Creates a gradient between three colors, by combining two single color gradients.
+        """
+        first_gradient = self.generate_single_gradient(R1, G1, B1, R2, G2, B2, 30)
+        second_gradient = self.generate_single_gradient(R2, G2, B2, R3, G3, B3, 30)
 
-    #     first_gradient.extend(second_gradient)
-    #     print('first_gradient from gen_multicolor', first_gradient)
-    #     print('lenght of first_gradient', len(first_gradient))
-    #     return first_gradient
+        first_gradient.extend(second_gradient)
+        print('first_gradient from gen_multicolor', first_gradient)
+        print('lenght of first_gradient', len(first_gradient))
+        return first_gradient
 
-    # def print_gradient_vals(self, gradient_list):
-    #     value_set = []
+    def print_gradient_vals(self, gradient_list):
+        value_set = []
 
-    #     i = 0
-    #     while i < 3:
-    #         value_set.append(gradient_list[i])
-    #         i += 1
+        i = 0
+        while i < 3:
+            value_set.append(gradient_list[i])
+            i += 1
         
-    #     if (len(self.gradient1) >= 3):
+        if (len(self.gradient1) >= 3):
 
-    #         i = 0
-    #         while i < 3:
-    #             self.gradient1.pop(i)
-    #             i += 1
-    #     print(value_set)
-    #     return value_set
+            i = 0
+            while i < 3:
+                self.gradient1.pop(i)
+                i += 1
+        print(value_set)
+        return value_set
 
     def UpdateDmx(self):
         """
         This function gets called periodically based on UPDATE_INTERVAL
         """ 
-        
-        if(self._iterable >= 5):
-<<<<<<< HEAD
-            print("Strip one", self._index1)
-            curr_r = self.gradient1[self._index1]
-            curr_g = self.gradient1[self._index1 + 1]
-            curr_b = self.gradient1[self._index1 + 2]
 
+        #----------------------------------
+        # Strip one controller
+        #----------------------------------
+
+        # 5 is the amount of time we want to wait before starting to update this array.
+        # Ie, this code is called every 25ms (UPDATE_INTERVAL), and it waits for five
+        # intervals before outputting the first elem to the array.
+        if(self._iterable >= 5):
             if (self._iterable >= 65):
                 # 60 is the number of pixels in the strip, and after 65 iterations (since we
                 # waited 5 iterations to run the first one) we'll have reached the end of the
                 # strip. (ie, we offset this val by 5 in this case.)
-                i = self._strip_one_data_length - 1 # gets the index pos of the last array elem
-                print("i", i)
 
-                if self._strip_one_data_length >= 3:
-                    # deletes the last set of (3) rgb values from the array.
-                    x = 0
-                    while x < 3:
-                        print("array 1", self._strip_one_array)
-                        self._strip_one_array[i-x] = 0
-                        print("array 1 after delete", self._strip_one_array[i-x])
-                        x += 1
+                i = self._strip_one_data_length - 1 # gets the index pos of the last array elem
+            
+                # deletes the last set of (3) rgb values from the array.
+                x = 0
+                while x < 3:
+                    self._strip_one_array[i-x] = 0
+                    x += 1
 
                 
                 self._strip_one_data_length -= 3 #updates the length of this strip to match the deletion.
@@ -142,53 +129,25 @@ class SimpleFadeController(object):
                 # Adds a pixel to the array if so.  
                 # self._strip_one_array.extend([0, 0, 255])
 
-                self._strip_one_array.extend([curr_r, curr_g, curr_b])
-                
-            if self._index1 < self._strip_one_data_length - 3:
-                self._index1 += 3
+                self._strip_one_array.extend([255, 0, 0])
         #----------------------------------
         # Strip two controller
         #----------------------------------
-=======
-            if (self._iterable >= 65): # checks if the strip has reached the end.
-                print('strip has reached end of loop')
-                print('strip_one_array', self._strip_one_array)
-                print('length of this strip: ', len(self._strip_one_array))
-                i = self._strip_one_data_length - 1
-                
-                print('i', i)
-
-                x = 0
-                while x < 3:
-                    self._strip_one_array[i-x] = 0
-                    x += 1
-                self._strip_one_data_length -= 3
-            else:    
-                self._strip_one_array.extend([0, 0, 255])
-
->>>>>>> parent of 992af5f... *** Alpha Version 0.1! Code cleanup and new documentation. ***
         if(self._iterable >= 10):
-            print("Strip 2", self._index2)
-            curr_r = self.gradient2[self._index2]
-            curr_g = self.gradient2[self._index2 + 1]
-            curr_b = self.gradient2[self._index2 + 2]
             if (self._iterable >= 70): # checks if the strip has reached the end.
-
                 i = self._strip_two_data_length - 1
                 
-                if self._strip_two_array >= 3:
-                    x = 0
-                    while x < 3:
-                        self._strip_two_array[i-x] = 0
-                        x += 1
-                    self._strip_two_data_length -= 3
+                x = 0
+                while x < 3:
+                    self._strip_two_array[i-x] = 0
+                    x += 1
+                self._strip_two_data_length -= 3
             else:    
-                self._strip_two_array.extend([curr_r, curr_g, curr_b])
+                self._strip_two_array.extend([255, 0, 0])            
 
-            if self._index2 < self._strip_two_data_length - 3:
-                self._index2 += 3
-
-
+        #----------------------------------
+        # Strip three controller
+        #----------------------------------
         if(self._iterable >= 15):
             if (self._iterable >= 75): # checks if the strip has reached the end. offset by 15 from 60
                 i = self._strip_three_data_length - 1
@@ -201,9 +160,11 @@ class SimpleFadeController(object):
             else:    
                 self._strip_three_array.extend([0, 255, 0])
 
-
+        #----------------------------------
+        # Strip four controller
+        #----------------------------------
         if(self._iterable >= 20):
-            if (self._iterable >= 80): # checks if the strip has reached the end. offset by 20 from 60 (full strip)
+            if (self._iterable >= 80):
                 i = self._strip_four_data_length - 1
                 
                 x = 0
@@ -214,9 +175,12 @@ class SimpleFadeController(object):
             else:    
                 self._strip_four_array.extend([210, 10, 255])
 
+
+        # updates the iterable at the end of this iteration. (lel tf did I just write)
         self._iterable += 1
-        # Send the DMX data
-        self._client.SendDmx(1, self._strip_one_array)
+
+        # Send each array, a frame of animation, to each respective universe.
+        self._client.SendDmx(1, self.gradient1)
         self._client.SendDmx(2, self._strip_two_array)
         self._client.SendDmx(3, self._strip_three_array)
         self._client.SendDmx(4, self._strip_four_array)
@@ -224,6 +188,4 @@ class SimpleFadeController(object):
         # self._client.SendDmx(2, self._strip_test_gradient_chosen_values)
 
 
-        # For more information on Add Event, reference the OlaClient
-        # Add our event again so it becomes periodic
         self._wrapper.AddEvent(self._update_interval, self.UpdateDmx)
