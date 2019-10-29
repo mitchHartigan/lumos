@@ -44,6 +44,19 @@ class SimpleFadeController(object):
                           43, 255, 0, 43, 255, 0, 43, 255, 0, 43, 255, 0, 43, 255, 0,
                           0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0 ] )
 
+        self.gradient2 = array('B', [142, 45, 226, 142, 45, 226, 142, 45, 226, 142, 45, 226, 142, 45, 226, 
+                        202, 0, 208, 202, 0, 208, 202, 0, 208, 202, 0, 208, 202, 0, 208,  
+                        246, 0, 184, 246, 0, 184, 246, 0, 184, 246, 0, 184, 246, 0, 184, 
+                        255, 0, 158, 255, 0, 158, 255, 0, 158, 255, 0, 158, 255, 0, 158, 
+                        255, 0, 131, 255, 0, 131, 255, 0, 131, 255, 0, 131, 255, 0, 131, 
+                        255, 44, 103, 255, 44, 103, 255, 44, 103, 255, 44, 103, 255, 44, 103, 
+                        255, 93, 76, 255, 93, 76, 255, 93, 76, 255, 93, 76, 255, 93, 76, 
+                        255, 132, 46, 255, 132, 46, 255, 132, 46, 255, 132, 46, 255, 132, 46, 
+                        255, 167, 0, 255, 167, 0, 255, 167, 0, 255, 167, 0, 255, 167, 0, 
+                        255, 199, 0, 255, 199, 0, 255, 199, 0, 255, 199, 0, 255, 199, 0, 
+                        255, 228, 0, 255, 228, 0, 255, 228, 0, 255, 228, 0, 255, 228, 0, 
+                        249, 255, 0, 249, 255, 0, 249, 255, 0, 249, 255, 0, 249, 255, 0] )
+
     def generate_rgb_step(self, end_val, start_val, pixels):
         """
         Returns the step value to convert one RGB color to another.
@@ -181,7 +194,7 @@ class SimpleFadeController(object):
 
         # Send each array, a frame of animation, to each respective universe.
         self._client.SendDmx(1, self.gradient1)
-        self._client.SendDmx(2, self._strip_two_array)
+        self._client.SendDmx(2, self.gradient2)
         self._client.SendDmx(3, self._strip_three_array)
         self._client.SendDmx(4, self._strip_four_array)
         # # self._client.SendDmx(1, self._strip_test_gradient_math)
