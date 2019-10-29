@@ -78,6 +78,7 @@ class SimpleFadeController(object):
             vals.append(gradient_list[current_rgb_set][i])
             i += 1
 
+        print(vals)
         return vals
 
     def UpdateDmx(self):
@@ -165,7 +166,7 @@ class SimpleFadeController(object):
 
         # Send each array, a frame of animation, to each respective universe.
         self._client.SendDmx(1, self._strip_one_array)
-        self._client.SendDmx(2, self.gradient2)
+        self._client.SendDmx(2, self._strip_two_array)
         self._client.SendDmx(3, self._strip_three_array)
         self._client.SendDmx(4, self._strip_four_array)
 
