@@ -16,15 +16,11 @@ class SimpleFadeController(object):
         self._index1 = 0
         self._index2 = 0
 
-        # Initialize the unique array for each strip
         self._strip_one_array = array('B', [])
         self._strip_two_array = array('B', [])
         self._strip_three_array = array('B', [])
         self._strip_four_array = array('B', [])
 
-        # Initialize a data length for each strip.
-        # These will update at different rates, as the strips remove
-        # array elements at different rates.
         self._strip_one_data_length = 180
         self._strip_two_data_length = 180
         self._strip_three_data_length = 180
@@ -115,15 +111,9 @@ class SimpleFadeController(object):
         """
         This function gets called periodically based on UPDATE_INTERVAL
         """ 
-
-        #----------------------------------
-        # Strip one controller
-        #----------------------------------
-
-        # 5 is the amount of time we want to wait before starting to update this array.
-        # Ie, this code is called every 25ms (UPDATE_INTERVAL), and it waits for five
-        # intervals before outputting the first elem to the array.
+        
         if(self._iterable >= 5):
+<<<<<<< HEAD
             print("Strip one", self._index1)
             curr_r = self.gradient1[self._index1]
             curr_g = self.gradient1[self._index1 + 1]
@@ -159,6 +149,24 @@ class SimpleFadeController(object):
         #----------------------------------
         # Strip two controller
         #----------------------------------
+=======
+            if (self._iterable >= 65): # checks if the strip has reached the end.
+                print('strip has reached end of loop')
+                print('strip_one_array', self._strip_one_array)
+                print('length of this strip: ', len(self._strip_one_array))
+                i = self._strip_one_data_length - 1
+                
+                print('i', i)
+
+                x = 0
+                while x < 3:
+                    self._strip_one_array[i-x] = 0
+                    x += 1
+                self._strip_one_data_length -= 3
+            else:    
+                self._strip_one_array.extend([0, 0, 255])
+
+>>>>>>> parent of 992af5f... *** Alpha Version 0.1! Code cleanup and new documentation. ***
         if(self._iterable >= 10):
             print("Strip 2", self._index2)
             curr_r = self.gradient2[self._index2]
@@ -180,9 +188,7 @@ class SimpleFadeController(object):
             if self._index2 < self._strip_two_data_length - 3:
                 self._index2 += 3
 
-        #----------------------------------
-        # Strip three controller
-        #----------------------------------
+
         if(self._iterable >= 15):
             if (self._iterable >= 75): # checks if the strip has reached the end. offset by 15 from 60
                 i = self._strip_three_data_length - 1
@@ -195,11 +201,9 @@ class SimpleFadeController(object):
             else:    
                 self._strip_three_array.extend([0, 255, 0])
 
-        #----------------------------------
-        # Strip four controller
-        #----------------------------------
+
         if(self._iterable >= 20):
-            if (self._iterable >= 80):
+            if (self._iterable >= 80): # checks if the strip has reached the end. offset by 20 from 60 (full strip)
                 i = self._strip_four_data_length - 1
                 
                 x = 0
@@ -210,11 +214,8 @@ class SimpleFadeController(object):
             else:    
                 self._strip_four_array.extend([210, 10, 255])
 
-
-        # updates the iterable at the end of this iteration. (lel tf did I just write)
         self._iterable += 1
-
-        # Send each array, a frame of animation, to each respective universe.
+        # Send the DMX data
         self._client.SendDmx(1, self._strip_one_array)
         self._client.SendDmx(2, self._strip_two_array)
         self._client.SendDmx(3, self._strip_three_array)
@@ -223,4 +224,6 @@ class SimpleFadeController(object):
         # self._client.SendDmx(2, self._strip_test_gradient_chosen_values)
 
 
+        # For more information on Add Event, reference the OlaClient
+        # Add our event again so it becomes periodic
         self._wrapper.AddEvent(self._update_interval, self.UpdateDmx)

@@ -16,7 +16,12 @@ UNIVERSE_1 = 1
 UNIVERSE_2 = 2
 UNIVERSE_3 = 3
 
+<<<<<<< HEAD
 def run_strip_animation(wrapper):
+=======
+def run_strip_animation():
+    wrapper = ClientWrapper()
+>>>>>>> parent of 992af5f... *** Alpha Version 0.1! Code cleanup and new documentation. ***
     controller = SimpleFadeController(UPDATE_INTERVAL, wrapper)
     wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
     wrapper.Run()
@@ -25,6 +30,7 @@ def run_strip_animation(wrapper):
     controller = None
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     pot_val = pot.value * 100
     while True:
         print(pot_val)
@@ -42,3 +48,9 @@ if __name__ == '__main__':
 
 
 
+=======
+    i = 0
+    while i < 10:
+        run_strip_animation()
+        i += 1
+>>>>>>> parent of 992af5f... *** Alpha Version 0.1! Code cleanup and new documentation. ***
