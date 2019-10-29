@@ -133,17 +133,17 @@ class SimpleFadeController(object):
                 # 60 is the number of pixels in the strip, and after 65 iterations (since we
                 # waited 5 iterations to run the first one) we'll have reached the end of the
                 # strip. (ie, we offset this val by 5 in this case.)
+                i = self._strip_one_data_length - 1 # gets the index pos of the last array elem
+                print("i", i)
+
                 if self._strip_one_data_length >= 3:
-                    i = self._strip_one_data_length - 1 # gets the index pos of the last array elem
-                    print("i", i)
-            
-                # deletes the last set of (3) rgb values from the array.
-                x = 0
-                while x < 3:
-                    print("array 1", self._strip_one_array)
-                    self._strip_one_array[i-x] = 0
-                    print("array 1 after delete", self._strip_one_array[i-x])
-                    x += 1
+                    # deletes the last set of (3) rgb values from the array.
+                    x = 0
+                    while x < 3:
+                        print("array 1", self._strip_one_array)
+                        self._strip_one_array[i-x] = 0
+                        print("array 1 after delete", self._strip_one_array[i-x])
+                        x += 1
 
                 
                 self._strip_one_data_length -= 3 #updates the length of this strip to match the deletion.
@@ -166,14 +166,14 @@ class SimpleFadeController(object):
             curr_b = self.gradient2[self._index2 + 2]
             if (self._iterable >= 70): # checks if the strip has reached the end.
 
-                if self._strip_two_data_length >= 3:
-                    i = self._strip_two_data_length - 1
+                i = self._strip_two_data_length - 1
                 
-                x = 0
-                while x < 3:
-                    self._strip_two_array[i-x] = 0
-                    x += 1
-                self._strip_two_data_length -= 3
+                if self._strip_two_array >= 3:
+                    x = 0
+                    while x < 3:
+                        self._strip_two_array[i-x] = 0
+                        x += 1
+                    self._strip_two_data_length -= 3
             else:    
                 self._strip_two_array.extend([curr_r, curr_g, curr_b])
 
