@@ -215,6 +215,3 @@ class SimpleFadeController(object):
 
 
         self._wrapper.AddEvent(self._update_interval, self.UpdateDmx)
-    
-        self._index1 = 0
-        self._index2 = 0
