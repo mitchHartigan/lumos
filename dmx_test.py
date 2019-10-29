@@ -30,19 +30,19 @@ class SimpleFadeController(object):
 
         # self.gradient1 = self.generate_multicolor_gradient(142, 45, 226, 74, 0, 224, 255, 0, 153)
 
-        self.gradient1 = array('B', [255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 
-                        255, 43, 0, 255, 43, 0, 255, 43, 0, 255, 43, 0, 255, 43, 0,
-                        255, 85, 0, 255, 85, 0, 255, 85, 0, 255, 85, 0, 255, 85, 0,
-                        255, 128, 0, 255, 128, 0, 255, 128, 0, 255, 128, 0, 255, 128, 0,
-                        255, 170, 0, 255, 170, 0, 255, 170, 0, 255, 170, 0, 255, 170, 0,
-                        255, 213, 0, 255, 213, 0, 255, 213, 0, 255, 213, 0, 255, 213, 0,
-                        255, 255, 0, 255, 255, 0, 255, 255, 0, 255, 255, 0, 255, 255, 0,
-                        213, 255, 0, 213, 255, 0, 213, 255, 0, 213, 255, 0, 213, 255, 0,
-                        170, 255, 0, 170, 255, 0, 170, 255, 0, 170, 255, 0, 170, 255, 0,
-                        128, 255, 0, 128, 255, 0, 128, 255, 0, 128, 255, 0, 128, 255, 0,
-                        85, 255, 0, 85, 255, 0, 85, 255, 0, 85, 255, 0, 85, 255, 0,
-                        43, 255, 0, 43, 255, 0, 43, 255, 0, 43, 255, 0, 43, 255, 0,
-                        0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0 ] )
+        self.gradient1 = array('B', [ [255, 0, 0], [255, 0, 0], [255, 0, 0], [255, 0, 0], [255, 0, 0], 
+                        [255, 43, 0], [255, 43, 0], [255, 43, 0], [255, 43, 0], [255, 43, 0],
+                        [255, 85, 0], [255, 85, 0], [255, 85, 0], [255, 85, 0], [255, 85, 0],
+                        [255, 128, 0], [255, 128, 0], [255, 128, 0], [255, 128, 0], [255, 128, 0],
+                        [255, 170, 0], [255, 170, 0], [255, 170, 0], [255, 170, 0], [255, 170, 0],
+                        [255, 213, 0], [255, 213, 0], [255, 213, 0], [255, 213, 0], [255, 213, 0],
+                        [255, 255, 0], [255, 255, 0], [255, 255, 0], [255, 255, 0], [255, 255, 0],
+                        [213, 255, 0], [213, 255, 0], [213, 255, 0], [213, 255, 0], [213, 255, 0],
+                        [170, 255, 0], [170, 255, 0], [170, 255, 0], [170, 255, 0], [170, 255, 0],
+                        [128, 255, 0], [128, 255, 0], [128, 255, 0], [128, 255, 0], [128, 255, 0],
+                        [85, 255, 0], [85, 255, 0], [85, 255, 0], [85, 255, 0], [85, 255, 0],
+                        [43, 255, 0], [43, 255, 0], [43, 255, 0], [43, 255, 0], [43, 255, 0],
+                        [0, 255, 0], [0, 255, 0], [0, 255, 0], [0, 255, 0], [0, 255, 0 ] ] )
 
         self.gradient2 = array('B', [130, 0, 144, 130, 0, 144, 130, 0, 144, 130, 0, 144, 130, 0, 144, 
                         202, 0, 144, 202, 0, 144, 202, 0, 144, 202, 0, 144, 202, 0, 144, 
@@ -104,10 +104,25 @@ class SimpleFadeController(object):
 
             i = 0
             while i < 3:
-                self.gradient1.pop(i)
+                self.gradient1.pop(i) # needs to pop the passed in gradient list, not gradient 1....
                 i += 1
         print(value_set)
         return value_set
+
+    def read_values(self, offset, gradient_list):
+
+        adjusted_iterable = self._iterable - 1
+        # lets pretend we're counting from 0, instead of from 1.
+        
+        current_rgb_set = (adjusted_iterable - offset)
+        
+        vals = []
+
+        i = 0
+        while i < 3: 
+            vals.append(gradient_list[current_rgb_set][i])
+
+        return vals
 
     def UpdateDmx(self):
         """
@@ -141,8 +156,8 @@ class SimpleFadeController(object):
                 # if not at 65 iterations, the strip isn't full yet, and therefore is still ascending.
                 # Adds a pixel to the array if so.  
                 # self._strip_one_array.extend([0, 0, 255])
-
-                self._strip_one_array.extend([255, 0, 0])
+                new_value = self.read_values(5, self.gradient1)
+                self._strip_one_array.extend(new_value)
         #----------------------------------
         # Strip two controller
         #----------------------------------
@@ -193,7 +208,7 @@ class SimpleFadeController(object):
         self._iterable += 1
 
         # Send each array, a frame of animation, to each respective universe.
-        self._client.SendDmx(1, self.gradient1)
+        self._client.SendDmx(1, self._strip_one_array)
         self._client.SendDmx(2, self.gradient2)
         self._client.SendDmx(3, self._strip_three_array)
         self._client.SendDmx(4, self._strip_four_array)
