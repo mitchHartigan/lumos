@@ -30,7 +30,8 @@ class SimpleFadeController(object):
 
         # self.gradient1 = self.generate_multicolor_gradient(142, 45, 226, 74, 0, 224, 255, 0, 153)
 
-        self.gradient1 = array('B', [ [255, 0, 0], [255, 0, 0], [255, 0, 0], [255, 0, 0], [255, 0, 0], 
+        self.gradient1 = [ 
+                        [255, 0, 0], [255, 0, 0], [255, 0, 0], [255, 0, 0], [255, 0, 0], 
                         [255, 43, 0], [255, 43, 0], [255, 43, 0], [255, 43, 0], [255, 43, 0],
                         [255, 85, 0], [255, 85, 0], [255, 85, 0], [255, 85, 0], [255, 85, 0],
                         [255, 128, 0], [255, 128, 0], [255, 128, 0], [255, 128, 0], [255, 128, 0],
@@ -42,7 +43,8 @@ class SimpleFadeController(object):
                         [128, 255, 0], [128, 255, 0], [128, 255, 0], [128, 255, 0], [128, 255, 0],
                         [85, 255, 0], [85, 255, 0], [85, 255, 0], [85, 255, 0], [85, 255, 0],
                         [43, 255, 0], [43, 255, 0], [43, 255, 0], [43, 255, 0], [43, 255, 0],
-                        [0, 255, 0], [0, 255, 0], [0, 255, 0], [0, 255, 0], [0, 255, 0 ] ] )
+                        [0, 255, 0], [0, 255, 0], [0, 255, 0], [0, 255, 0], [0, 255, 0 ]
+                         ] 
 
         self.gradient2 = array('B', [130, 0, 144, 130, 0, 144, 130, 0, 144, 130, 0, 144, 130, 0, 144, 
                         202, 0, 144, 202, 0, 144, 202, 0, 144, 202, 0, 144, 202, 0, 144, 
@@ -206,6 +208,8 @@ class SimpleFadeController(object):
 
         # updates the iterable at the end of this iteration. (lel tf did I just write)
         self._iterable += 1
+
+        self._strip_one_array = array('B', self._strip_one_array)
 
         # Send each array, a frame of animation, to each respective universe.
         self._client.SendDmx(1, self._strip_one_array)
