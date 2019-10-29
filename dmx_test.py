@@ -63,13 +63,9 @@ class SimpleFadeController(object):
         """
         Reads the each color value out of the pre-generated arrays, returning them as a list.
         """
-        # lets pretend we're iterating from 0, instead of from 1. Adjusting this iterable will let us access gradient[0], when
-        # self._iterable is 1.
-        adjusted_iterable = self._iterable - 1
-        
         # The current RGB value array, selected from our array of arrays. We subtract the offset to account for the iterations we've
         # spent waiting for this specific strip.
-        current_rgb_set = (adjusted_iterable - offset)
+        current_rgb_set = (self._iterable - offset)
         
         vals = []
 
