@@ -59,57 +59,57 @@ class SimpleFadeController(object):
                         255, 154, 0, 255, 154, 0, 255, 154, 0, 255, 154, 0, 255, 154, 0, 
                         255, 195, 0, 255, 195, 0, 255, 195, 0, 255, 195, 0, 255, 195, 0] )
 
-    def generate_rgb_step(self, end_val, start_val, pixels):
-        """
-        Returns the step value to convert one RGB color to another.
-        """
-        step = (end_val - start_val) / pixels
-        print('generated step', step)
-        return step
+    # def generate_rgb_step(self, end_val, start_val, pixels):
+    #     """
+    #     Returns the step value to convert one RGB color to another.
+    #     """
+    #     step = (end_val - start_val) / pixels
+    #     print('generated step', step)
+    #     return step
     
-    def generate_single_gradient(self, R1, G1, B1, R2, G2, B2, pixels):
-        """
-        Creates a gradient from one color to another over the range of pixels provided.
-        """
-        r_step = self.generate_rgb_step(R2, R1, pixels)
-        g_step = self.generate_rgb_step(G2, G1, pixels)
-        b_step = self.generate_rgb_step(B2, B1, pixels)
+    # def generate_single_gradient(self, R1, G1, B1, R2, G2, B2, pixels):
+    #     """
+    #     Creates a gradient from one color to another over the range of pixels provided.
+    #     """
+    #     r_step = self.generate_rgb_step(R2, R1, pixels)
+    #     g_step = self.generate_rgb_step(G2, G1, pixels)
+    #     b_step = self.generate_rgb_step(B2, B1, pixels)
 
-        gradient = []
+    #     gradient = []
 
-        for i in range(pixels):
-            gradient.extend([R1 + (r_step * i), G1 + (g_step * i), B1 + (b_step * i)])
+    #     for i in range(pixels):
+    #         gradient.extend([R1 + (r_step * i), G1 + (g_step * i), B1 + (b_step * i)])
         
-        return gradient
+    #     return gradient
 
-    def generate_multicolor_gradient(self, R1, G1, B1, R2, G2, B2, R3, G3, B3):
-        """
-        Creates a gradient between three colors, by combining two single color gradients.
-        """
-        first_gradient = self.generate_single_gradient(R1, G1, B1, R2, G2, B2, 30)
-        second_gradient = self.generate_single_gradient(R2, G2, B2, R3, G3, B3, 30)
+    # def generate_multicolor_gradient(self, R1, G1, B1, R2, G2, B2, R3, G3, B3):
+    #     """
+    #     Creates a gradient between three colors, by combining two single color gradients.
+    #     """
+    #     first_gradient = self.generate_single_gradient(R1, G1, B1, R2, G2, B2, 30)
+    #     second_gradient = self.generate_single_gradient(R2, G2, B2, R3, G3, B3, 30)
 
-        first_gradient.extend(second_gradient)
-        print('first_gradient from gen_multicolor', first_gradient)
-        print('lenght of first_gradient', len(first_gradient))
-        return first_gradient
+    #     first_gradient.extend(second_gradient)
+    #     print('first_gradient from gen_multicolor', first_gradient)
+    #     print('lenght of first_gradient', len(first_gradient))
+    #     return first_gradient
 
-    def print_gradient_vals(self, gradient_list):
-        value_set = []
+    # def print_gradient_vals(self, gradient_list):
+    #     value_set = []
 
-        i = 0
-        while i < 3:
-            value_set.append(gradient_list[i])
-            i += 1
+    #     i = 0
+    #     while i < 3:
+    #         value_set.append(gradient_list[i])
+    #         i += 1
         
-        if (len(self.gradient1) >= 3):
+    #     if (len(self.gradient1) >= 3):
 
-            i = 0
-            while i < 3:
-                self.gradient1.pop(i)
-                i += 1
-        print(value_set)
-        return value_set
+    #         i = 0
+    #         while i < 3:
+    #             self.gradient1.pop(i)
+    #             i += 1
+    #     print(value_set)
+    #     return value_set
 
     def UpdateDmx(self):
         """
@@ -133,9 +133,9 @@ class SimpleFadeController(object):
                 # 60 is the number of pixels in the strip, and after 65 iterations (since we
                 # waited 5 iterations to run the first one) we'll have reached the end of the
                 # strip. (ie, we offset this val by 5 in this case.)
-
-                i = self._strip_one_data_length - 1 # gets the index pos of the last array elem
-                print("i", i)
+                if self._strip_one_data_length >= 3:
+                    i = self._strip_one_data_length - 1 # gets the index pos of the last array elem
+                    print("i", i)
             
                 # deletes the last set of (3) rgb values from the array.
                 x = 0
@@ -165,6 +165,8 @@ class SimpleFadeController(object):
             curr_g = self.gradient2[self._index2 + 1]
             curr_b = self.gradient2[self._index2 + 2]
             if (self._iterable >= 70): # checks if the strip has reached the end.
+
+                if self._strip_two_data_length >= 3:
                 i = self._strip_two_data_length - 1
                 
                 x = 0
