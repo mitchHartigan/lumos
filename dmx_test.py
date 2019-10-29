@@ -31,7 +31,7 @@ class SimpleFadeController(object):
         # self.gradient1 = self.generate_multicolor_gradient(142, 45, 226, 74, 0, 224, 255, 0, 153)
 
         self.gradient1 = [ 
-                        [0, 255, 0], [255, 0, 0], [255, 0, 0], [255, 0, 0], [255, 0, 0], 
+                        [255, 0, 0], [255, 0, 0], [255, 0, 0], [255, 0, 0], [255, 0, 0], 
                         [255, 43, 0], [255, 43, 0], [255, 43, 0], [255, 43, 0], [255, 43, 0],
                         [255, 85, 0], [255, 85, 0], [255, 85, 0], [255, 85, 0], [255, 85, 0],
                         [255, 128, 0], [255, 128, 0], [255, 128, 0], [255, 128, 0], [255, 128, 0],
@@ -64,11 +64,10 @@ class SimpleFadeController(object):
         Reads the each color value out of the pre-generated arrays, returning them as a list.
         """
         # We're off by one somewhere. I don't like this, but I can't find where it is.
-        adjusted_iterable = self._iterable + 1
         
         # The current RGB value array, selected from our array of arrays. We subtract the offset to account for the iterations we've
         # spent waiting for this specific strip.
-        current_rgb_set = (adjusted_iterable - offset)
+        current_rgb_set = (self._iterable - offset)
         
         vals = []
 
