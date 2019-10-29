@@ -122,6 +122,11 @@ class SimpleFadeController(object):
         # Ie, this code is called every 25ms (UPDATE_INTERVAL), and it waits for five
         # intervals before outputting the first elem to the array.
         if(self._iterable >= 5):
+            index = 0
+            curr_r = self.gradient1[index]
+            curr_g = self.gradient1[index + 1]
+            curr_b = self.gradient1[index + 2]
+
             if (self._iterable >= 65):
                 # 60 is the number of pixels in the strip, and after 65 iterations (since we
                 # waited 5 iterations to run the first one) we'll have reached the end of the
@@ -142,7 +147,8 @@ class SimpleFadeController(object):
                 # Adds a pixel to the array if so.  
                 # self._strip_one_array.extend([0, 0, 255])
 
-                self._strip_one_array.extend([255, 0, 0])
+                self._strip_one_array.extend([curr_r, curr_g, curr_b])
+                index += 3
         #----------------------------------
         # Strip two controller
         #----------------------------------
@@ -193,7 +199,7 @@ class SimpleFadeController(object):
         self._iterable += 1
 
         # Send each array, a frame of animation, to each respective universe.
-        self._client.SendDmx(1, self.gradient1)
+        self._client.SendDmx(1, self._strip_one_array)
         self._client.SendDmx(2, self.gradient2)
         self._client.SendDmx(3, self._strip_three_array)
         self._client.SendDmx(4, self._strip_four_array)
