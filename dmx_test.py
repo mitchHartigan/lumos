@@ -149,15 +149,16 @@ class SimpleFadeController(object):
                 # self._strip_one_array.extend([0, 0, 255])
 
                 self._strip_one_array.extend([curr_r, curr_g, curr_b])
+                
             if self._index2 <= self._strip_one_data_length - 3:
                 self._index2 += 3
         #----------------------------------
         # Strip two controller
         #----------------------------------
         if(self._iterable >= 10):
-            curr_r = self.gradient1[self._index2]
-            curr_g = self.gradient1[self._index2 + 1]
-            curr_b = self.gradient1[self._index2 + 2]
+            curr_r = self.gradient2[self._index2]
+            curr_g = self.gradient2[self._index2 + 1]
+            curr_b = self.gradient2[self._index2 + 2]
             if (self._iterable >= 70): # checks if the strip has reached the end.
                 i = self._strip_two_data_length - 1
                 
@@ -168,8 +169,9 @@ class SimpleFadeController(object):
                 self._strip_two_data_length -= 3
             else:    
                 self._strip_two_array.extend([curr_r, curr_g, curr_b])
+
             if self._index2 <= self._strip_two_data_length - 3:
-                self._index2 += 3        
+                self._index2 += 3
 
         #----------------------------------
         # Strip three controller
