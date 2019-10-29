@@ -28,7 +28,8 @@ class SimpleFadeController(object):
         self._strip_three_data_length = 180
         self._strip_four_data_length = 180
 
-        self.gradient1 = self.generate_multicolor_gradient(142, 45, 226, 74, 0, 224, 255, 0, 153)
+        # self.gradient1 = self.generate_multicolor_gradient(142, 45, 226, 74, 0, 224, 255, 0, 153)
+
 
     def generate_rgb_step(self, end_val, start_val, pixels):
         """
@@ -113,11 +114,7 @@ class SimpleFadeController(object):
                 # if not at 65 iterations, the strip isn't full yet, and therefore is still ascending.
                 # Adds a pixel to the array if so.  
                 # self._strip_one_array.extend([0, 0, 255])
-                new_val = self.print_gradient_vals(self.gradient1)
-                print('\n')
-                print('new val', new_val)
-                print('\n')
-                self._strip_one_array.extend(new_val)
+                self._strip_one_array.extend([255, 0, 0])
         
         #----------------------------------
         # Strip two controller
@@ -170,9 +167,9 @@ class SimpleFadeController(object):
 
         # Send each array, a frame of animation, to each respective universe.
         self._client.SendDmx(1, self._strip_one_array)
-        # self._client.SendDmx(2, self._strip_two_array)
-        # self._client.SendDmx(3, self._strip_three_array)
-        # self._client.SendDmx(4, self._strip_four_array)
+        self._client.SendDmx(2, self._strip_two_array)
+        self._client.SendDmx(3, self._strip_three_array)
+        self._client.SendDmx(4, self._strip_four_array)
         # # self._client.SendDmx(1, self._strip_test_gradient_math)
         # self._client.SendDmx(2, self._strip_test_gradient_chosen_values)
 
