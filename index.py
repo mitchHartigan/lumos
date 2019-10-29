@@ -33,7 +33,7 @@ def stop_animations():
 if __name__ == '__main__':
     pot_val = pot.value * 100
     while True:
-        if pot_val == pot.value + 2 or pot_val == pot.value - 2:
+        if pot_val <= pot.value + 2 or pot_val >= pot.value - 2:
             # nothing has changed.
             i = 0
             while i < 10:
