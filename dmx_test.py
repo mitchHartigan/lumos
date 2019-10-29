@@ -136,11 +136,10 @@ class SimpleFadeController(object):
                 i = self._strip_one_data_length - 1 # gets the index pos of the last array elem
             
                 # deletes the last set of (3) rgb values from the array.
-                while self._strip_one_data_length >= 3:
-                    x = 0
-                    while x < 3:
-                        self._strip_one_array[i-x] = 0
-                        x += 1
+                x = 0
+                while x < 3:
+                    self._strip_one_array[i-x] = 0
+                    x += 1
 
                 
                 self._strip_one_data_length -= 3 #updates the length of this strip to match the deletion.
@@ -150,7 +149,6 @@ class SimpleFadeController(object):
                 # self._strip_one_array.extend([0, 0, 255])
 
                 self._strip_one_array.extend([curr_r, curr_g, curr_b])
-
             if self._index2 <= self._strip_one_data_length - 3:
                 self._index2 += 3
         #----------------------------------
@@ -170,7 +168,6 @@ class SimpleFadeController(object):
                 self._strip_two_data_length -= 3
             else:    
                 self._strip_two_array.extend([curr_r, curr_g, curr_b])
-
             if self._index2 <= self._strip_two_data_length - 3:
                 self._index2 += 3        
 
