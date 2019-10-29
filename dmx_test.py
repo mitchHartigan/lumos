@@ -1,6 +1,6 @@
 from array import array
 from ola.ClientWrapper import ClientWrapper
-# from gpiozero import MCP3008
+from gpiozero import MCP3008
 # from time import sleep
 import random
 import time
@@ -15,7 +15,7 @@ class SimpleFadeController(object):
         self._client = client_wrapper.Client()
         self._wrapper.AddEvent(self._update_interval, self.UpdateDmx)
         self._iterable = 1
-        # self.pot = MCP3008(0)
+        self.pot = MCP3008(0)
         # self.threshold = 0.05
 
         # Initialize the unique array for each strip
@@ -176,6 +176,7 @@ class SimpleFadeController(object):
                 self._strip_three_data_length -= 3
             else:    
                 self._strip_three_array.extend([0, 255, 0])
+            print(self.pot.value)
 
         #----------------------------------
         # Strip four controller
