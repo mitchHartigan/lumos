@@ -131,6 +131,8 @@ class SimpleFadeController(object):
         This function gets called periodically based on UPDATE_INTERVAL
         """ 
 
+        print(self._iterable)
+
         #----------------------------------
         # Strip one controller
         #----------------------------------
