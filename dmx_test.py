@@ -124,6 +124,7 @@ class SimpleFadeController(object):
         # Ie, this code is called every 25ms (UPDATE_INTERVAL), and it waits for five
         # intervals before outputting the first elem to the array.
         if(self._iterable >= 5):
+            print(self.gradient2[self._index1])
             curr_r = self.gradient1[self._index1]
             curr_g = self.gradient1[self._index1 + 1]
             curr_b = self.gradient1[self._index1 + 2]
@@ -138,6 +139,7 @@ class SimpleFadeController(object):
                 # deletes the last set of (3) rgb values from the array.
                 x = 0
                 while x < 3:
+                    print(self._strip_one_array[i-x])
                     self._strip_one_array[i-x] = 0
                     x += 1
 
@@ -156,6 +158,7 @@ class SimpleFadeController(object):
         # Strip two controller
         #----------------------------------
         if(self._iterable >= 10):
+            print(self.gradient2[self._index2])
             curr_r = self.gradient2[self._index2]
             curr_g = self.gradient2[self._index2 + 1]
             curr_b = self.gradient2[self._index2 + 2]
