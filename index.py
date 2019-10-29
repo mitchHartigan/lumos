@@ -8,7 +8,7 @@ import time
 UPDATE_INTERVAL = 25 # In ms, this comes about to ~40 frames a second
 SHUTDOWN_INTERVAL = 5200 # in ms
 
-# pot = MCP3008(0)
+pot = MCP3008(0)
 
 UNIVERSE_1 = 1
 UNIVERSE_2 = 2
@@ -17,7 +17,6 @@ UNIVERSE_3 = 3
 def run_strip_animation():
     wrapper = ClientWrapper()
     controller = SimpleFadeController(UPDATE_INTERVAL, wrapper)
-    # print(pot.value)
     wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
     wrapper.Run()
 
@@ -28,5 +27,8 @@ def run_strip_animation():
 if __name__ == '__main__':
     i = 0
     while i < 10:
+        while True:
+            print(pot.value)
         run_strip_animation()
         i += 1
+
