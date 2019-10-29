@@ -1,5 +1,6 @@
 from array import array
 from ola.ClientWrapper import ClientWrapper
+from gpiozero import MCP3008
 import random
 import time
 
@@ -13,6 +14,7 @@ class SimpleFadeController(object):
         self._client = client_wrapper.Client()
         self._wrapper.AddEvent(self._update_interval, self.UpdateDmx)
         self._iterable = 1
+        self.pot = MCP3008(0)
 
         # Initialize the unique array for each strip
         self._strip_one_array = array('B', [])
@@ -110,6 +112,8 @@ class SimpleFadeController(object):
         return value_set
 
     def UpdateDmx(self):
+        while True:
+            print(self.pot.value)
         """
         This function gets called periodically based on UPDATE_INTERVAL
         """ 
