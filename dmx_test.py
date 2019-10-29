@@ -129,8 +129,7 @@ class SimpleFadeController(object):
                 # Adds a pixel to the array if so.  
                 # self._strip_one_array.extend([0, 0, 255])
 
-                values = self.print_gradient_vals(self.gradient1)
-                self._strip_one_array.extend(values)
+                self._strip_one_array.extend([255, 0, 0])
         #----------------------------------
         # Strip two controller
         #----------------------------------
