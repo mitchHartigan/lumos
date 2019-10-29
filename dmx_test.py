@@ -93,6 +93,7 @@ class SimpleFadeController(object):
             while i < 3:
                 self.gradient1.pop(i)
                 i += 1
+        print(value_set)
         return value_set
 
     def UpdateDmx(self):
