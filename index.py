@@ -24,24 +24,20 @@ def run_strip_animation(wrapper):
     wrapper = None
     controller = None
 
-def stop_animations():
-    wrapper.Stop()
-    time.sleep(1)
-
 if __name__ == '__main__':
-    # pot_val = pot.value * 100
-    # while True:
-    #     print(pot_val)
-    #     if pot_val == pot.value * 100:
-    #         # nothing has changed.
-    i = 0
-    while i < 10:
-        run_strip_animation(wrapper)
-        i += 1
-        # else:
-        #     # the value has changed.
-        #     pot_val = pot.value * 100
-        #     stop_animations()
+    pot_val = pot.value * 100
+    while True:
+        print(pot_val)
+        if pot_val == pot.value * 100:
+            # nothing has changed.
+            i = 0
+            while i < 10:
+                run_strip_animation(wrapper)
+                i += 1
+        else:
+            # the value has changed.
+            pot_val = pot.value * 100
+            wrapper.Stop()
 
 
 
