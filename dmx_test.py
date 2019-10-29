@@ -150,7 +150,7 @@ class SimpleFadeController(object):
 
                 self._strip_one_array.extend([curr_r, curr_g, curr_b])
                 
-            if self._index1 <= self._strip_one_data_length - 3:
+            if self._index1 < self._strip_one_data_length - 3:
                 self._index1 += 3
         #----------------------------------
         # Strip two controller
@@ -170,7 +170,7 @@ class SimpleFadeController(object):
             else:    
                 self._strip_two_array.extend([curr_r, curr_g, curr_b])
 
-            if self._index2 <= self._strip_two_data_length - 3:
+            if self._index2 < self._strip_two_data_length - 3:
                 self._index2 += 3
 
         #----------------------------------
