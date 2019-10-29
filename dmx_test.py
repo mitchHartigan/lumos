@@ -59,63 +59,16 @@ class SimpleFadeController(object):
                         255, 154, 0, 255, 154, 0, 255, 154, 0, 255, 154, 0, 255, 154, 0, 
                         255, 195, 0, 255, 195, 0, 255, 195, 0, 255, 195, 0, 255, 195, 0] )
 
-    def generate_rgb_step(self, end_val, start_val, pixels):
-        """
-        Returns the step value to convert one RGB color to another.
-        """
-        step = (end_val - start_val) / pixels
-        print('generated step', step)
-        return step
-    
-    def generate_single_gradient(self, R1, G1, B1, R2, G2, B2, pixels):
-        """
-        Creates a gradient from one color to another over the range of pixels provided.
-        """
-        r_step = self.generate_rgb_step(R2, R1, pixels)
-        g_step = self.generate_rgb_step(G2, G1, pixels)
-        b_step = self.generate_rgb_step(B2, B1, pixels)
-
-        gradient = []
-
-        for i in range(pixels):
-            gradient.extend([R1 + (r_step * i), G1 + (g_step * i), B1 + (b_step * i)])
-        
-        return gradient
-
-    def generate_multicolor_gradient(self, R1, G1, B1, R2, G2, B2, R3, G3, B3):
-        """
-        Creates a gradient between three colors, by combining two single color gradients.
-        """
-        first_gradient = self.generate_single_gradient(R1, G1, B1, R2, G2, B2, 30)
-        second_gradient = self.generate_single_gradient(R2, G2, B2, R3, G3, B3, 30)
-
-        first_gradient.extend(second_gradient)
-        print('first_gradient from gen_multicolor', first_gradient)
-        print('lenght of first_gradient', len(first_gradient))
-        return first_gradient
-
-    def print_gradient_vals(self, gradient_list):
-        value_set = []
-
-        i = 0
-        while i < 3:
-            value_set.append(gradient_list[i])
-            i += 1
-        
-        if (len(self.gradient1) >= 3):
-
-            i = 0
-            while i < 3:
-                self.gradient1.pop(i) # needs to pop the passed in gradient list, not gradient 1....
-                i += 1
-        print(value_set)
-        return value_set
-
     def read_values(self, offset, gradient_list):
-
+        """
+        Reads the each color value out of the pre-generated arrays, returning them as a list.
+        """
+        # lets pretend we're iterating from 0, instead of from 1. Adjusting this iterable will let us access gradient[0], when
+        # self._iterable is 1.
         adjusted_iterable = self._iterable - 1
-        # lets pretend we're counting from 0, instead of from 1.
         
+        # The current RGB value array, selected from our array of arrays. We subtract the offset to account for the iterations we've
+        # spent waiting for this specific strip.
         current_rgb_set = (adjusted_iterable - offset)
         
         vals = []
@@ -152,15 +105,14 @@ class SimpleFadeController(object):
                 while x < 3:
                     self._strip_one_array[i-x] = 0
                     x += 1
-
-                
+   
                 self._strip_one_data_length -= 3 #updates the length of this strip to match the deletion.
             else:  
                 # if not at 65 iterations, the strip isn't full yet, and therefore is still ascending.
                 # Adds a pixel to the array if so.  
-                # self._strip_one_array.extend([0, 0, 255])
+
                 new_value = self.read_values(5, self.gradient1)
-                print(new_value)
+
                 self._strip_one_array.extend(new_value)
         #----------------------------------
         # Strip two controller
@@ -216,8 +168,5 @@ class SimpleFadeController(object):
         self._client.SendDmx(2, self.gradient2)
         self._client.SendDmx(3, self._strip_three_array)
         self._client.SendDmx(4, self._strip_four_array)
-        # # self._client.SendDmx(1, self._strip_test_gradient_math)
-        # self._client.SendDmx(2, self._strip_test_gradient_chosen_values)
-
 
         self._wrapper.AddEvent(self._update_interval, self.UpdateDmx)
