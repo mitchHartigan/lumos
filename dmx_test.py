@@ -123,6 +123,7 @@ class SimpleFadeController(object):
         i = 0
         while i < 3: 
             vals.append(gradient_list[current_rgb_set][i])
+            i += 1
 
         return vals
 
@@ -130,8 +131,6 @@ class SimpleFadeController(object):
         """
         This function gets called periodically based on UPDATE_INTERVAL
         """ 
-
-        print(self._iterable)
 
         #----------------------------------
         # Strip one controller
