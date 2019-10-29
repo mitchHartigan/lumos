@@ -27,8 +27,6 @@ def run_strip_animation():
 if __name__ == '__main__':
     i = 0
     while i < 10:
-        while True:
-            print(pot.value)
-            # run_strip_animation()
-            # i += 1
+        run_strip_animation()
+        i += 1
 
