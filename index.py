@@ -17,7 +17,8 @@ UNIVERSE_3 = 3
 def run_strip_animation():
     wrapper = ClientWrapper()
     controller = SimpleFadeController(UPDATE_INTERVAL, wrapper)
-    print(pot.value)
+    while True:
+        print(pot.value)
     wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
     wrapper.Run()
 
