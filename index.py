@@ -34,7 +34,7 @@ if __name__ == '__main__':
     pot_val = pot.value * 100
     while True:
         print(pot_val)
-        if pot_val == pot.value:
+        if pot_val == pot.value * 100:
             # nothing has changed.
             i = 0
             while i < 10:
@@ -43,7 +43,7 @@ if __name__ == '__main__':
                 reset_variables()
         else:
             # the value has changed.
-            pot_val = pot.value
+            pot_val = pot.value * 100
             stop_animations()
 
 
