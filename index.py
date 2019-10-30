@@ -29,7 +29,7 @@ def run_strip_animation(wrapper):
 if __name__ == '__main__':
     i = 0
     while i < 10:
-        run_strip_animation()
+        run_strip_animation(wrapper)
         i += 1
  #while true fucked the code...
     # pot_val = pot.value * 100
