@@ -28,7 +28,7 @@ def run_strip_animation(wrapper):
 
 if __name__ == '__main__':
     pot_val = pot.value * 100
-    while True:
+    # while True:
         if pot_val == pot.value:
             # nothing has changed.
             i = 0
