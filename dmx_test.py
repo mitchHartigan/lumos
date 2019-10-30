@@ -65,6 +65,21 @@ class SimpleFadeController(object):
                         [255, 197, 2], [255, 197, 2], [255, 197, 2], [255, 197, 2], [255, 197, 2]
                         ]
 
+        self.gradient3 = [
+                        [0, 0, 255], [0, 0, 255], [0, 0, 255], [0, 0, 255], [0, 0, 255], 
+                        [0, 0, 255], [0, 0, 255], [0, 0, 255], [0, 0, 255], [0, 0, 255], 
+                        [29, 5, 231], [29, 5, 231], [29, 5, 231], [29, 5, 231], [29, 5, 231], 
+                        [42, 7, 220], [42, 7, 220], [42, 7, 220], [42, 7, 220], [42, 7, 220], 
+                        [96, 16, 197], [96, 16, 197], [96, 16, 197], [96, 16, 197], [96, 16, 197], 
+                        [146, 25, 133], [146, 25, 133], [146, 25, 133], [146, 25, 133], [146, 25, 133], 
+                        [184, 32, 101], [184, 32, 101], [184, 32, 101], [184, 32, 101], [184, 32, 101], 
+                        [216, 37, 74], [216, 37, 74], [216, 37, 74], [216, 37, 74], [216, 37, 74], 
+                        [255, 35, 34], [255, 35, 34], [255, 35, 34], [255, 35, 34], [255, 35, 34], 
+                        [255, 27, 26], [255, 27, 26], [255, 27, 26], [255, 27, 26], [255, 27, 26], 
+                        [255, 19, 18], [255, 19, 18], [255, 19, 18], [255, 19, 18], [255, 19, 18], 
+                        [255, 0, 0], [255, 0, 0], [255, 0, 0], [255, 0, 0], [255, 0, 0]
+                        ]
+
     def read_values(self, offset, gradient_list):
         """
         Reads the each color value out of the pre-generated arrays, returning them as a list.
@@ -141,7 +156,8 @@ class SimpleFadeController(object):
         #----------------------------------
         # Strip three controller
         #----------------------------------
-        if(self._iterable >= 15):
+        strip_three_offset = 15
+        if(self._iterable >= strip_three_offset):
             if (self._iterable >= 75): # checks if the strip has reached the end. offset by 15 from 60
                 i = self._strip_three_data_length - 1
                 
@@ -151,7 +167,9 @@ class SimpleFadeController(object):
                     x += 1
                 self._strip_three_data_length -= 3
             else:    
-                self._strip_three_array.extend([0, 255, 0])
+                new_value = self.read_values(strip_three_offset, self.gradient3)
+
+                self._strip_three_array.extend(new_value)   
 
         #----------------------------------
         # Strip four controller
