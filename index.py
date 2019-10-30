@@ -6,6 +6,8 @@ from time import sleep
 import random
 import time
 
+wrapper = ClientWrapper()
+
 UPDATE_INTERVAL = 25 # In ms, this comes about to ~40 frames a second
 SHUTDOWN_INTERVAL = 5200 # in ms
 
@@ -13,8 +15,7 @@ UNIVERSE_1 = 1
 UNIVERSE_2 = 2
 UNIVERSE_3 = 3
 
-def run_strip_animation():
-    wrapper = ClientWrapper()
+def run_strip_animation(wrapper):
     controller = SimpleFadeController(UPDATE_INTERVAL, wrapper)
     wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
     wrapper.Run()
@@ -25,15 +26,14 @@ def run_strip_animation():
 
 if __name__ == '__main__':
     pot_val = pot.value * 100
-     while True:
-         if pot_val == pot.value:
+    while True:
+        if pot_val == pot.value:
             # nothing has changed.
             i = 0
             while i < 10:
-                run_strip_animation()
+                run_strip_animation(wrapper)
                 i += 1
-         else:
+        else:
             # the value has changed.
             pot_val = pot.value
-            ClientWrapper.Stop()
-            time.sleep(1) 
+            ClientWrapper.Stop
