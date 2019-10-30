@@ -6,7 +6,8 @@ from time import sleep
 import random
 import time
 
-wrapper = ClientWrapper()
+# why put wrapper out that causing bug?
+# wrapper = ClientWrapper()
 
 UPDATE_INTERVAL = 25 # In ms, this comes about to ~40 frames a second
 SHUTDOWN_INTERVAL = 5200 # in ms
@@ -17,7 +18,8 @@ UNIVERSE_3 = 3
 
 pot = MCP3008(0)
 
-def run_strip_animation(wrapper):
+def run_strip_animation():
+    wrapper = ClientWrapper()
     controller = SimpleFadeController(UPDATE_INTERVAL, wrapper)
     wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
     wrapper.Run()
@@ -29,7 +31,7 @@ def run_strip_animation(wrapper):
 if __name__ == '__main__':
     i = 0
     while i < 10:
-        run_strip_animation(wrapper)
+        run_strip_animation()
         i += 1
  #while true fucked the code...
     # pot_val = pot.value * 100
