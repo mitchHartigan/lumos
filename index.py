@@ -24,15 +24,15 @@ def run_strip_animation():
     controller = None
 
 if __name__ == '__main__':
-    pot_val = pot.value
+    pot_val = pot.value * 100
      while True:
-        if pot_val == pot.value:
+         if pot_val == pot.value:
             # nothing has changed.
             i = 0
             while i < 10:
                 run_strip_animation()
                 i += 1
-        else:
+         else:
             # the value has changed.
             pot_val = pot.value
             ClientWrapper.Stop()
