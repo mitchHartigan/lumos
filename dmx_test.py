@@ -32,8 +32,8 @@ class SimpleFadeController(object):
 
         self.gradient1 = [ 
                         [255, 0, 0], [255, 0, 0], [255, 0, 0], [255, 0, 0], [255, 0, 0], 
-                        [255, 95, 0], [255, 95, 0], [255, 95, 0], [255, 95, 0], [255, 95, 0], #43
-                        [255, 197, 2], [255, 197, 2], [255, 197, 2], [255, 197, 2], [255, 197, 2], #85
+                        [255, 43, 0], [255, 43, 0], [255, 43, 0], [255, 43, 0], [255, 43, 0], 
+                        [255, 85, 0], [255, 85, 0], [255, 85, 0], [255, 85, 0], [255, 85, 0], 
                         [255, 128, 0], [255, 128, 0], [255, 128, 0], [255, 128, 0], [255, 128, 0],
                         [255, 170, 0], [255, 170, 0], [255, 170, 0], [255, 170, 0], [255, 170, 0],
                         [255, 213, 0], [255, 213, 0], [255, 213, 0], [255, 213, 0], [255, 213, 0],
@@ -46,18 +46,20 @@ class SimpleFadeController(object):
                         [0, 255, 0], [0, 255, 0], [0, 255, 0], [0, 255, 0], [204, 0, 204 ]
                          ] 
 
-        self.gradient2 = array('B', [130, 0, 144, 130, 0, 144, 130, 0, 144, 130, 0, 144, 130, 0, 144, 
-                        202, 0, 144, 202, 0, 144, 202, 0, 144, 202, 0, 144, 202, 0, 144, 
-                        246, 0, 103, 246, 0, 103, 246, 0, 103, 246, 0, 103, 246, 0, 103,
-                        255, 0, 79, 255, 0, 79, 255, 0, 79, 255, 0, 79, 255, 0, 79, 
-                        255, 0, 51, 255, 0, 51, 255, 0, 51, 255, 0, 51, 255, 0, 51, 
-                        255, 0, 17, 255, 0, 17, 255, 0, 17, 255, 0, 17, 255, 0, 17, 
-                        255, 95, 0, 255, 95, 0, 255, 95, 0, 255, 95, 0, 255, 95, 0, 
-                        255, 197, 2, 255, 197, 2, 255, 197, 2, 255, 197, 2, 255, 197, 2, #change
-                        243, 96, 0, 243, 96, 0, 243, 96, 0, 243, 96, 0, 243, 96, 0, #change
-                        255, 135, 0, 255, 135, 0, 255, 135, 0, 255, 135, 0, 255, 135, 0, 
-                        255, 154, 0, 255, 154, 0, 255, 154, 0, 255, 154, 0, 255, 154, 0, 
-                        255, 195, 0, 255, 195, 0, 255, 195, 0, 255, 195, 0, 255, 195, 0] )
+        self.gradient2 = array('B', [
+                        [130, 0, 144], [130, 0, 144], [130, 0, 144], [130, 0, 144], [130, 0, 144], 
+                        [202, 0, 144], [202, 0, 144], [202, 0, 144], [202, 0, 144], [202, 0, 144], 
+                        [246, 0, 103], [246, 0, 103], [246, 0, 103], [246, 0, 103], [246, 0, 103],
+                        [255, 0, 79], [255, 0, 79], [255, 0, 79], [255, 0, 79], [255, 0, 79], 
+                        [255, 0, 51], [255, 0, 51], [255, 0, 51], [255, 0, 51], [255, 0, 51], 
+                        [255, 0, 17], [255, 0, 17], [255, 0, 17], [255, 0, 17], [255, 0, 17], 
+                        [255, 95, 0], [255, 95, 0], [255, 95, 0], [255, 95, 0], [255, 95, 0], 
+                        [255, 197, 2], [255, 197, 2], [255, 197, 2], [255, 197, 2], [255, 197, 2], 
+                        [243, 96, 0], [243, 96, 0], [243, 96, 0], [243, 96, 0], [243, 96, 0], #change
+                        [255, 135, 0], [255, 135, 0], [255, 135, 0], [255, 135, 0], [255, 135, 0], 
+                        [255, 154, 0], [255, 154, 0], [255, 154, 0], [255, 154, 0], [255, 154, 0], 
+                        [255, 195, 0], [255, 195, 0], [255, 195, 0], [255, 195, 0], [255, 195, 0]
+                        ] )
 
     def read_values(self, offset, gradient_list):
         """
@@ -91,7 +93,8 @@ class SimpleFadeController(object):
         # 5 is the amount of time we want to wait before starting to update this array.
         # Ie, this code is called every 25ms (UPDATE_INTERVAL), and it waits for five
         # intervals before outputting the first elem to the array.
-        if(self._iterable >= 5):
+        strip_one_offset = 5
+        if(self._iterable >= strip_one_offset):
             if (self._iterable >= 65):
                 # 60 is the number of pixels in the strip, and after 65 iterations (since we
                 # waited 5 iterations to run the first one) we'll have reached the end of the
@@ -110,13 +113,14 @@ class SimpleFadeController(object):
                 # if not at 65 iterations, the strip isn't full yet, and therefore is still ascending.
                 # Adds a pixel to the array if so.  
 
-                new_value = self.read_values(5, self.gradient1)
+                new_value = self.read_values(strip_one_offset, self.gradient1)
 
                 self._strip_one_array.extend(new_value)
         #----------------------------------
         # Strip two controller
         #----------------------------------
-        if(self._iterable >= 10):
+        strip_two_offset = 10
+        if(self._iterable >= strip_two_offset):
             if (self._iterable >= 70): # checks if the strip has reached the end.
                 i = self._strip_two_data_length - 1
                 
@@ -126,7 +130,9 @@ class SimpleFadeController(object):
                     x += 1
                 self._strip_two_data_length -= 3
             else:    
-                self._strip_two_array.extend([204, 0, 204])            
+                new_value = self.read_values(strip_two_offset, self.gradient2)
+
+                self._strip_two_array.extend(new_value)         
 
         #----------------------------------
         # Strip three controller
