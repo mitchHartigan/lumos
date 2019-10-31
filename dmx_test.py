@@ -113,6 +113,8 @@ class SimpleFadeController(object):
                         [133, 25, 150], [110, 19, 130], [110, 8, 110], [80, 4, 80], [70, 4, 70]
                         ]
 
+        self.gradient_array = [self.gradient1, self.gradient2, self.gradient3]
+
     def read_values(self, offset, gradient_list):
         """
         Reads the each color value out of the pre-generated arrays, returning them as a list.
