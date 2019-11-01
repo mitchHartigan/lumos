@@ -13,28 +13,24 @@ SHUTDOWN_INTERVAL = 5200 # in ms
 # UNIVERSE_2 = 2
 # UNIVERSE_3 = 3
 
-pot = MCP3008(0)
-pot_val = int(pot.value * 100)
-pot_val_unchanged = True
-
 def run_strip_animation():
     wrapper = ClientWrapper()
     controller = SimpleFadeController(UPDATE_INTERVAL, wrapper)
-    if pot_val <= pot_val + 2 and pot_val >= pot_val - 2:
-        wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
-        wrapper.Run()
-    else:
-        print(pot_val)
-        wrapper.Stop()
-        pot_val_unchanged = False
+    # if pot_val <= pot_val + 2 and pot_val >= pot_val - 2:
+    wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
+    wrapper.Run()
+    # else:
+    #     print(pot_val)
+    #     wrapper.Stop()
+    #     pot_val_unchanged = False
 
     # Clears the variables, to prevent scope pollution
     wrapper = None
     controller = None
 
 if __name__ == '__main__':
-    while pot_val_unchanged:
-            run_strip_animation()
+    # while pot_val_unchanged:
+    run_strip_animation()
 
     #not running any animation for some reason
     # pot_val = pot.value
