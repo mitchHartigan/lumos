@@ -24,6 +24,7 @@ def run_strip_animation():
         wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
         wrapper.Run()
     else:
+        print(pot_val)
         wrapper.Stop()
         pot_val_unchanged = False
 
