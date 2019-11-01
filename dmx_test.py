@@ -239,7 +239,7 @@ class SimpleFadeController(object):
         else:
             print("POT VALUE HAS CHANGED: value is", pot_val)
             time.sleep(1)
-            exit()
+            self.UpdateDmx
 
 
         # updates the iterable at the end of this iteration. (lel tf did I just write)
