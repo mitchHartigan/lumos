@@ -14,17 +14,17 @@ SHUTDOWN_INTERVAL = 5200 # in ms
 # UNIVERSE_3 = 3
 
 pot = MCP3008(0)
+wrapper = ClientWrapper()
 
 def run_strip_animation():
-    wrapper = ClientWrapper()
     controller = SimpleFadeController(UPDATE_INTERVAL, wrapper)
     wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
     wrapper.Run()
 
     #Clears the variables, to prevent scope pollution
     # wrapper = None
-    wrapper.Reset()
-    controller = None
+    # wrapper.Reset()
+    # controller = None
 
 def stop_animations():
     # wrapper.Stop()
