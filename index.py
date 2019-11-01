@@ -29,8 +29,9 @@ def run_strip_animation():
     controller = None
 
 if __name__ == '__main__':
+    while True:
     # while pot_val_unchanged:
-    run_strip_animation()
+        run_strip_animation()
 
     #not running any animation for some reason
     # pot_val = pot.value
