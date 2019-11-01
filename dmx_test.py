@@ -66,7 +66,7 @@ class SimpleFadeController(object):
                         [194, 208, 0], [192, 210, 0], [189, 213, 0], [187, 216, 0], [185, 219, 0 ]
                          ] 
 
-        #fixed not testes dark purple > redish orange > yellow
+        #fixed not tested dark purple > redish orange > yellow
         self.gradient2 = [
                         [130, 0, 144], [134, 1, 140], [138, 2, 137], [142, 4, 133], [146, 5, 130], 
                         [150, 7, 127], [155, 8, 123], [159, 10, 120], [163, 11, 116], [167, 13, 113], 
