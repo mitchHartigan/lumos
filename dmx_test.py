@@ -30,7 +30,6 @@ class SimpleFadeController(object):
         self._strip_three_data_length = 180
         self._strip_four_data_length = 180
         self.pot = MCP3008(0)
-        self.pot_val = int(self.pot.value * 100)
         self.pot_val_unchanged = True
 
         # self.gradient1 = self.generate_multicolor_gradient(142, 45, 226, 74, 0, 224, 255, 0, 153)
@@ -141,7 +140,8 @@ class SimpleFadeController(object):
         return vals
 
     def UpdateDmx(self):
-        if self.pot_val >= self.pot_val + 2 or self.pot_val <= self.pot_val -2:
+        pot_val = int(pot.value * 100)
+        if pot_val >= pot_val + 2 or pot_val <= pot_val -2:
             self.pot_val_unchanged = False
         
         if self.pot_val_unchanged:
@@ -234,7 +234,7 @@ class SimpleFadeController(object):
 
                     self._strip_four_array.extend(new_value)
         else:
-            print("POT VALUE HAS CHANGED: value is", self.pot_val)
+            print("POT VALUE HAS CHANGED: value is", pot_val)
             time.sleep(1)
             exit()
 
