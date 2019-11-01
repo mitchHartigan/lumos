@@ -141,7 +141,10 @@ class SimpleFadeController(object):
         return vals
 
     def UpdateDmx(self):
-        if self.pot_val <= self.pot_val + 2 and self.pot_val >= self.pot_val -2:
+        if self.pot_val >= self.pot_val + 2 or self.pot_val <= self.pot_val -2:
+            self.pot_val_unchanged = False
+        
+        if self.pot_val_unchanged:
 
             """
             This function gets called periodically based on UPDATE_INTERVAL
@@ -231,11 +234,10 @@ class SimpleFadeController(object):
 
                     self._strip_four_array.extend(new_value)
         else:
+            print("POT VALUE HAS CHANGED: value is", self.pot_val)
             time.sleep(1)
-            self._strip_one_array = array('B', [])
-            self._strip_two_array = array('B', [])
-            self._strip_three_array = array('B', [])
-            self._strip_four_array = array('B', [])
+            exit()
+
 
         # updates the iterable at the end of this iteration. (lel tf did I just write)
         self._iterable += 1
