@@ -140,109 +140,110 @@ class SimpleFadeController(object):
         return vals
 
     def UpdateDmx(self):
-        pot_val = int(self.pot.value * 100)
-        print(pot_val)
-
-        if pot_val != int(self.pot.value * 100):
+        while True:
             pot_val = int(self.pot.value * 100)
-            self.pot_val_unchanged = False # ie. the value has changed
+            print(pot_val)
+
+            if pot_val != int(self.pot.value * 100):
+                pot_val = int(self.pot.value * 100)
+                self.pot_val_unchanged = False # ie. the value has changed
+            
+            while self.pot_val_unchanged:
+
+                """
+                This function gets called periodically based on UPDATE_INTERVAL
+                """ 
+
+                #----------------------------------
+                # Strip one controller
+                #----------------------------------
+
+                # 5 is the amount of time we want to wait before starting to update this array.
+                # Ie, this code is called every 25ms (UPDATE_INTERVAL), and it waits for five
+                # intervals before outputting the first elem to the array.
+                strip_one_offset = 5
+                if(self._iterable >= strip_one_offset):
+                    if (self._iterable >= 65):
+                        # 60 is the number of pixels in the strip, and after 65 iterations (since we
+                        # waited 5 iterations to run the first one) we'll have reached the end of the
+                        # strip. (ie, we offset this val by 5 in this case.)
+
+                        i = self._strip_one_data_length - 1 # gets the index pos of the last array elem
+                    
+                        # deletes the last set of (3) rgb values from the array.
+                        x = 0
+                        while x < 3:
+                            self._strip_one_array[i-x] = 0
+                            x += 1
         
-        if self.pot_val_unchanged:
+                        self._strip_one_data_length -= 3 #updates the length of this strip to match the deletion.
+                    else:  
+                        # if not at 65 iterations, the strip isn't full yet, and therefore is still ascending.
+                        # Adds a pixel to the array if so.  
 
-            """
-            This function gets called periodically based on UPDATE_INTERVAL
-            """ 
+                        new_value = self.read_values(strip_one_offset, self.gradient1)
 
-            #----------------------------------
-            # Strip one controller
-            #----------------------------------
+                        self._strip_one_array.extend(new_value)
+                #----------------------------------
+                # Strip two controller
+                #----------------------------------
+                strip_two_offset = 10
+                if(self._iterable >= strip_two_offset):
+                    if (self._iterable >= 70): # checks if the strip has reached the end.
+                        i = self._strip_two_data_length - 1
+                        
+                        x = 0
+                        while x < 3:
+                            self._strip_two_array[i-x] = 0
+                            x += 1
+                        self._strip_two_data_length -= 3
+                    else:    
+                        new_value = self.read_values(strip_two_offset, self.gradient2)
 
-            # 5 is the amount of time we want to wait before starting to update this array.
-            # Ie, this code is called every 25ms (UPDATE_INTERVAL), and it waits for five
-            # intervals before outputting the first elem to the array.
-            strip_one_offset = 5
-            if(self._iterable >= strip_one_offset):
-                if (self._iterable >= 65):
-                    # 60 is the number of pixels in the strip, and after 65 iterations (since we
-                    # waited 5 iterations to run the first one) we'll have reached the end of the
-                    # strip. (ie, we offset this val by 5 in this case.)
+                        self._strip_two_array.extend(new_value)         
 
-                    i = self._strip_one_data_length - 1 # gets the index pos of the last array elem
-                
-                    # deletes the last set of (3) rgb values from the array.
-                    x = 0
-                    while x < 3:
-                        self._strip_one_array[i-x] = 0
-                        x += 1
-    
-                    self._strip_one_data_length -= 3 #updates the length of this strip to match the deletion.
-                else:  
-                    # if not at 65 iterations, the strip isn't full yet, and therefore is still ascending.
-                    # Adds a pixel to the array if so.  
+                #----------------------------------
+                # Strip three controller
+                #----------------------------------
+                strip_three_offset = 15
+                if(self._iterable >= strip_three_offset):
+                    if (self._iterable >= 75): # checks if the strip has reached the end. offset by 15 from 60
+                        i = self._strip_three_data_length - 1
+                        
+                        x = 0
+                        while x < 3:
+                            self._strip_three_array[i-x] = 0
+                            x += 1
+                        self._strip_three_data_length -= 3
+                    else:    
+                        new_value = self.read_values(strip_three_offset, self.gradient3)
 
-                    new_value = self.read_values(strip_one_offset, self.gradient1)
+                        self._strip_three_array.extend(new_value)   
 
-                    self._strip_one_array.extend(new_value)
-            #----------------------------------
-            # Strip two controller
-            #----------------------------------
-            strip_two_offset = 10
-            if(self._iterable >= strip_two_offset):
-                if (self._iterable >= 70): # checks if the strip has reached the end.
-                    i = self._strip_two_data_length - 1
-                    
-                    x = 0
-                    while x < 3:
-                        self._strip_two_array[i-x] = 0
-                        x += 1
-                    self._strip_two_data_length -= 3
-                else:    
-                    new_value = self.read_values(strip_two_offset, self.gradient2)
+                #----------------------------------
+                # Strip four controller
+                #----------------------------------
+                strip_four_offset = 20
+                if(self._iterable >= strip_four_offset):
+                    if (self._iterable >= 80):
+                        i = self._strip_four_data_length - 1
+                        
+                        x = 0
+                        while x < 3:
+                            self._strip_four_array[i-x] = 0
+                            x += 1
+                        self._strip_four_data_length -= 3
+                    else:
+                        new_value = self.read_values(strip_four_offset, self.gradient3)
 
-                    self._strip_two_array.extend(new_value)         
+                        self._strip_four_array.extend(new_value)
 
-            #----------------------------------
-            # Strip three controller
-            #----------------------------------
-            strip_three_offset = 15
-            if(self._iterable >= strip_three_offset):
-                if (self._iterable >= 75): # checks if the strip has reached the end. offset by 15 from 60
-                    i = self._strip_three_data_length - 1
-                    
-                    x = 0
-                    while x < 3:
-                        self._strip_three_array[i-x] = 0
-                        x += 1
-                    self._strip_three_data_length -= 3
-                else:    
-                    new_value = self.read_values(strip_three_offset, self.gradient3)
-
-                    self._strip_three_array.extend(new_value)   
-
-            #----------------------------------
-            # Strip four controller
-            #----------------------------------
-            strip_four_offset = 20
-            if(self._iterable >= strip_four_offset):
-                if (self._iterable >= 80):
-                    i = self._strip_four_data_length - 1
-                    
-                    x = 0
-                    while x < 3:
-                        self._strip_four_array[i-x] = 0
-                        x += 1
-                    self._strip_four_data_length -= 3
-                else:
-                    new_value = self.read_values(strip_four_offset, self.gradient3)
-
-                    self._strip_four_array.extend(new_value)
-        else:
             print("POT VALUE HAS CHANGED: value is", pot_val)
             time.sleep(1)
-            exit()
+            continue
 
 
-        # updates the iterable at the end of this iteration. (lel tf did I just write)
+            # updates the iterable at the end of this iteration.
         self._iterable += 1
 
         # Send each array, a frame of animation, to each respective universe.
