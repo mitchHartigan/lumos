@@ -20,16 +20,33 @@ def run_strip_animation():
     controller = SimpleFadeController(UPDATE_INTERVAL, wrapper)
     wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
     wrapper.Run()
+    reset_variables()
 
+def reset_variables():
     #Clears the variables, to prevent scope pollution
     wrapper = None
     controller = None
 
-if __name__ == '__main__':
-    i = 0
-    while i < 10:
-        run_strip_animation()
-        i += 1
+    if __name__ == '__main__':
+    pot_val = pot.value * 100
+    while True:
+        print(pot_val)
+        if pot_val <= pot.value + 2 or pot_val >= pot.value - 2:
+            # nothing has changed.
+            i = 0
+            while i < 10:
+                run_strip_animation()
+                i += 1
+                reset_variables()
+        else:
+            # the value has changed.
+            pot_val = pot.value
+            stop_animations()
+
+
+
+
+
     #not running any animation for some reason
     # pot_val = pot.value
     # while True:
