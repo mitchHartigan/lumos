@@ -140,7 +140,7 @@ class SimpleFadeController(object):
         return vals
 
     def UpdateDmx(self):
-        pot_val = int(pot.value * 100)
+        pot_val = int(self.pot.value * 100)
         if pot_val >= pot_val + 2 or pot_val <= pot_val -2:
             self.pot_val_unchanged = False
         
