@@ -209,7 +209,8 @@ class SimpleFadeController(object):
         #----------------------------------
         # Strip four controller
         #----------------------------------
-        if(self._iterable >= 20):
+        strip_four_offset = 20
+        if(self._iterable >= strip_four_offset):
             if (self._iterable >= 80):
                 i = self._strip_four_data_length - 1
                 
@@ -218,8 +219,10 @@ class SimpleFadeController(object):
                     self._strip_four_array[i-x] = 0
                     x += 1
                 self._strip_four_data_length -= 3
-            else:    
-                self._strip_four_array.extend([210, 10, 255])
+            else:
+                new_value = self.read_values(strip_four_offset, self.gradient3)
+
+                self._strip_four_array.extend(new_value)
 
 
         # updates the iterable at the end of this iteration. (lel tf did I just write)
