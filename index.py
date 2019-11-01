@@ -19,9 +19,9 @@ pot_val_unchanged = True
 
 def run_strip_animation():
     print(pot.value)
+    wrapper = ClientWrapper()
+    controller = SimpleFadeController(UPDATE_INTERVAL, wrapper)
     if pot_val <= pot.value + 0.02 and pot_val >= pot.value - 0.02:
-        wrapper = ClientWrapper()
-        controller = SimpleFadeController(UPDATE_INTERVAL, wrapper)
         wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
         wrapper.Run()
     else:
