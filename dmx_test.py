@@ -220,7 +220,7 @@ class SimpleFadeController(object):
                     x += 1
                 self._strip_four_data_length -= 3
             else:
-                new_value = self.read_values(strip_four_offset, self.gradient2)
+                new_value = self.read_values(strip_four_offset, self.gradient)
 
                 self._strip_four_array.extend(new_value)
 

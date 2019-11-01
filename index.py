@@ -9,48 +9,42 @@ import time
 UPDATE_INTERVAL = 25 # In ms, this comes about to ~40 frames a second
 SHUTDOWN_INTERVAL = 5200 # in ms
 
-wrapper = None
-
-UNIVERSE_1 = 1
-UNIVERSE_2 = 2
-UNIVERSE_3 = 3
+# UNIVERSE_1 = 1
+# UNIVERSE_2 = 2
+# UNIVERSE_3 = 3
 
 pot = MCP3008(0)
 
 def run_strip_animation():
-    initialise_variables()
-    wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
-    wrapper.Run()
-    reset_variables()
-
-def initialise_variables():
     wrapper = ClientWrapper()
     controller = SimpleFadeController(UPDATE_INTERVAL, wrapper)
+    wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
+    wrapper.Run()
 
-def reset_variables():
     #Clears the variables, to prevent scope pollution
-    wrapper = None
+    # wrapper = None
+    wrapper.Reset()
     controller = None
 
 def stop_animations():
-    wrapper.Stop()
+    # wrapper.Stop()
     time.sleep(1)
 
 if __name__ == '__main__':
     pot_val = pot.value * 100
     while True:
         print(pot_val)
-        if pot_val <= pot.value + 2 or pot_val >= pot.value - 2:
+        if pot_val <= pot.value + 2 and pot_val >= pot.value - 2:
             # nothing has changed.
-            i = 0
-            while i < 10:
-                run_strip_animation()
-                i += 1
-                reset_variables()
+            # i = 0
+            # while i < 10:
+            run_strip_animation()
+                # i += 1
         else:
             # the value has changed.
             pot_val = pot.value
-            stop_animations()
+            continue
+            # stop_animations()
 
 
 
