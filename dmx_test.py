@@ -52,10 +52,26 @@ class SimpleFadeController(object):
         #                 # [85, 255, 0], [85, 255, 0], [85, 255, 0], [85, 255, 0], [85, 255, 0],
         #                 [43, 255, 0], [43, 255, 0], [43, 255, 0], [43, 255, 0], [43, 255, 0],
         #                 [0, 255, 0], [0, 255, 0], [0, 255, 0], [0, 255, 0], [204, 0, 204 ]
-        #                  ] 
+        #                  ]
+
+        # red > orange > green
+        self.gradient1 = [
+                        [255, 0, 0], [255, 5, 0], [255, 10, 0], [255, 15, 0], [255, 20, 0],
+                        [255, 0, 26], [255, 31, 1], [255, 36, 1], [255, 41, 1], [255, 46, 1],
+                        [255, 51, 1], [255, 57, 1], [255, 62, 1], [255, 67, 2], [255, 72, 2],
+                        [255, 77, 2], [255, 82, 2], [255, 87, 2], [255, 93, 3], [255, 98, 3], 
+                        [255, 103, 3], [255, 108, 3], [255, 113, 3], [255, 118, 3], [255, 123, 4],
+                        [255, 128, 4], [255, 133, 4], [255, 138, 4], [255, 143, 4], [255, 148, 4],
+                        [255, 153, 5], [251, 164, 5], [248, 173, 5], [245, 183, 5], [242, 192, 5], 
+                        [238, 201, 5], [235, 209, 6], [232, 217, 6], [229, 225, 6], [218, 225, 6], 
+                        [205, 222, 6], [192, 219, 6], [179, 216, 6], [166, 212, 7], [154, 209, 7], 
+                        [142, 206, 7], [130, 203, 7], [119, 199, 7], [108, 196, 7], [97, 193, 7], 
+                        [87, 190, 7], [77, 186, 7], [63, 183, 7], [57, 180, 7], [48, 177, 7], 
+                        [40, 173, 7], [23, 167, 7], [31, 170, 7], [15, 164, 7], [7, 160, 8]
+                        ]
 
         # redish purple > orange > yellowish green
-        self.gradient1 = [ 
+        self.gradient2 = [ 
                         [255, 0, 128], [255, 4, 123], [255, 9, 119], [255, 14, 114], [255, 19, 110], 
                         [255, 24, 105], [255, 28, 101], [255, 33, 97], [255, 38, 92], [255, 43, 88], 
                         [255, 48, 83], [255, 53, 79], [255, 57, 75], [255, 62, 70], [255, 67, 66], 
@@ -67,11 +83,11 @@ class SimpleFadeController(object):
                         [230, 167, 0], [228, 169, 0], [226, 172, 0], [223, 175, 0], [221, 178, 0],
                         [218, 180, 0], [216, 183, 0], [213, 186, 0], [221, 189, 0], [209, 191, 0],
                         [206, 194, 0], [204, 197, 0], [201, 199, 0], [199, 202, 0], [197, 205, 0],
-                        [194, 208, 0], [192, 210, 0], [189, 213, 0], [187, 216, 0], [185, 219, 0 ]
+                        [194, 208, 0], [192, 210, 0], [189, 213, 0], [187, 216, 0], [185, 219, 0]
                          ] 
 
-        #fixed not tested dark purple > redish orange > yellow
-        self.gradient2 = [
+        # fixed not tested dark purple > redish orange > yellow
+        self.gradient3 =[
                         [130, 0, 144], [134, 1, 140], [138, 2, 137], [142, 4, 133], [146, 5, 130], 
                         [150, 7, 127], [155, 8, 123], [159, 10, 120], [163, 11, 116], [167, 13, 113], 
                         [171, 14, 110], [175, 16, 106], [180, 17, 103], [184, 19, 99], [188, 20, 96],
@@ -85,24 +101,9 @@ class SimpleFadeController(object):
                         [255, 149, 14], [255, 154, 13], [255, 160, 11], [255, 165, 10], [255, 170, 8], 
                         [255, 175, 7], [255, 181, 6], [255, 186, 4], [255, 191, 3], [255, 197, 2]
                         ]
-        #working atm
-        # self.gradient3 = [
-        #                 [0, 0, 255], [0, 0, 255], [0, 0, 255], [0, 0, 255], [0, 0, 255], 
-        #                 [0, 0, 255], [0, 0, 255], [0, 0, 255], [0, 0, 255], [0, 0, 255], 
-        #                 [29, 5, 231], [29, 5, 231], [29, 5, 231], [29, 5, 231], [29, 5, 231], 
-        #                 [42, 7, 220], [42, 7, 220], [42, 7, 220], [42, 7, 220], [42, 7, 220], 
-        #                 [96, 16, 197], [96, 16, 197], [96, 16, 197], [96, 16, 197], [96, 16, 197], 
-        #                 [146, 25, 133], [146, 25, 133], [146, 25, 133], [146, 25, 133], [146, 25, 133], 
-        #                 [184, 32, 101], [184, 32, 101], [184, 32, 101], [184, 32, 101], [184, 32, 101], 
-        #                 [216, 37, 74], [216, 37, 74], [216, 37, 74], [216, 37, 74], [216, 37, 74], 
-        #                 [255, 35, 34], [255, 35, 34], [255, 35, 34], [255, 35, 34], [255, 35, 34], 
-        #                 [246, 0, 103], [246, 0, 103], [246, 0, 103], [246, 0, 103], [246, 0, 103],
-        #                 [246, 0, 103], [246, 0, 103], [246, 0, 103], [246, 0, 103], [246, 0, 103],
-        #                 [246, 0, 103], [246, 0, 103], [246, 0, 103], [246, 0, 103], [246, 0, 103]
-        #                 ]
 
-        # Green > Blue > light / purple
-        self.gradient3 = [
+        # green > blue > light blue/ purple
+        self.gradient4 = [
                         [17, 189, 0], [16, 187, 8], [16, 186, 16], [16, 185, 24], [16, 184, 32], 
                         [15, 183, 41], [15, 181, 49], [15, 180, 57], [15, 179, 65], [15, 178, 74], 
                         [14, 177, 82], [14, 176, 90], [14, 174, 98], [14, 173, 107], [14, 172, 115], 
@@ -117,7 +118,23 @@ class SimpleFadeController(object):
                         [133, 25, 150], [110, 19, 130], [110, 8, 110], [80, 4, 80], [70, 4, 70]
                         ]
 
-        self.gradient_array = [self.gradient1, self.gradient2, self.gradient3]
+        # red > orange > purple
+        self.gradient5 = [ 
+                        [255, 0, 0], [255, 4, 0], [255, 9, 0], [255, 14, 0], [255, 18, 0], 
+                        [255, 23, 0], [255, 28, 0], [255, 32, 0], [255, 37, 0], [255, 42, 0], 
+                        [255, 46, 0], [255, 51, 0], [255, 56, 0], [255, 60, 0], [255, 65, 0], 
+                        [255, 70, 0], [255, 74, 0], [255, 79, 0], [255, 84, 0], [255, 88, 0], 
+                        [255, 93, 0], [255, 98, 0], [255, 102, 0], [255, 107, 0], [255, 112, 0], 
+                        [255, 116, 0], [255, 121, 0], [255, 126, 0], [255, 130, 0], [255, 135, 0], 
+                        [255, 140, 0], [253, 135, 7], [251, 130, 14], [249, 125, 21], [247, 120, 29],
+                        [245, 115, 36], [244, 110, 43], [242, 105, 51], [240, 100, 58], [238, 95, 65],
+                        [236, 90, 72], [234, 85, 80], [233, 80, 87], [231, 75, 94], [229, 70, 102],
+                        [227, 65, 109], [225, 60, 116], [224, 55, 123], [222, 50, 131], [220, 45, 138],
+                        [218, 40, 145], [216, 35, 135], [214, 30, 160], [213, 25, 167], [211, 20, 174],
+                        [209, 15, 182], [207, 10, 189], [205, 5, 196], [204, 0, 204], [200, 0, 200]
+                         ]
+
+        # self.gradient_array = [self.gradient1, self.gradient2, self.gradient3]
 
     def read_values(self, offset, gradient_list):
         """
@@ -140,106 +157,135 @@ class SimpleFadeController(object):
         return vals
 
     def UpdateDmx(self):
+        # gradient = random.choice(self.gradient_array)
         pot_val = int(self.pot.value * 100)
         print(pot_val)
 
-        if pot_val != int(self.pot.value * 100):
-            pot_val = int(self.pot.value * 100)
-            self.pot_val_unchanged = False # ie. the value has changed
-        
-        if self.pot_val_unchanged:
+        # if pot_val != int(self.pot.value * 100):
+        #     pot_val = int(self.pot.value * 100)
+        #     self.pot_val_unchanged = False # ie. the value has changed
 
-            """
-            This function gets called periodically based on UPDATE_INTERVAL
-            """ 
+        if pot_val >= 0 and pot_val < 10:
+            gradient = self.gradient1
 
-            #----------------------------------
-            # Strip one controller
-            #----------------------------------
+        if pot_val >= 10 and pot_val < 20:
+            gradient = self.gradient2
 
-            # 5 is the amount of time we want to wait before starting to update this array.
-            # Ie, this code is called every 25ms (UPDATE_INTERVAL), and it waits for five
-            # intervals before outputting the first elem to the array.
-            strip_one_offset = 5
-            if(self._iterable >= strip_one_offset):
-                if (self._iterable >= 65):
-                    # 60 is the number of pixels in the strip, and after 65 iterations (since we
-                    # waited 5 iterations to run the first one) we'll have reached the end of the
-                    # strip. (ie, we offset this val by 5 in this case.)
+        if pot_val >= 20 and pot_val < 30:
+            gradient = self.gradient3
 
-                    i = self._strip_one_data_length - 1 # gets the index pos of the last array elem
+        if pot_val >= 30 and pot_val < 40:
+            gradient = self.gradient2
+
+        if pot_val >= 40 and pot_val < 50:
+            gradient = self.gradient1
+
+        if pot_val >= 50 and pot_val < 60:
+            gradient = self.gradient2
+
+        if pot_val >= 60 and pot_val < 70:
+            gradient = self.gradient3
+
+        if pot_val >= 70 and pot_val < 80:
+            gradient = self.gradient2
+
+        if pot_val >= 80 and pot_val < 90:
+            gradient = self.gradient1
+
+        if pot_val >= 90 and pot_val < 100:
+            gradient = self.gradient2
+            
+        """
+        This function gets called periodically based on UPDATE_INTERVAL
+        """ 
+
+        #----------------------------------
+        # Strip one controller
+        #----------------------------------
+
+        # 5 is the amount of time we want to wait before starting to update this array.
+        # Ie, this code is called every 25ms (UPDATE_INTERVAL), and it waits for five
+        # intervals before outputting the first elem to the array.
+        strip_one_offset = 5
+        if(self._iterable >= strip_one_offset):
+            if (self._iterable >= 65):
+                # 60 is the number of pixels in the strip, and after 65 iterations (since we
+                # waited 5 iterations to run the first one) we'll have reached the end of the
+                # strip. (ie, we offset this val by 5 in this case.)
+
+                i = self._strip_one_data_length - 1 # gets the index pos of the last array elem
+            
+                # deletes the last set of (3) rgb values from the array.
+                x = 0
+                while x < 3:
+                    self._strip_one_array[i-x] = 0
+                    x += 1
+
+                self._strip_one_data_length -= 3 #updates the length of this strip to match the deletion.
+            else:  
+                # if not at 65 iterations, the strip isn't full yet, and therefore is still ascending.
+                # Adds a pixel to the array if so.  
+
+                new_value = self.read_values(strip_one_offset, gradient)
+
+                self._strip_one_array.extend(new_value)
+        #----------------------------------
+        # Strip two controller
+        #----------------------------------
+        strip_two_offset = 10
+        if(self._iterable >= strip_two_offset):
+            if (self._iterable >= 70): # checks if the strip has reached the end.
+                i = self._strip_two_data_length - 1
                 
-                    # deletes the last set of (3) rgb values from the array.
-                    x = 0
-                    while x < 3:
-                        self._strip_one_array[i-x] = 0
-                        x += 1
-    
-                    self._strip_one_data_length -= 3 #updates the length of this strip to match the deletion.
-                else:  
-                    # if not at 65 iterations, the strip isn't full yet, and therefore is still ascending.
-                    # Adds a pixel to the array if so.  
+                x = 0
+                while x < 3:
+                    self._strip_two_array[i-x] = 0
+                    x += 1
+                self._strip_two_data_length -= 3
+            else:    
+                new_value = self.read_values(strip_two_offset, gradient)
 
-                    new_value = self.read_values(strip_one_offset, self.gradient1)
+                self._strip_two_array.extend(new_value)         
 
-                    self._strip_one_array.extend(new_value)
-            #----------------------------------
-            # Strip two controller
-            #----------------------------------
-            strip_two_offset = 10
-            if(self._iterable >= strip_two_offset):
-                if (self._iterable >= 70): # checks if the strip has reached the end.
-                    i = self._strip_two_data_length - 1
-                    
-                    x = 0
-                    while x < 3:
-                        self._strip_two_array[i-x] = 0
-                        x += 1
-                    self._strip_two_data_length -= 3
-                else:    
-                    new_value = self.read_values(strip_two_offset, self.gradient2)
+        #----------------------------------
+        # Strip three controller
+        #----------------------------------
+        strip_three_offset = 15
+        if(self._iterable >= strip_three_offset):
+            if (self._iterable >= 75): # checks if the strip has reached the end. offset by 15 from 60
+                i = self._strip_three_data_length - 1
+                
+                x = 0
+                while x < 3:
+                    self._strip_three_array[i-x] = 0
+                    x += 1
+                self._strip_three_data_length -= 3
+            else:    
+                new_value = self.read_values(strip_three_offset, gradient)
 
-                    self._strip_two_array.extend(new_value)         
+                self._strip_three_array.extend(new_value)   
 
-            #----------------------------------
-            # Strip three controller
-            #----------------------------------
-            strip_three_offset = 15
-            if(self._iterable >= strip_three_offset):
-                if (self._iterable >= 75): # checks if the strip has reached the end. offset by 15 from 60
-                    i = self._strip_three_data_length - 1
-                    
-                    x = 0
-                    while x < 3:
-                        self._strip_three_array[i-x] = 0
-                        x += 1
-                    self._strip_three_data_length -= 3
-                else:    
-                    new_value = self.read_values(strip_three_offset, self.gradient3)
+        #----------------------------------
+        # Strip four controller
+        #----------------------------------
+        strip_four_offset = 20
+        if(self._iterable >= strip_four_offset):
+            if (self._iterable >= 80):
+                i = self._strip_four_data_length - 1
+                
+                x = 0
+                while x < 3:
+                    self._strip_four_array[i-x] = 0
+                    x += 1
+                self._strip_four_data_length -= 3
+            else:
+                new_value = self.read_values(strip_four_offset, self.gradient3)
 
-                    self._strip_three_array.extend(new_value)   
-
-            #----------------------------------
-            # Strip four controller
-            #----------------------------------
-            strip_four_offset = 20
-            if(self._iterable >= strip_four_offset):
-                if (self._iterable >= 80):
-                    i = self._strip_four_data_length - 1
-                    
-                    x = 0
-                    while x < 3:
-                        self._strip_four_array[i-x] = 0
-                        x += 1
-                    self._strip_four_data_length -= 3
-                else:
-                    new_value = self.read_values(strip_four_offset, self.gradient3)
-
-                    self._strip_four_array.extend(new_value)
-        else:
-            print("POT VALUE HAS CHANGED: value is", pot_val)
-            time.sleep(1)
-            exit()
+                self._strip_four_array.extend(new_value)
+        
+        # if ! self.pot_val_unchanged: # ie value has changed
+        #     gradient = random.choice(self.gradient_array)
+        #     print("POT VALUE HAS CHANGED: value is", pot_val)
 
 
         # updates the iterable at the end of this iteration. (lel tf did I just write)
