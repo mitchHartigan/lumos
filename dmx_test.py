@@ -184,7 +184,7 @@ class SimpleFadeController(object):
         if pot_val >= 20 and pot_val < 25:
             gradient = self.gradient5
 
-        if pot_val >= 25 and pot_val < 30:
+        if pot_val >= 25 and pot_val <= 30:
             gradient = self.gradient4
             
         """
