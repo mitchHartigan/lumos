@@ -21,6 +21,8 @@ class SimpleFadeController(object):
         self._strip_two_array = array('B', [])
         self._strip_three_array = array('B', [])
         self._strip_four_array = array('B', [])
+        self._strip_five_array = array('B', [])
+        self._strip_six_array = array('B', [])
 
         # Initialize a data length for each strip.
         # These will update at different rates, as the strips remove
@@ -29,6 +31,8 @@ class SimpleFadeController(object):
         self._strip_two_data_length = 180
         self._strip_three_data_length = 180
         self._strip_four_data_length = 180
+        self._strip_five_data_length = 180
+        self._strip_six_data_length = 180
         self.pot = MCP3008(0)
         self.pot_val_unchanged = True
 
@@ -279,9 +283,45 @@ class SimpleFadeController(object):
                     x += 1
                 self._strip_four_data_length -= 3
             else:
-                new_value = self.read_values(strip_four_offset, self.gradient3)
+                new_value = self.read_values(strip_four_offset, gradient)
 
                 self._strip_four_array.extend(new_value)
+
+        #----------------------------------
+        # Strip five controller
+        #----------------------------------
+        strip_five_offset = 25
+        if(self._iterable >= strip_five_offset):
+            if (self._iterable >= 85):
+                i = self._strip_five_data_length - 1
+                
+                x = 0
+                while x < 3:
+                    self._strip_five_array[i-x] = 0
+                    x += 1
+                self._strip_five_data_length -= 3
+            else:
+                new_value = self.read_values(strip_five_offset, gradient)
+
+                self._strip_five_array.extend(new_value)
+
+        #----------------------------------
+        # Strip six controller
+        #----------------------------------
+        strip_six_offset = 30
+        if(self._iterable >= strip_six_offset):
+            if (self._iterable >= 90):
+                i = self._strip_six_data_length - 1
+                
+                x = 0
+                while x < 3:
+                    self._strip_six_array[i-x] = 0
+                    x += 1
+                self._strip_six_data_length -= 3
+            else:
+                new_value = self.read_values(strip_six_offset, gradient)
+
+                self._strip_six_array.extend(new_value)
         
         # if ! self.pot_val_unchanged: # ie value has changed
         #     gradient = random.choice(self.gradient_array)
@@ -296,5 +336,7 @@ class SimpleFadeController(object):
         self._client.SendDmx(2, self._strip_two_array)
         self._client.SendDmx(3, self._strip_three_array)
         self._client.SendDmx(4, self._strip_four_array)
+        self._client.SendDmx(5, self._strip_five_array)
+        self._client.SendDmx(6, self._strip_six_array)
 
         self._wrapper.AddEvent(self._update_interval, self.UpdateDmx)
