@@ -27,7 +27,7 @@ class SimpleFadeController(object):
         # Initialize a data length for each strip.
         # These will update at different rates, as the strips remove
         # array elements at different rates.
-        self._strip_one_data_length = 360
+        self._strip_one_data_length = 180
         self._strip_two_data_length = 180
         self._strip_three_data_length = 180
         self._strip_four_data_length = 180
