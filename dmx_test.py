@@ -61,7 +61,7 @@ class SimpleFadeController(object):
         # red > orange > green
         self.gradient1 = [
                         [255, 0, 0], [255, 5, 0], [255, 10, 0], [255, 15, 0], [255, 20, 0],
-                        [255, 0, 26], [255, 31, 1], [255, 36, 1], [255, 41, 1], [255, 46, 1],
+                        [255, 26, 0], [255, 31, 1], [255, 36, 1], [255, 41, 1], [255, 46, 1],
                         [255, 51, 1], [255, 57, 1], [255, 62, 1], [255, 67, 2], [255, 72, 2],
                         [255, 77, 2], [255, 82, 2], [255, 87, 2], [255, 93, 3], [255, 98, 3], 
                         [255, 103, 3], [255, 108, 3], [255, 113, 3], [255, 118, 3], [255, 123, 4],
@@ -169,35 +169,23 @@ class SimpleFadeController(object):
         #     pot_val = int(self.pot.value * 100)
         #     self.pot_val_unchanged = False # ie. the value has changed
 
-        if pot_val >= 0 and pot_val < 10:
+        if pot_val >= 0 and pot_val < 5:
             gradient = self.gradient1
 
-        if pot_val >= 10 and pot_val < 20:
+        if pot_val >= 5 and pot_val < 10:
             gradient = self.gradient2
 
-        if pot_val >= 20 and pot_val < 30:
+        if pot_val >= 10 and pot_val < 15:
             gradient = self.gradient3
 
-        if pot_val >= 30 and pot_val < 40:
-            gradient = self.gradient2
+        if pot_val >= 15 and pot_val < 20:
+            gradient = self.gradient4
 
-        if pot_val >= 40 and pot_val < 50:
-            gradient = self.gradient1
+        if pot_val >= 20 and pot_val < 25:
+            gradient = self.gradient5
 
-        if pot_val >= 50 and pot_val < 60:
-            gradient = self.gradient2
-
-        if pot_val >= 60 and pot_val < 70:
-            gradient = self.gradient3
-
-        if pot_val >= 70 and pot_val < 80:
-            gradient = self.gradient2
-
-        if pot_val >= 80 and pot_val < 90:
-            gradient = self.gradient1
-
-        if pot_val >= 90 and pot_val < 100:
-            gradient = self.gradient2
+        if pot_val >= 25 and pot_val < 30:
+            gradient = self.gradient4
             
         """
         This function gets called periodically based on UPDATE_INTERVAL
