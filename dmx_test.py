@@ -49,7 +49,8 @@ class SimpleFadeController(object):
                         [205, 222, 6], [192, 219, 6], [179, 216, 6], [166, 212, 7], [154, 209, 7], 
                         [142, 206, 7], [130, 203, 7], [119, 199, 7], [108, 196, 7], [97, 193, 7], 
                         [87, 190, 7], [77, 186, 7], [63, 183, 7], [57, 180, 7], [48, 177, 7], 
-                        [40, 173, 7], [23, 167, 7], [31, 170, 7], [15, 164, 7], [7, 160, 8],[255, 0, 0], [255, 5, 0], [255, 10, 0], [255, 15, 0], [255, 20, 0],
+                        [40, 173, 7], [23, 167, 7], [31, 170, 7], [15, 164, 7], [7, 160, 8],
+                        [255, 0, 0], [255, 5, 0], [255, 10, 0], [255, 15, 0], [255, 20, 0],
                         [255, 26, 0], [255, 31, 1], [255, 36, 1], [255, 41, 1], [255, 46, 1],
                         [255, 51, 1], [255, 57, 1], [255, 62, 1], [255, 67, 2], [255, 72, 2],
                         [255, 77, 2], [255, 82, 2], [255, 87, 2], [255, 93, 3], [255, 98, 3], 
@@ -162,19 +163,19 @@ class SimpleFadeController(object):
             gradient = self.gradient1
 
         if pot_val >= 5 and pot_val < 10:
-            gradient = self.gradient2
+            gradient = self.gradient1
 
         if pot_val >= 10 and pot_val < 15:
-            gradient = self.gradient3
+            gradient = self.gradient1
 
         if pot_val >= 15 and pot_val < 20:
-            gradient = self.gradient4
+            gradient = self.gradient1
 
         if pot_val >= 20 and pot_val < 25:
-            gradient = self.gradient5
+            gradient = self.gradient1
 
         if pot_val >= 25:
-            gradient = self.gradient4
+            gradient = self.gradient1
             
         """
         This function gets called periodically based on UPDATE_INTERVAL
