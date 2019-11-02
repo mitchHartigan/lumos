@@ -212,7 +212,7 @@ class SimpleFadeController(object):
         # intervals before outputting the first elem to the array.
         strip_one_offset = 5
         if(self._iterable >= strip_one_offset):
-            if (self._iterable >= 125):
+            if (self._iterable >= 65):
                 # 60 is the number of pixels in the strip, and after 65 iterations (since we
                 # waited 5 iterations to run the first one) we'll have reached the end of the
                 # strip. (ie, we offset this val by 5 in this case.)
