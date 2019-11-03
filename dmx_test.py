@@ -154,8 +154,6 @@ class SimpleFadeController(object):
 
         if pot_val >= 25:
             gradient = self.gradient5
-
-        print(pot_val)
             
         """
         This function gets called periodically based on UPDATE_INTERVAL
@@ -281,8 +279,6 @@ class SimpleFadeController(object):
                 
         # updates the iterable at the end of this iteration. (lel tf did I just write)
         self._iterable += 1
-
-        print('iterable', self._iterable)
 
         # Send each array, a frame of animation, to each respective universe.
         self._client.SendDmx(1, self._universe_one_array)
