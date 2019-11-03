@@ -237,8 +237,9 @@ class SimpleFadeController(object):
                 while x < 6:
                     self._universe_one_array[i-x] = 0
                     x += 1
-
-                self._universe_one_data_length -= 6 #updates the length of this strip to match the deletion.
+                #Prevents negative values, by not subtracting past 0.
+                if self._universe_one_data_length > 0:
+                  self._universe_one_data_length -= 6
             else:  
                 # if not at 65 iterations, the strip isn't full yet, and therefore is still ascending.
                 # Adds a pixel to the array if so.  
@@ -266,7 +267,11 @@ class SimpleFadeController(object):
                 while x < 3:
                     self._universe_two_array[i-x] = 0
                     x += 1
-                self._universe_two_data_length -= 3
+                  
+                #Prevents negative values, by not subtracting past 0.
+                if self._universe_two_data_length > 0:                           
+                  self._universe_two_data_length -= 3
+
             else:    
                 # new_value = self.read_values(universe_two_offset, gradient)
 
@@ -288,12 +293,15 @@ class SimpleFadeController(object):
                 while x < 3:
                     self._universe_three_array[i-x] = 0
                     x += 1
-                self._universe_three_data_length -= 3
+
+                #Prevents negative values, by not subtracting past 0.
+                if self._universe_three_data_length > 0:
+                  self._universe_three_data_length -= 3
             else:    
                 # new_value = self.read_values(strip_three_offset, gradient)
 
                 # self._strip_three_array.extend(new_value)   
-                
+
                 self._universe_three_array.extend([0, 0, 255])
 
         #----------------------------------
@@ -310,7 +318,11 @@ class SimpleFadeController(object):
                 while x < 6:
                     self._universe_four_array[i-x] = 0
                     x += 1
-                self._universe_four_data_length -= 6
+                
+                #Prevents negative values, by not subtracting past 0.
+                if self._universe_four_data_length > 0:
+                  self._universe_four_data_length -= 6
+
             else:
                 # new_value = self.read_values(universe_four_offset, gradient)
 
