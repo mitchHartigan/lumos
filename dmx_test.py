@@ -222,7 +222,7 @@ class SimpleFadeController(object):
         # Ie, this code is called every 25ms (UPDATE_INTERVAL), and it waits for five
         # intervals before outputting the first elem to the array.
         universe_one_offset = 5
-        universe_one_length = 120
+        universe_one_length = 60
         
         if(self._iterable >= universe_one_offset):
             if (self._iterable >=universe_one_offset + universe_one_length):
@@ -278,7 +278,7 @@ class SimpleFadeController(object):
         # Universe three controller
         #----------------------------------
         universe_three_offset = 15
-        universe_three_length = 120
+        universe_three_length = 60
 
         if(self._iterable >= universe_three_offset):
             if (self._iterable >= universe_three_offset + universe_three_length): # checks if the strip has reached the end. offset by 15 from 60
