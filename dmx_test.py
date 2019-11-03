@@ -118,6 +118,8 @@ class SimpleFadeController(object):
         # The current RGB value array, selected from our array of arrays. We subtract the offset to account for the iterations we've
         # spent waiting for this specific strip.
         current_rgb_set = (self._iterable - offset)
+
+        print(current_rgb_set)
         
         vals = []
 
@@ -126,6 +128,7 @@ class SimpleFadeController(object):
             vals.append(gradient_list[current_rgb_set][i])
             i += 1
 
+        print(vals)
         return vals
 
     def UpdateDmx(self):
@@ -189,7 +192,7 @@ class SimpleFadeController(object):
                 # if not at 65 iterations, the strip isn't full yet, and therefore is still ascending.
                 # Adds a pixel to the array if so.  
 
-                # new_value = self.read_values(universe_one_offset, gradient)
+                new_value = self.read_values(universe_one_offset, gradient)
 
                 # self._universe_one_array.extend(new_value)
                 # self._universe_one_array.extend(new_value)
