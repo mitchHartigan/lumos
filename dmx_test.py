@@ -254,7 +254,7 @@ class SimpleFadeController(object):
         # Universe two controller
         #----------------------------------
 
-        universe_two_offset = 15
+        universe_two_offset = 3
         universe_two_length = 60
 
         if(self._iterable >= universe_two_offset):
