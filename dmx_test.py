@@ -244,7 +244,8 @@ class SimpleFadeController(object):
                 # if not at 65 iterations, the strip isn't full yet, and therefore is still ascending.
                 # Adds a pixel to the array if so.  
 
-                self._universe_one_array.extend([255, 0, 0, 255, 0, 0])
+                self._universe_one_array.extend([255, 0, 0])
+                self._universe_one_array.extend([0, 255, 0])
 
                 # new_value = self.read_values(unviverse_one_offset, gradient)
 
@@ -292,7 +293,8 @@ class SimpleFadeController(object):
 
                 # self._strip_three_array.extend(new_value)   
 
-                self._universe_three_array.extend([255, 0, 0, 255, 0, 0])
+                self._universe_three_array.extend([255,0, 0])
+                self._universe_three_array.extend([0, 255, 0])
 
         #----------------------------------
         # Universe four controller
