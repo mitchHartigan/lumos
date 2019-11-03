@@ -5,8 +5,6 @@ from time import sleep
 import random
 import time
 
-#should keep our update interval the same?
-
 class SimpleFadeController(object):
     def __init__(self, update_interval, client_wrapper):
         self._update_interval = update_interval
@@ -16,27 +14,28 @@ class SimpleFadeController(object):
         self._wrapper.AddEvent(self._update_interval, self.UpdateDmx)
         self._iterable = 1
 
+        # Initializes the potentiometer.
+        self.pot = MCP3008(0)
+        self.pot_val_unchanged = True
+
         # Initialize the unique array for each strip
-        self._strip_one_array = array('B', [])
-        self._strip_two_array = array('B', [])
-        self._strip_three_array = array('B', [])
-        self._strip_four_array = array('B', [])
-        self._strip_five_array = array('B', [])
-        self._strip_six_array = array('B', [])
+        self._universe_one_array = array('B', [])
+        self._universe_two_array = array('B', [])
+        self._universe_three_array = array('B', [])
+        self._universe_four_array = array('B', [])
 
         # Initialize a data length for each strip.
         # These will update at different rates, as the strips remove
         # array elements at different rates.
-        self._strip_one_data_length = 360
-        self._strip_two_data_length = 180
-        self._strip_three_data_length = 180
-        self._strip_four_data_length = 180
-        self._strip_five_data_length = 180
-        self._strip_six_data_length = 180
+
+        self._universe_one_data_length = 360
+        self._universe_two_data_length = 180
+        self._universe_three_data_length = 360
+        self._universe_four_data_length = 180
+
         self.pot = MCP3008(0)
         self.pot_val_unchanged = True
 
-        #attempt to fix the 2+2 issue using this gradient 
         # red > orange > green
         self.gradient1 = [
                         [255, 0, 0], [255, 5, 0], [255, 10, 0], [255, 15, 0], [255, 20, 0],
@@ -63,7 +62,7 @@ class SimpleFadeController(object):
                         [142, 206, 7], [130, 203, 7], [119, 199, 7], [108, 196, 7], [97, 193, 7], 
                         [87, 190, 7], [77, 186, 7], [63, 183, 7], [57, 180, 7], [48, 177, 7], 
                         [40, 173, 7], [23, 167, 7], [31, 170, 7], [15, 164, 7], [7, 160, 8]
-                        ]
+                         ]
 
         # redish purple > orange > yellowish green
         self.gradient2 = [ 
@@ -82,7 +81,7 @@ class SimpleFadeController(object):
                          ] 
 
         # fixed not tested dark purple > redish orange > yellow
-        self.gradient3 =[
+        self.gradient3 = [
                         [130, 0, 144], [134, 1, 140], [138, 2, 137], [142, 4, 133], [146, 5, 130], 
                         [150, 7, 127], [155, 8, 123], [159, 10, 120], [163, 11, 116], [167, 13, 113], 
                         [171, 14, 110], [175, 16, 106], [180, 17, 103], [184, 19, 99], [188, 20, 96],
@@ -107,7 +106,7 @@ class SimpleFadeController(object):
                         [255, 123, 21], [255, 128, 19], [255, 133, 18], [255, 138, 17], [255, 144, 15], 
                         [255, 149, 14], [255, 154, 13], [255, 160, 11], [255, 165, 10], [255, 170, 8], 
                         [255, 175, 7], [255, 181, 6], [255, 186, 4], [255, 191, 3], [255, 197, 2]
-                        ]
+                         ]
 
         # green > blue > light blue/ purple
         self.gradient4 = [
@@ -135,7 +134,7 @@ class SimpleFadeController(object):
                         [91, 77, 204], [95, 72, 200], [100, 67, 197], [104, 61, 193], [108, 56, 189],
                         [112, 51, 186], [116, 46, 182], [120, 40, 179], [125, 35, 175], [129, 30, 171],
                         [133, 25, 150], [110, 19, 130], [110, 8, 110], [80, 4, 80], [70, 4, 70]
-                        ]
+                         ]
 
         # red > orange > purple
         self.gradient5 = [ 
@@ -164,8 +163,6 @@ class SimpleFadeController(object):
                         [218, 40, 145], [216, 35, 135], [214, 30, 160], [213, 25, 167], [211, 20, 174],
                         [209, 15, 182], [207, 10, 189], [205, 5, 196], [204, 0, 204], [200, 0, 200]
                          ]
-
-        # self.gradient_array = [self.gradient1, self.gradient2, self.gradient3]
 
     def read_values(self, offset, gradient_list):
         """
@@ -219,139 +216,113 @@ class SimpleFadeController(object):
         """ 
 
         #----------------------------------
-        # Strip one controller
+        # Universe One Controller
         #----------------------------------
 
         # 5 is the amount of time we want to wait before starting to update this array.
         # Ie, this code is called every 25ms (UPDATE_INTERVAL), and it waits for five
         # intervals before outputting the first elem to the array.
-        strip_one_offset = 5
-        if(self._iterable >= strip_one_offset):
-            if (self._iterable >= 125):
+        universe_one_offset = 5
+        universe_one_length = 120
+        
+        if(self._iterable >= universe_one_offset):
+            if (self._iterable >=universe_one_offset + universe_one_length):
                 # 60 is the number of pixels in the strip, and after 65 iterations (since we
                 # waited 5 iterations to run the first one) we'll have reached the end of the
                 # strip. (ie, we offset this val by 5 in this case.)
 
-                i = self._strip_one_data_length - 1 # gets the index pos of the last array elem
+                i = self._universe_one_data_length - 1 # gets the index pos of the last array elem
             
-                # deletes the last set of (3) rgb values from the array.
+                # deletes the last set 6 rgb values from the array, as we are removing two pixels
                 x = 0
-                while x < 3:
-                    self._strip_one_array[i-x] = 0
+                while x < 6:
+                    self._universe_one_array[i-x] = 0
                     x += 1
 
-                self._strip_one_data_length -= 3 #updates the length of this strip to match the deletion.
+                self._universe_one_data_length -= 6 #updates the length of this strip to match the deletion.
             else:  
                 # if not at 65 iterations, the strip isn't full yet, and therefore is still ascending.
                 # Adds a pixel to the array if so.  
 
-                new_value = self.read_values(strip_one_offset, gradient)
+                self._universe_one_array.extend([255, 0, 0, 255, 0, 0])
 
-                self._strip_one_array.extend(new_value)
+                # new_value = self.read_values(unviverse_one_offset, gradient)
+
+                # self._strip_one_array.extend(new_value)
         #----------------------------------
-        # Strip two controller
+        # Universe two controller
         #----------------------------------
-        strip_two_offset = 10
-        if(self._iterable >= strip_two_offset):
-            if (self._iterable >= 130): # checks if the strip has reached the end.
-                i = self._strip_two_data_length - 1
+
+        universe_two_offset = 10
+        universe_two_length = 60
+
+        if(self._iterable >= universe_two_offset):
+            if (self._iterable >= universe_two_offset + universe_two_length): # checks if the strip has reached the end.
+                i = self._universe_two_data_length - 1
                 
                 x = 0
                 while x < 3:
-                    self._strip_two_array[i-x] = 0
+                    self._universe_two_array[i-x] = 0
                     x += 1
-                self._strip_two_data_length -= 3
+                self._universe_two_data_length -= 3
             else:    
-                new_value = self.read_values(strip_two_offset, gradient)
+                # new_value = self.read_values(universe_two_offset, gradient)
 
-                self._strip_two_array.extend(new_value)         
+                # self._universe_two_array.extend(new_value)  
+
+                self._universe_two_array.extend([255, 0, 0])       
 
         #----------------------------------
-        # Strip three controller
+        # Universe three controller
         #----------------------------------
-        strip_three_offset = 15
-        if(self._iterable >= strip_three_offset):
-            if (self._iterable >= 135): # checks if the strip has reached the end. offset by 15 from 60
-                i = self._strip_three_data_length - 1
+        universe_three_offset = 15
+        universe_three_length = 120
+
+        if(self._iterable >= universe_three_offset):
+            if (self._iterable >= universe_three_offset + universe_three_length): # checks if the strip has reached the end. offset by 15 from 60
+                i = self._universe_three_data_length - 1
                 
                 x = 0
-                while x < 3:
-                    self._strip_three_array[i-x] = 0
+                while x < 6:
+                    self._universe_three_array[i-x] = 0
                     x += 1
-                self._strip_three_data_length -= 3
+                self._universe_three_data_length -= 6
             else:    
-                new_value = self.read_values(strip_three_offset, gradient)
+                # new_value = self.read_values(strip_three_offset, gradient)
 
-                self._strip_three_array.extend(new_value)   
+                # self._strip_three_array.extend(new_value)   
+
+                self._universe_three_array.extend([255, 0, 0, 255, 0, 0])
 
         #----------------------------------
-        # Strip four controller
+        # Universe four controller
         #----------------------------------
-        strip_four_offset = 20
-        if(self._iterable >= strip_four_offset):
-            if (self._iterable >= 140):
-                i = self._strip_four_data_length - 1
+        universe_four_offset = 20
+        universe_four_length = 60
+
+        if(self._iterable >= universe_four_offset):
+            if (self._iterable >= universe_four_offset + universe_four_length):
+                i = self._universe_four_data_length - 1
                 
                 x = 0
                 while x < 3:
-                    self._strip_four_array[i-x] = 0
+                    self._universe_four_array[i-x] = 0
                     x += 1
-                self._strip_four_data_length -= 3
+                self._universe_four_data_length -= 3
             else:
-                new_value = self.read_values(strip_four_offset, gradient)
+                # new_value = self.read_values(universe_four_offset, gradient)
 
-                self._strip_four_array.extend(new_value)
+                # self._universe_four_array.extend(new_value)
 
-        #----------------------------------
-        # Strip five controller
-        #----------------------------------
-        strip_five_offset = 25
-        if(self._iterable >= strip_five_offset):
-            if (self._iterable >= 145):
-                i = self._strip_five_data_length - 1
+                self._universe_four_array.extend([255, 0, 0])
                 
-                x = 0
-                while x < 3:
-                    self._strip_five_array[i-x] = 0
-                    x += 1
-                self._strip_five_data_length -= 3
-            else:
-                new_value = self.read_values(strip_five_offset, gradient)
-
-                self._strip_five_array.extend(new_value)
-
-        #----------------------------------
-        # Strip six controller
-        #----------------------------------
-        strip_six_offset = 30
-        if(self._iterable >= strip_six_offset):
-            if (self._iterable >= 90):
-                i = self._strip_six_data_length - 1
-                
-                x = 0
-                while x < 3:
-                    self._strip_six_array[i-x] = 0
-                    x += 1
-                self._strip_six_data_length -= 3
-            else:
-                new_value = self.read_values(strip_six_offset, gradient)
-
-                self._strip_six_array.extend(new_value)
-        
-        # if ! self.pot_val_unchanged: # ie value has changed
-        #     gradient = random.choice(self.gradient_array)
-        #     print("POT VALUE HAS CHANGED: value is", pot_val)
-
-
         # updates the iterable at the end of this iteration. (lel tf did I just write)
         self._iterable += 1
 
         # Send each array, a frame of animation, to each respective universe.
-        self._client.SendDmx(1, self._strip_one_array)
-        self._client.SendDmx(2, self._strip_two_array)
-        self._client.SendDmx(3, self._strip_three_array)
-        self._client.SendDmx(4, self._strip_four_array)
-        self._client.SendDmx(5, self._strip_five_array)
-        self._client.SendDmx(6, self._strip_six_array)
+        self._client.SendDmx(1, self._universe_one_array)
+        self._client.SendDmx(2, self._universe_two_array)
+        self._client.SendDmx(3, self._universe_three_array)
+        self._client.SendDmx(4, self._universe_four_array)
 
         self._wrapper.AddEvent(self._update_interval, self.UpdateDmx)
