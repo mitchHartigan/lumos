@@ -36,6 +36,7 @@ class SimpleFadeController(object):
         self.pot = MCP3008(0)
         self.pot_val_unchanged = True
 
+        #attempt to fix the 2+2 issue using this gradient 
         # red > orange > green
         self.gradient1 = [
                         [255, 0, 0], [255, 5, 0], [255, 10, 0], [255, 15, 0], [255, 20, 0],
