@@ -6,7 +6,7 @@ from time import sleep
 import random
 import time
 
-UPDATE_INTERVAL = 20 # In ms, this comes about to ~40 frames a second
+UPDATE_INTERVAL = 10 # In ms, this comes about to ~40 frames a second
 SHUTDOWN_INTERVAL = 4560 # in ms
 
 def run_strip_animation():
