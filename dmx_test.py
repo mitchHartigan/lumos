@@ -118,8 +118,6 @@ class SimpleFadeController(object):
         # The current RGB value array, selected from our array of arrays. We subtract the offset to account for the iterations we've
         # spent waiting for this specific strip.
         current_rgb_set = (self._iterable - offset)
-
-        print('current rgb set', current_rgb_set)
         
         vals = []
 
@@ -128,10 +126,10 @@ class SimpleFadeController(object):
             vals.append(gradient_list[current_rgb_set][i])
             i += 1
 
-        print('value returned:', vals)
         return vals
 
     def UpdateDmx(self):
+        start_time = time.time()
         # gradient = random.choice(self.gradient_array)
         pot_val = MCP3008(0).value
         pot_val = int(pot_val* 100)
@@ -292,3 +290,4 @@ class SimpleFadeController(object):
         self._client.SendDmx(4, self._universe_four_array)
 
         self._wrapper.AddEvent(self._update_interval, self.UpdateDmx)
+        print('time loop took to run', (time.time() - start_time))
