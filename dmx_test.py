@@ -187,7 +187,6 @@ class SimpleFadeController(object):
     def UpdateDmx(self):
         # gradient = random.choice(self.gradient_array)
         pot_val = int(self.pot.value * 100)
-        print(pot_val)
 
         # if pot_val != int(self.pot.value * 100):
         #     pot_val = int(self.pot.value * 100)
@@ -222,11 +221,11 @@ class SimpleFadeController(object):
         # 5 is the amount of time we want to wait before starting to update this array.
         # Ie, this code is called every 25ms (UPDATE_INTERVAL), and it waits for five
         # intervals before outputting the first elem to the array.
-        universe_one_offset = 0
+        universe_one_offset = 5
         universe_one_length = 120
         
         if(self._iterable >= universe_one_offset):
-            if (self._iterable >= universe_one_offset + universe_one_length):
+            if (self._iterable >=universe_one_offset + universe_one_length):
                 # 60 is the number of pixels in the strip, and after 65 iterations (since we
                 # waited 5 iterations to run the first one) we'll have reached the end of the
                 # strip. (ie, we offset this val by 5 in this case.)
@@ -254,12 +253,14 @@ class SimpleFadeController(object):
         # Universe two controller
         #----------------------------------
 
-        universe_two_offset = 0
+        universe_two_offset = 10
         universe_two_length = 60
 
         if(self._iterable >= universe_two_offset):
             if (self._iterable >= universe_two_offset + universe_two_length): # checks if the strip has reached the end.
                 i = self._universe_two_data_length - 1
+
+                print(i)
                 
                 x = 0
                 while x < 3:
@@ -276,7 +277,7 @@ class SimpleFadeController(object):
         #----------------------------------
         # Universe three controller
         #----------------------------------
-        universe_three_offset = 0
+        universe_three_offset = 15
         universe_three_length = 120
 
         if(self._iterable >= universe_three_offset):
@@ -299,7 +300,7 @@ class SimpleFadeController(object):
         #----------------------------------
         # Universe four controller
         #----------------------------------
-        universe_four_offset = 0
+        universe_four_offset = 20
         universe_four_length = 60
 
         if(self._iterable >= universe_four_offset):
