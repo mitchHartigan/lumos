@@ -141,7 +141,7 @@ class SimpleFadeController(object):
             gradient = self.gradient1
 
         if pot_val >= 5 and pot_val < 10:
-            gradient = self.gradient1
+            gradient = self.gradient2
 
         if pot_val >= 10 and pot_val < 15:
             gradient = self.gradient4
@@ -154,6 +154,8 @@ class SimpleFadeController(object):
 
         if pot_val >= 25:
             gradient = self.gradient5
+
+        print(pot_val)
             
         """
         This function gets called periodically based on UPDATE_INTERVAL
