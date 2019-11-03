@@ -194,11 +194,11 @@ class SimpleFadeController(object):
 
                 new_value = self.read_values(universe_one_offset, gradient)
 
-                # self._universe_one_array.extend(new_value)
-                # self._universe_one_array.extend(new_value)
+                self._universe_one_array.extend(new_value)
+                self._universe_one_array.extend(new_value)
 
-                self._universe_one_array.extend([255, 0, 0])
-                self._universe_one_array.extend([255, 0, 0])
+                # self._universe_one_array.extend([255, 0, 0])
+                # self._universe_one_array.extend([255, 0, 0])
         #----------------------------------
         # Universe two controller
         #----------------------------------
@@ -220,11 +220,11 @@ class SimpleFadeController(object):
                     self._universe_two_data_length -= 3
 
             else:    
-                # new_value = self.read_values(universe_two_offset, gradient)
+                new_value = self.read_values(universe_two_offset, gradient)
 
-                # self._universe_two_array.extend(new_value)  
+                self._universe_two_array.extend(new_value)  
 
-                self._universe_two_array.extend([255, 0, 0])
+                # self._universe_two_array.extend([255, 0, 0])
 
         #----------------------------------
         # Universe three controller
@@ -245,11 +245,11 @@ class SimpleFadeController(object):
                 if self._universe_three_data_length > 3:
                     self._universe_three_data_length -= 3
             else:    
-                # new_value = self.read_values(universe_three_offset, gradient)
+                new_value = self.read_values(universe_three_offset, gradient)
 
-                # self._universe_three_array.extend(new_value)
+                self._universe_three_array.extend(new_value)
 
-                self._universe_three_array.extend([255, 0, 0])
+                # self._universe_three_array.extend([255, 0, 0])
  
         #----------------------------------
         # Universe four controller
@@ -271,13 +271,13 @@ class SimpleFadeController(object):
                     self._universe_four_data_length -= 6
 
             else:
-                # new_value = self.read_values(universe_four_offset, gradient)
+                new_value = self.read_values(universe_four_offset, gradient)
 
-                # self._universe_four_array.extend(new_value)
-                # self._universe_four_array.extend(new_value)
+                self._universe_four_array.extend(new_value)
+                self._universe_four_array.extend(new_value)
 
-                self._universe_four_array.extend([255, 0, 0])
-                self._universe_four_array.extend([255, 0, 0])
+                # self._universe_four_array.extend([255, 0, 0])
+                # self._universe_four_array.extend([255, 0, 0])
                 
                 
         # updates the iterable at the end of this iteration. (lel tf did I just write)
