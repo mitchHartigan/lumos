@@ -317,7 +317,7 @@ class SimpleFadeController(object):
 
                 # self._universe_four_array.extend(new_value)
 
-                self._universe_four_array.extend([255, 0, 0])
+                self._universe_four_array.extend([204, 0, 204])
                 
         # updates the iterable at the end of this iteration. (lel tf did I just write)
         self._iterable += 1
