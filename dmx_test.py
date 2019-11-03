@@ -133,7 +133,6 @@ class SimpleFadeController(object):
             vals.append(gradient_list[current_rgb_set][i])
             i += 1
 
-        print(vals)
         return vals
 
     def UpdateDmx(self):
@@ -161,6 +160,8 @@ class SimpleFadeController(object):
 
         if pot_val >= 25:
             gradient = self.gradient5
+
+        print(pot_val)
             
         """
         This function gets called periodically based on UPDATE_INTERVAL
@@ -211,8 +212,6 @@ class SimpleFadeController(object):
             if (self._iterable >= universe_two_offset + universe_two_length): # checks if the strip has reached the end.
                 i = self._universe_two_data_length - 1
 
-                print(i)
-                
                 x = 0
                 while x < 3:
                     self._universe_two_array[i-x] = 0
