@@ -238,7 +238,7 @@ class SimpleFadeController(object):
                     self._universe_one_array[i-x] = 0
                     x += 1
                 #Prevents negative values, by not subtracting past 0.
-                if self._universe_one_data_length > 0:
+                if self._universe_one_data_length > 6:
                   self._universe_one_data_length -= 6
             else:  
                 # if not at 65 iterations, the strip isn't full yet, and therefore is still ascending.
@@ -269,7 +269,7 @@ class SimpleFadeController(object):
                     x += 1
                   
                 #Prevents negative values, by not subtracting past 0.
-                if self._universe_two_data_length > 0:                           
+                if self._universe_two_data_length > 3:                           
                   self._universe_two_data_length -= 3
 
             else:    
@@ -295,7 +295,7 @@ class SimpleFadeController(object):
                     x += 1
 
                 #Prevents negative values, by not subtracting past 0.
-                if self._universe_three_data_length > 0:
+                if self._universe_three_data_length > 3:
                   self._universe_three_data_length -= 3
             else:    
                 # new_value = self.read_values(strip_three_offset, gradient)
@@ -320,7 +320,7 @@ class SimpleFadeController(object):
                     x += 1
                 
                 #Prevents negative values, by not subtracting past 0.
-                if self._universe_four_data_length > 0:
+                if self._universe_four_data_length > 6:
                   self._universe_four_data_length -= 6
 
             else:
