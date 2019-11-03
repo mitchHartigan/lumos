@@ -129,7 +129,6 @@ class SimpleFadeController(object):
         return vals
 
     def UpdateDmx(self):
-        start_time = time.time()
         # gradient = random.choice(self.gradient_array)
         pot_val = MCP3008(0).value
         pot_val = int(pot_val* 100)
@@ -190,13 +189,13 @@ class SimpleFadeController(object):
                 # if not at 65 iterations, the strip isn't full yet, and therefore is still ascending.
                 # Adds a pixel to the array if so.  
 
-                # new_value = self.read_values(universe_one_offset, gradient)
+                new_value = self.read_values(universe_one_offset, gradient)
 
-                # self._universe_one_array.extend(new_value)
-                # self._universe_one_array.extend(new_value)
+                self._universe_one_array.extend(new_value)
+                self._universe_one_array.extend(new_value)
 
-                self._universe_one_array.extend([255, 0, 0])
-                self._universe_one_array.extend([255, 0, 0])
+                # self._universe_one_array.extend([255, 0, 0])
+                # self._universe_one_array.extend([255, 0, 0])
         #----------------------------------
         # Universe two controller
         #----------------------------------
@@ -218,11 +217,11 @@ class SimpleFadeController(object):
                     self._universe_two_data_length -= 3
 
             else:    
-                # new_value = self.read_values(universe_two_offset, gradient)
+                new_value = self.read_values(universe_two_offset, gradient)
 
-                # self._universe_two_array.extend(new_value)  
+                self._universe_two_array.extend(new_value)  
 
-                self._universe_two_array.extend([255, 0, 0])
+                # self._universe_two_array.extend([255, 0, 0])
 
         #----------------------------------
         # Universe three controller
@@ -243,11 +242,11 @@ class SimpleFadeController(object):
                 if self._universe_three_data_length > 3:
                     self._universe_three_data_length -= 3
             else:    
-                # new_value = self.read_values(universe_three_offset, gradient)
+                new_value = self.read_values(universe_three_offset, gradient)
 
-                # self._universe_three_array.extend(new_value)
+                self._universe_three_array.extend(new_value)
 
-                self._universe_three_array.extend([255, 0, 0])
+                # self._universe_three_array.extend([255, 0, 0])
  
         #----------------------------------
         # Universe four controller
@@ -269,13 +268,13 @@ class SimpleFadeController(object):
                     self._universe_four_data_length -= 6
 
             else:
-                # new_value = self.read_values(universe_four_offset, gradient)
+                new_value = self.read_values(universe_four_offset, gradient)
 
-                # self._universe_four_array.extend(new_value)
-                # self._universe_four_array.extend(new_value)
+                self._universe_four_array.extend(new_value)
+                self._universe_four_array.extend(new_value)
 
-                self._universe_four_array.extend([255, 0, 0])
-                self._universe_four_array.extend([255, 0, 0])
+                # self._universe_four_array.extend([255, 0, 0])
+                # self._universe_four_array.extend([255, 0, 0])
                 
                 
         # updates the iterable at the end of this iteration. (lel tf did I just write)
@@ -290,4 +289,3 @@ class SimpleFadeController(object):
         self._client.SendDmx(4, self._universe_four_array)
 
         self._wrapper.AddEvent(self._update_interval, self.UpdateDmx)
-        print('time loop took to run', (time.time() - start_time))
