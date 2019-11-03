@@ -285,19 +285,19 @@ class SimpleFadeController(object):
         if pot_val >= 25 and pot_val <30:
             universe_one_gradient = self.gradient6
             universe_two_gradient = self.gradient7
-            universe_three_gradient = self.gradient8
+            universe_three_gradient = self.gradient1
             universe_four_gradient = self.gradient5
 
         if pot_val >= 30 and pot_val < 35:
             universe_one_gradient = self.gradient7
-            universe_two_gradient = self.gradient6
+            universe_two_gradient = self.gradient1
             universe_three_gradient = self.gradient5
             universe_four_gradient = self.gradient8
 
         if pot_val >= 35 and pot_val < 45:
             universe_one_gradient = self.gradient8
             universe_two_gradient = self.gradient5
-            universe_three_gradient = self.gradient7
+            universe_three_gradient = self.gradient1
             universe_four_gradient = self.gradient6
         print(pot_val)
             
