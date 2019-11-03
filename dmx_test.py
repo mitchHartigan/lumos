@@ -246,6 +246,8 @@ class SimpleFadeController(object):
             universe_two_gradient = self.gradient2
             universe_three_gradient = self.gradient1
             universe_four_gradient = self.gradient5
+
+        print(pot_val)
             
         """
         This function gets called periodically based on UPDATE_INTERVAL
