@@ -221,7 +221,7 @@ class SimpleFadeController(object):
         # 5 is the amount of time we want to wait before starting to update this array.
         # Ie, this code is called every 25ms (UPDATE_INTERVAL), and it waits for five
         # intervals before outputting the first elem to the array.
-        universe_one_offset = 5
+        universe_one_offset = 10
         universe_one_length = 60
         
         if(self._iterable >= universe_one_offset):
@@ -282,7 +282,7 @@ class SimpleFadeController(object):
         #----------------------------------
         # Universe three controller
         #----------------------------------
-        universe_three_offset = 10
+        universe_three_offset = 15
         universe_three_length = 60
 
         if(self._iterable >= universe_three_offset):
@@ -307,7 +307,7 @@ class SimpleFadeController(object):
         #----------------------------------
         # Universe four controller
         #----------------------------------
-        universe_four_offset = 15
+        universe_four_offset = 5
         universe_four_length = 60
 
         if(self._iterable >= universe_four_offset):
