@@ -138,6 +138,18 @@ class SimpleFadeController(object):
                         [236, 90, 72], [234, 85, 80], [233, 80, 87], [231, 75, 94], [229, 70, 102],
                         [227, 65, 109], [225, 60, 116], [224, 55, 123], [222, 50, 131], [220, 45, 138],
                         [218, 40, 145], [216, 35, 135], [214, 30, 160], [213, 25, 167], [211, 20, 174],
+                        [209, 15, 182], [207, 10, 189], [205, 5, 196], [204, 0, 204], [200, 0, 200],
+                        [255, 0, 0], [255, 4, 0], [255, 9, 0], [255, 14, 0], [255, 18, 0], 
+                        [255, 23, 0], [255, 28, 0], [255, 32, 0], [255, 37, 0], [255, 42, 0], 
+                        [255, 46, 0], [255, 51, 0], [255, 56, 0], [255, 60, 0], [255, 65, 0], 
+                        [255, 70, 0], [255, 74, 0], [255, 79, 0], [255, 84, 0], [255, 88, 0], 
+                        [255, 93, 0], [255, 98, 0], [255, 102, 0], [255, 107, 0], [255, 112, 0], 
+                        [255, 116, 0], [255, 121, 0], [255, 126, 0], [255, 130, 0], [255, 135, 0], 
+                        [255, 140, 0], [253, 135, 7], [251, 130, 14], [249, 125, 21], [247, 120, 29],
+                        [245, 115, 36], [244, 110, 43], [242, 105, 51], [240, 100, 58], [238, 95, 65],
+                        [236, 90, 72], [234, 85, 80], [233, 80, 87], [231, 75, 94], [229, 70, 102],
+                        [227, 65, 109], [225, 60, 116], [224, 55, 123], [222, 50, 131], [220, 45, 138],
+                        [218, 40, 145], [216, 35, 135], [214, 30, 160], [213, 25, 167], [211, 20, 174],
                         [209, 15, 182], [207, 10, 189], [205, 5, 196], [204, 0, 204], [200, 0, 200]
                          ]
 
@@ -179,16 +191,16 @@ class SimpleFadeController(object):
             gradient = self.gradient1
 
         if pot_val >= 10 and pot_val < 15:
-            gradient = self.gradient1
+            gradient = self.gradient4
 
         if pot_val >= 15 and pot_val < 20:
-            gradient = self.gradient1
+            gradient = self.gradient4
 
         if pot_val >= 20 and pot_val < 25:
-            gradient = self.gradient1
+            gradient = self.gradient5
 
         if pot_val >= 25:
-            gradient = self.gradient1
+            gradient = self.gradient5
             
         """
         This function gets called periodically based on UPDATE_INTERVAL
@@ -229,7 +241,7 @@ class SimpleFadeController(object):
         #----------------------------------
         strip_two_offset = 10
         if(self._iterable >= strip_two_offset):
-            if (self._iterable >= 70): # checks if the strip has reached the end.
+            if (self._iterable >= 130): # checks if the strip has reached the end.
                 i = self._strip_two_data_length - 1
                 
                 x = 0
@@ -247,7 +259,7 @@ class SimpleFadeController(object):
         #----------------------------------
         strip_three_offset = 15
         if(self._iterable >= strip_three_offset):
-            if (self._iterable >= 75): # checks if the strip has reached the end. offset by 15 from 60
+            if (self._iterable >= 135): # checks if the strip has reached the end. offset by 15 from 60
                 i = self._strip_three_data_length - 1
                 
                 x = 0
@@ -265,7 +277,7 @@ class SimpleFadeController(object):
         #----------------------------------
         strip_four_offset = 20
         if(self._iterable >= strip_four_offset):
-            if (self._iterable >= 80):
+            if (self._iterable >= 140):
                 i = self._strip_four_data_length - 1
                 
                 x = 0
@@ -283,7 +295,7 @@ class SimpleFadeController(object):
         #----------------------------------
         strip_five_offset = 25
         if(self._iterable >= strip_five_offset):
-            if (self._iterable >= 85):
+            if (self._iterable >= 145):
                 i = self._strip_five_data_length - 1
                 
                 x = 0

@@ -7,7 +7,7 @@ import random
 import time
 
 UPDATE_INTERVAL = 10 # In ms, this comes about to ~40 frames a second
-SHUTDOWN_INTERVAL = 9000 # in ms
+SHUTDOWN_INTERVAL = 7000 # in ms
 
 def run_strip_animation():
     wrapper = ClientWrapper()
