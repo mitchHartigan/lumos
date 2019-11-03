@@ -14,10 +14,6 @@ class SimpleFadeController(object):
         self._wrapper.AddEvent(self._update_interval, self.UpdateDmx)
         self._iterable = 1
 
-        # Initializes the potentiometer.
-        self.pot = MCP3008(0)
-        self.pot_val_unchanged = True
-
         # Initialize the unique array for each strip
         self._universe_one_array = array('B', [])
         self._universe_two_array = array('B', [])
@@ -32,9 +28,6 @@ class SimpleFadeController(object):
         self._universe_two_data_length = 180
         self._universe_three_data_length = 180
         self._universe_four_data_length = 360
-
-        self.pot = MCP3008(0)
-        self.pot_val_unchanged = True
 
         # red > orange > green
         self.gradient1 = [
@@ -137,7 +130,8 @@ class SimpleFadeController(object):
 
     def UpdateDmx(self):
         # gradient = random.choice(self.gradient_array)
-        pot_val = int(self.pot.value * 100)
+        pot_val = MCP3008(0)
+        pot_val = int(pot_val * 100)
 
         # if pot_val != int(self.pot.value * 100):
         #     pot_val = int(self.pot.value * 100)
