@@ -1,4 +1,4 @@
-from dmx_test import SimpleFadeController
+from controller import SimpleFadeController
 from array import array
 from ola.ClientWrapper import ClientWrapper
 from gpiozero import MCP3008
@@ -7,7 +7,7 @@ import random
 import time
 
 UPDATE_INTERVAL = 25 # In ms, this comes about to ~40 frames a second
-SHUTDOWN_INTERVAL = 7000 # in ms
+SHUTDOWN_INTERVAL = 7000 # 7 seconds, in ms.
 
 def run_strip_animation():
     wrapper = ClientWrapper()
@@ -15,10 +15,11 @@ def run_strip_animation():
     wrapper.AddEvent(SHUTDOWN_INTERVAL, wrapper.Stop)
     wrapper.Run()
 
-    # Clears the variables, to prevent scope pollution
+    # Clears the variables, to prevent scope pollution.
     wrapper = None
     controller = None
 
 if __name__ == '__main__':
+    print('Lumos started successfully. Running...')
     while True:
         run_strip_animation()
