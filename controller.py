@@ -25,6 +25,7 @@ class SimpleFadeController(object):
         self._universe_two_data_length = 180
         self._universe_three_data_length = 180
         self._universe_four_data_length = 360
+        print('checked out in new-controller')
 
         # Initializes each unique gradient.
         self.gradient1 = [
@@ -164,6 +165,7 @@ class SimpleFadeController(object):
         # Gets the potentiometer value, each time the loop is run.
         pot_val = MCP3008(0).value
         pot_val = int(pot_val* 100)
+        print(pot_val)
 
         # Uses the potentiometer value to select different color gradients.
         if pot_val >= 0 and pot_val < 5:
