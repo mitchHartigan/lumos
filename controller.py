@@ -36,8 +36,6 @@ class SimpleFadeController(object):
 
     def genRedToOrange(self,pot_val, length):
       strip_arr = []
-      if pot_val <= 0:
-        pot_val = 1
       
       rgb_color_arr = [ 255, (pot_val * 15), 0 ]
 
@@ -151,7 +149,6 @@ class SimpleFadeController(object):
         if pot_val >= 35:
           print('')
 
-        
         # Increases the iterable at the end of this update.
         self._iterable += 1
 
