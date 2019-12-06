@@ -25,7 +25,6 @@ class SimpleFadeController(object):
         self._universe_two_data_length = 180
         self._universe_three_data_length = 180
         self._universe_four_data_length = 360
-        print('checked out in new-controller')
 
     def fillStripWithColor(self, rgb_color_arr, length):
       i = 1
