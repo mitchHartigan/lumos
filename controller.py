@@ -39,7 +39,7 @@ class SimpleFadeController(object):
       if pot_val <= 0:
         pot_val = 1
       
-      rgb_color_arr = [255, (pot_val * 15), 0]
+      rgb_color_arr = [ 255, (pot_val * 15), 0 ]
 
       strip_arr.extend(self.fillStripWithColor(rgb_color_arr, length))
 
@@ -151,8 +151,12 @@ class SimpleFadeController(object):
 
         if pot_val >= 35:
           print('')
+
+        self._universe_one_array = array('B', [255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0,])
+        self._universe_two_array = array('B', [255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0,])
+        self._universe_three_array = array('B', [255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0,])
+        self._universe_four_array = array('B', [255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0,])
         
-          
         # Increases the iterable at the end of this update.
         self._iterable += 1
 
