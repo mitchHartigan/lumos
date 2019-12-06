@@ -27,7 +27,7 @@ class SimpleFadeController(object):
         self._universe_four_data_length = 360
         print('checked out in new-controller')
 
-    def fillStripWithColor(rgb_color_arr, length):
+    def fillStripWithColor(self, rgb_color_arr, length):
       i = 1
       strip_arr = []
       while i <= length:
@@ -35,7 +35,7 @@ class SimpleFadeController(object):
         i += 1
       return strip_arr
 
-    def genRedToOrange(pot_val, length):
+    def genRedToOrange(self,pot_val, length):
       strip_arr = []
       if pot_val <= 0:
         pot_val = 1
@@ -46,7 +46,7 @@ class SimpleFadeController(object):
 
       return strip_arr
 
-    def genOrangeToYellow(pot_val, length):
+    def genOrangeToYellow(self, pot_val, length):
       strip_arr = []
       if pot_val <= 0:
         pot_val = 1
@@ -58,7 +58,7 @@ class SimpleFadeController(object):
       return strip_arr
 
 
-    def genYellowToGreen(pot_val, length):
+    def genYellowToGreen(self, pot_val, length):
       strip_arr = []
       if pot_val <= 0:
         pot_val = 1
@@ -69,7 +69,7 @@ class SimpleFadeController(object):
 
       return strip_arr
 
-    def genGreenToAqua(pot_val, length):
+    def genGreenToAqua(self, pot_val, length):
       strip_arr = []
       if pot_val <= 0:
         pot_val = 1
@@ -80,7 +80,7 @@ class SimpleFadeController(object):
 
       return strip_arr
 
-    def genAquaToBlue(pot_val, length):
+    def genAquaToBlue(self, pot_val, length):
       strip_arr = []
       if pot_val <= 0:
         pot_val = 1
@@ -91,7 +91,7 @@ class SimpleFadeController(object):
 
       return strip_arr
 
-    def genBlueToPink(pot_val, length):
+    def genBlueToPink(self, pot_val, length):
       strip_arr = []
       if pot_val <= 0:
         pot_val = 1
@@ -102,7 +102,7 @@ class SimpleFadeController(object):
 
       return strip_arr
 
-    def genPinkToRed(pot_val, length):
+    def genPinkToRed(self, pot_val, length):
       strip_arr = []
       if pot_val <= 0:
         pot_val = 1
