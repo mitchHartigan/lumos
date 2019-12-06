@@ -121,12 +121,12 @@ class SimpleFadeController(object):
 
         # Uses the potentiometer value to select different color gradients.
         if pot_val >= 0 and pot_val <= 10:
-          # self._universe_one_array = array('B', self.genRedToOrange(pot_val, 180))
-          # self._universe_two_array = array('B', self.genRedToOrange(pot_val, 180))
-          # self._universe_three_array = array('B', self.genRedToOrange(pot_val, 180))
-          # self._universe_four_array = array('B', self.genRedToOrange(pot_val, 180))
-          # print(self._universe_one_array)
-          print('')
+          self._universe_one_array = array('B', self.genRedToOrange(pot_val, 180))
+          self._universe_two_array = array('B', self.genRedToOrange(pot_val, 180))
+          self._universe_three_array = array('B', self.genRedToOrange(pot_val, 180))
+          self._universe_four_array = array('B', self.genRedToOrange(pot_val, 180))
+          print(self._universe_one_array)
+          
         if pot_val >= 11 and pot_val <= 20:
           # makes the pot_val range from 1-10 for ez
           # multiplication, instead of 11-20.
@@ -152,17 +152,12 @@ class SimpleFadeController(object):
         if pot_val >= 35:
           print('')
 
-        self._universe_one_array = array('B', [255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0,])
-        self._universe_two_array = array('B', [255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0,])
-        self._universe_three_array = array('B', [255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0,])
-        self._universe_four_array = array('B', [255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0,])
         
         # Increases the iterable at the end of this update.
         self._iterable += 1
 
         # Send each array, a frame of animation, to each respective universe.
         self._client.SendDmx(1, self._universe_one_array)
-        print(self._universe_one_array)
         self._client.SendDmx(2, self._universe_two_array)
         self._client.SendDmx(3, self._universe_three_array)
         self._client.SendDmx(4, self._universe_four_array)
