@@ -152,10 +152,10 @@ class SimpleFadeController(object):
         if pot_val >= 35:
           print('')
 
-        self._universe_one_array = array('B', [255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0,])
-        self._universe_two_array = array('B', [255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0,])
-        self._universe_three_array = array('B', [255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0,])
-        self._universe_four_array = array('B', [255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0,])
+        # self._universe_one_array = array('B', [255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0,])
+        # self._universe_two_array = array('B', [255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0,])
+        # self._universe_three_array = array('B', [255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0,])
+        # self._universe_four_array = array('B', [255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0, 255, 0, 0,])
         
          # Increases the iterable at the end of this update.
         self._iterable += 1
