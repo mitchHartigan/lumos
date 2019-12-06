@@ -132,21 +132,21 @@ class SimpleFadeController(object):
           self._universe_one_array = array('B', self.genOrangeToYellow(pot_val, 180))
 
         if pot_val >= 10 and pot_val < 15:
-          print()
+          print('')
 
         if pot_val >= 15 and pot_val < 20:
-          print()
+          print('')
 
         if pot_val >= 20 and pot_val < 25:
-          print()
+          print('')
 
 
         if pot_val >= 25 and pot_val < 30:
-          print()
+          print('')
 
 
         if pot_val >= 35:
-          print()
+          print('')
         
           
         # Increases the iterable at the end of this update.
