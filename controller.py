@@ -141,6 +141,9 @@ class SimpleFadeController(object):
 
         # Uses the potentiometer value to select different color gradients.
         if pot_val >= 0 and pot_val <= 20:
+          if pot_val == 0:
+            pot_val = 1
+          
           self._universe_one_array = array('B', self.genRedToOrange(pot_val, 180))
 
         if pot_val >= 21 and pot_val <= 40:
