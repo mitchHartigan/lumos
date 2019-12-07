@@ -43,6 +43,7 @@ class SimpleFadeController(object):
       pot_val = (pot_val/2)
       print('pot_val from genRedToOrange', pot_val)
       green_val = round((pot_val*15))
+      green_val = int(green_val)
       print('green_val from genRedToOrange', green_val)
 
       rgb_color_arr = [ 255, green_val, 0 ]
