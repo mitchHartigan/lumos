@@ -36,8 +36,13 @@ class SimpleFadeController(object):
 
     def genRedToOrange(self,pot_val, length):
       strip_arr = []
+      if pot_val <= 0:
+        pot_val = 1
+
+      pot_val = (pot_val/2)
+      green_val = round((pot_val*15), 0)
       
-      rgb_color_arr = [ 255, (pot_val * 15), 0 ]
+      rgb_color_arr = [ 255, green_val, 0 ]
 
       strip_arr.extend(self.fillStripWithColor(rgb_color_arr, length))
 
@@ -45,22 +50,28 @@ class SimpleFadeController(object):
 
     def genOrangeToYellow(self, pot_val, length):
       strip_arr = []
+
       if pot_val <= 0:
         pot_val = 1
+
+      pot_val = (pot_val/2)
+      green_val = round((150 + (pot_val * 10)), 0)
       
-      rgb_color_arr = [255, (150 + (pot_val * 10)), 0]
+      rgb_color_arr = [255, green_val, 0]
 
       strip_arr.extend(self.fillStripWithColor(rgb_color_arr, length))
 
       return strip_arr
 
-
     def genYellowToGreen(self, pot_val, length):
       strip_arr = []
       if pot_val <= 0:
         pot_val = 1
+
+      pot_val = (pot_val/2)
+      red_val = round((250 - (pot_val * 25)), 0)
       
-      rgb_color_arr = [(250 - (pot_val * 25)), 250, 0]
+      rgb_color_arr = [red_val, 250, 0]
 
       strip_arr.extend(self.fillStripWithColor(rgb_color_arr, length))
 
@@ -70,8 +81,11 @@ class SimpleFadeController(object):
       strip_arr = []
       if pot_val <= 0:
         pot_val = 1
+    
+      pot_val = (pot_val/2)
+      blue_val = round((25 * pot_val), 0)
       
-      rgb_color_arr = [0, 255, (25 * pot_val)]
+      rgb_color_arr = [0, 255, blue_val]
 
       strip_arr.extend(self.fillStripWithColor(rgb_color_arr, length))
 
@@ -81,8 +95,11 @@ class SimpleFadeController(object):
       strip_arr = []
       if pot_val <= 0:
         pot_val = 1
+
+      pot_val = (pot_val/2)
+      green_val = round((250 - (pot_val * 25)), 0)
       
-      rgb_color_arr = [0, (250 - (pot_val * 25)), 255]
+      rgb_color_arr = [0, green_val, 255]
 
       strip_arr.extend(self.fillStripWithColor(rgb_color_arr, length))
 
@@ -93,7 +110,10 @@ class SimpleFadeController(object):
       if pot_val <= 0:
         pot_val = 1
       
-      rgb_color_arr = [(pot_val * 25), 0, 255]
+      pot_val = (pot_val/2)
+      red_val = round((pot_val * 25), 0)
+
+      rgb_color_arr = [red_val, 0, 255]
 
       strip_arr.extend(self.fillStripWithColor(rgb_color_arr, length))
 
@@ -104,52 +124,50 @@ class SimpleFadeController(object):
       if pot_val <= 0:
         pot_val = 1
       
-      rgb_color_arr = [255, 0, (250 - (pot_val * 25))]
+      pot_val = (pot_val/2)
+      blue_val = round((250 - (pot_val * 25)), 0)
+      
+      rgb_color_arr = [255, 0, blue_val]
 
       strip_arr.extend(self.fillStripWithColor(rgb_color_arr, length))
 
       return strip_arr
     
     def UpdateDmx(self):
-
         # Gets the potentiometer value, each time the loop is run.
         pot_val = MCP3008(0).value
         pot_val = int(pot_val* 100)
         print(pot_val)
 
         # Uses the potentiometer value to select different color gradients.
-        if pot_val >= 0 and pot_val <= 10:
+        if pot_val >= 0 and pot_val <= 20:
           self._universe_one_array = array('B', self.genRedToOrange(pot_val, 180))
-          self._universe_two_array = array('B', self.genRedToOrange(pot_val, 180))
-          self._universe_three_array = array('B', self.genRedToOrange(pot_val, 180))
-          self._universe_four_array = array('B', self.genRedToOrange(pot_val, 180))
 
-        if pot_val >= 11 and pot_val <= 20:
-          # makes the pot_val range from 1-10 for ez
-          # multiplication, instead of 11-20.
-          pot_val = pot_val - 10
+        if pot_val >= 21 and pot_val <= 40:
+          # Keep the pot_val between 1 and 20, for ez multiplication.
+          pot_val = pot_val - 20
 
-          # self._universe_one_array = array('B', self.genOrangeToYellow(pot_val, 180))
-          # print(self._universe_one_array)
-
-        if pot_val >= 10 and pot_val < 15:
-          print('')
-
-        if pot_val >= 15 and pot_val < 20:
-          print('')
-
-        if pot_val >= 20 and pot_val < 25:
-          print('')
+          self._universe_one_array = array('B', self.genOrangeToYellow(pot_val, 180))
 
 
-        if pot_val >= 25 and pot_val < 30:
-          print('')
+        if pot_val >= 41 and pot_val <= 60:
+          # Keep the pot_val between 1 and 20, for ez multiplication.
+          pot_val = pot_val - 40
 
+          self._universe_one_array = array('B', self.genYellowToGreen(pot_val, 180))
 
-        if pot_val >= 35:
-          print('')
+        if pot_val >= 61 and pot_val <= 80:
+          # Keep the pot_val between 1 and 20, for ez multiplication.
+          pot_val = pot_val - 60
 
-        # Increases the iterable at the end of this update.
+          self._universe_one_array = array('B', self.genGreenToAqua(pot_val, 180))
+
+        if pot_val >= 81 and pot_val <= 100:
+          # Keep the pot_val between 1 and 20, for ez multiplication.
+          pot_val = pot_val - 80
+
+          self._universe_one_array = array('B', self.genAquaToBlue(pot_val, 180) )
+
         self._iterable += 1
 
         # Send each array, a frame of animation, to each respective universe.
