@@ -39,7 +39,8 @@ class SimpleFadeController(object):
       if pot_val <= 0:
         pot_val = 1
 
-      green_val = 150
+      pot_val = (pot_val/2)
+      green_val = round((pot_val*15), 0)
       
       rgb_color_arr = [ 255, green_val, 0 ]
 
