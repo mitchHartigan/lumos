@@ -35,7 +35,6 @@ class SimpleFadeController(object):
       return strip_arr
 
     def genRedToOrange(self,pot_val, length):
-      print('entering genRedToOra')
       strip_arr = []
       if pot_val <= 0:
         pot_val = 1
@@ -167,7 +166,7 @@ class SimpleFadeController(object):
           # Keep the pot_val between 1 and 20, for ez multiplication.
           pot_val = pot_val - 80
 
-          self._universe_one_array = array('B', self.genAquaToBlue(pot_val, 180) )
+          self._universe_one_array = array('B', self.genBlueToPink(pot_val, 180) )
 
         self._iterable += 1
 
