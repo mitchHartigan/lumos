@@ -86,7 +86,7 @@ class SimpleFadeController(object):
       if pot_val <= 0:
         pot_val = 1
     
-      pot_val = (pot_val/2)
+      pot_val = (pot_val/4)
       blue_val = round((25 * pot_val))
       blue_val = int(blue_val)
       
@@ -101,7 +101,7 @@ class SimpleFadeController(object):
       if pot_val <= 0:
         pot_val = 1
 
-      pot_val = (pot_val/2)
+      pot_val = (pot_val/4)
       green_val = round( (250 - (pot_val * 25)) )
       green_val = int(green_val)
       
@@ -148,32 +148,20 @@ class SimpleFadeController(object):
         print(pot_val)
 
         # Uses the potentiometer value to select different color gradients.
-        if pot_val >= 0 and pot_val <= 20:
+        if pot_val >= 0 and pot_val <= 40:
           if pot_val == 0:
             pot_val = 1
           
           print('pot_val: ', pot_val)
           print('type of pot_val: ', type(pot_val))
 
-          self._universe_one_array = array('B', self.genRedToOrange(pot_val, 180))
-
-        if pot_val >= 21 and pot_val <= 40:
-          # Keep the pot_val between 1 and 20, for ez multiplication.
-          pot_val = int(pot_val - 20)
-
-          self._universe_one_array = array('B', self.genOrangeToYellow(pot_val, 180))
-
-        if pot_val >= 41 and pot_val <= 60:
-          # Keep the pot_val between 1 and 20, for ez multiplication.
-          pot_val = pot_val - 40
-
-          self._universe_one_array = array('B', self.genYellowToGreen(pot_val, 180))
-
-        if pot_val >= 61 and pot_val <= 80:
-          # Keep the pot_val between 1 and 20, for ez multiplication.
-          pot_val = pot_val - 60
-
           self._universe_one_array = array('B', self.genGreenToAqua(pot_val, 180))
+
+        if pot_val >= 41 and pot_val <= 80:
+          # Keep the pot_val between 1 and 20, for ez multiplication.
+          pot_val = int(pot_val - 40)
+
+          self._universe_one_array = array('B', self.genAquaToBlue(pot_val, 180))
 
         if pot_val >= 81 and pot_val <= 100:
           # Keep the pot_val between 1 and 20, for ez multiplication.
