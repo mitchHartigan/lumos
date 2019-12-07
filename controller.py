@@ -168,6 +168,8 @@ class SimpleFadeController(object):
           pot_val = pot_val - 80
 
           self._universe_one_array = array('B', self.genBlueToPink(pot_val, 180) )
+          self._universe_two_array = array('B', self.genOrangeToYellow(pot_val, 180))
+          self._universe_three_array = array('B', self.genRedToOrange(pot_val, 180))
 
         self._iterable += 1
 
