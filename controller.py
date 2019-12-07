@@ -41,10 +41,8 @@ class SimpleFadeController(object):
         pot_val = 1
 
       pot_val = (pot_val/2)
-      print('pot_val from genRedToOrange', pot_val)
       green_val = round((pot_val*15))
       green_val = int(green_val)
-      print('green_val from genRedToOrange', green_val)
 
       rgb_color_arr = [ 255, green_val, 0 ]
 
@@ -59,7 +57,8 @@ class SimpleFadeController(object):
         pot_val = 1
 
       pot_val = (pot_val/2)
-      green_val = round((150 + (pot_val * 10)), 0)
+      green_val = round( (150 + (pot_val * 10)) )
+      green_val = int(green_val)
       
       rgb_color_arr = [255, green_val, 0]
 
@@ -73,7 +72,8 @@ class SimpleFadeController(object):
         pot_val = 1
 
       pot_val = (pot_val/2)
-      red_val = round((250 - (pot_val * 25)), 0)
+      red_val = round( (250 - (pot_val * 25)) ) 
+      red_val = int(red_val)
       
       rgb_color_arr = [red_val, 250, 0]
 
@@ -87,7 +87,8 @@ class SimpleFadeController(object):
         pot_val = 1
     
       pot_val = (pot_val/2)
-      blue_val = round((25 * pot_val), 0)
+      blue_val = round((25 * pot_val))
+      blue_val = int(blue_val)
       
       rgb_color_arr = [0, 255, blue_val]
 
@@ -101,7 +102,8 @@ class SimpleFadeController(object):
         pot_val = 1
 
       pot_val = (pot_val/2)
-      green_val = round((250 - (pot_val * 25)), 0)
+      green_val = round( (250 - (pot_val * 25)) )
+      green_val = int(green_val)
       
       rgb_color_arr = [0, green_val, 255]
 
@@ -115,7 +117,8 @@ class SimpleFadeController(object):
         pot_val = 1
       
       pot_val = (pot_val/2)
-      red_val = round((pot_val * 25), 0)
+      red_val = round((pot_val * 25))
+      red_val = int(red_val)
 
       rgb_color_arr = [red_val, 0, 255]
 
@@ -129,7 +132,8 @@ class SimpleFadeController(object):
         pot_val = 1
       
       pot_val = (pot_val/2)
-      blue_val = round((250 - (pot_val * 25)), 0)
+      blue_val = round( (250 - (pot_val * 25)) )
+      blue_val = int(blue_val)
       
       rgb_color_arr = [255, 0, blue_val]
 
