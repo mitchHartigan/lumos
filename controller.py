@@ -39,7 +39,7 @@ class SimpleFadeController(object):
       if pot_val <= 0:
         pot_val = 1
 
-      pot_val = (pot_val/2)
+      pot_val = (pot_val/4)
       green_val = round((pot_val*15))
       green_val = int(green_val)
 
@@ -55,7 +55,7 @@ class SimpleFadeController(object):
       if pot_val <= 0:
         pot_val = 1
 
-      pot_val = (pot_val/2)
+      pot_val = (pot_val/4)
       green_val = round( (150 + (pot_val * 10)) )
       green_val = int(green_val)
       
@@ -70,7 +70,7 @@ class SimpleFadeController(object):
       if pot_val <= 0:
         pot_val = 1
 
-      pot_val = (pot_val/2)
+      pot_val = (pot_val/4)
       red_val = round( (250 - (pot_val * 25)) ) 
       red_val = int(red_val)
       
@@ -115,7 +115,7 @@ class SimpleFadeController(object):
       if pot_val <= 0:
         pot_val = 1
       
-      pot_val = (pot_val/2)
+      pot_val = (pot_val/4)
       red_val = round((pot_val * 25))
       red_val = int(red_val)
 
@@ -130,7 +130,7 @@ class SimpleFadeController(object):
       if pot_val <= 0:
         pot_val = 1
       
-      pot_val = (pot_val/2)
+      pot_val = (pot_val/4)
       blue_val = round( (250 - (pot_val * 25)) )
       blue_val = int(blue_val)
       
@@ -151,16 +151,17 @@ class SimpleFadeController(object):
           if pot_val == 0:
             pot_val = 1
           
-          print('pot_val: ', pot_val)
-          print('type of pot_val: ', type(pot_val))
-
           self._universe_one_array = array('B', self.genGreenToAqua(pot_val, 180))
+          self._universe_two_array = array('B', self.genPinkToRed(pot_val, 180))
+          self._universe_three_array = array('B', self.genBlueToPink(pot_val, 180))
 
         if pot_val >= 41 and pot_val <= 80:
           # Keep the pot_val between 1 and 20, for ez multiplication.
           pot_val = int(pot_val - 40)
 
           self._universe_one_array = array('B', self.genAquaToBlue(pot_val, 180))
+          self._universe_two_array = array('B', self.genRedToOrange(pot_val, 180))
+          self._universe_three_array = array('B', self.genPinkToRed(pot_val, 180))
 
         if pot_val >= 81 and pot_val <= 100:
           # Keep the pot_val between 1 and 20, for ez multiplication.
@@ -172,8 +173,8 @@ class SimpleFadeController(object):
 
         # Send each array, a frame of animation, to each respective universe.
         self._client.SendDmx(1, self._universe_one_array)
-        # self._client.SendDmx(2, self._universe_two_array)
-        # self._client.SendDmx(3, self._universe_three_array)
+        self._client.SendDmx(2, self._universe_two_array)
+        self._client.SendDmx(3, self._universe_three_array)
         # self._client.SendDmx(4, self._universe_four_array)
 
         # Triggers the new update to be sent to the DMX controller.
