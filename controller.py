@@ -35,6 +35,7 @@ class SimpleFadeController(object):
       return strip_arr
 
     def genRedToOrange(self,pot_val, length):
+      print('entering genRedToOra')
       strip_arr = []
       if pot_val <= 0:
         pot_val = 1
