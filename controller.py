@@ -148,7 +148,7 @@ class SimpleFadeController(object):
             pot_val = 1
           
           print('pot_val: ', pot_val)
-          print('type of pot_val: ' type(pot_val))
+          print('type of pot_val: ', type(pot_val))
 
           self._universe_one_array = array('B', self.genRedToOrange(pot_val, 180))
 
