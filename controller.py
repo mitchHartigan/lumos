@@ -147,6 +147,9 @@ class SimpleFadeController(object):
           if pot_val == 0:
             pot_val = 1
           
+          print('pot_val: ', pot_val)
+          print('type of pot_val: ' type(pot_val))
+
           self._universe_one_array = array('B', self.genRedToOrange(pot_val, 180))
 
         if pot_val >= 21 and pot_val <= 40:
