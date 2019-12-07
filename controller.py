@@ -154,6 +154,7 @@ class SimpleFadeController(object):
           self._universe_one_array = array('B', self.genGreenToAqua(pot_val, 180))
           self._universe_two_array = array('B', self.genPinkToRed(pot_val, 180))
           self._universe_three_array = array('B', self.genBlueToPink(pot_val, 180))
+          self._universer_four_array = array('B', self.genYellowToGreen(pot_val, 180))
 
         if pot_val >= 41 and pot_val <= 80:
           # Keep the pot_val between 1 and 20, for ez multiplication.
@@ -162,6 +163,7 @@ class SimpleFadeController(object):
           self._universe_one_array = array('B', self.genAquaToBlue(pot_val, 180))
           self._universe_two_array = array('B', self.genRedToOrange(pot_val, 180))
           self._universe_three_array = array('B', self.genPinkToRed(pot_val, 180))
+          self._universer_four_array = array('B', self.genGreenToAqua(pot_val, 180))
 
         if pot_val >= 81 and pot_val <= 100:
           # Keep the pot_val between 1 and 20, for ez multiplication.
@@ -170,6 +172,7 @@ class SimpleFadeController(object):
           self._universe_one_array = array('B', self.genBlueToPink(pot_val, 180) )
           self._universe_two_array = array('B', self.genOrangeToYellow(pot_val, 180))
           self._universe_three_array = array('B', self.genRedToOrange(pot_val, 180))
+          self._universer_four_array = array('B', self.genAquaToBlue(pot_val, 180))
 
         self._iterable += 1
 
@@ -177,7 +180,7 @@ class SimpleFadeController(object):
         self._client.SendDmx(1, self._universe_one_array)
         self._client.SendDmx(2, self._universe_two_array)
         self._client.SendDmx(3, self._universe_three_array)
-        # self._client.SendDmx(4, self._universe_four_array)
+        self._client.SendDmx(4, self._universe_four_array)
 
         # Triggers the new update to be sent to the DMX controller.
         self._wrapper.AddEvent(self._update_interval, self.UpdateDmx)
