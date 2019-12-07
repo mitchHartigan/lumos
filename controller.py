@@ -40,8 +40,10 @@ class SimpleFadeController(object):
         pot_val = 1
 
       pot_val = (pot_val/2)
+      print('pot_val from genRedToOrange', pot_val)
       green_val = round((pot_val*15), 0)
-      
+      print('green_val from genRedToOrange', green_val)
+
       rgb_color_arr = [ 255, green_val, 0 ]
 
       strip_arr.extend(self.fillStripWithColor(rgb_color_arr, length))
