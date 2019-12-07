@@ -151,10 +151,9 @@ class SimpleFadeController(object):
 
         if pot_val >= 21 and pot_val <= 40:
           # Keep the pot_val between 1 and 20, for ez multiplication.
-          pot_val = pot_val - 20
+          pot_val = int(pot_val - 20)
 
           self._universe_one_array = array('B', self.genOrangeToYellow(pot_val, 180))
-
 
         if pot_val >= 41 and pot_val <= 60:
           # Keep the pot_val between 1 and 20, for ez multiplication.
