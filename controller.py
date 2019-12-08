@@ -115,6 +115,7 @@ class SimpleFadeController(object):
         # Gets the potentiometer value, each time the loop is run.
         pot_val = MCP3008(0).value
         pot_val = int(pot_val* 100)
+        print(pot_val)
 
         # Uses the potentiometer value to select different color gradients.
         if pot_val >= 0 and pot_val <= 40:
