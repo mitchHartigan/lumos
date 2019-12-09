@@ -20,11 +20,11 @@ class SimpleFadeController(object):
         i += 1
       return strip_arr
 
-    def genRedToOrange(self,pot_val, length):
+    def genRedToYellow(self,pot_val, length):
       strip_arr = []
 
       pot_val = (pot_val/9.5)
-      green_val = round((pot_val*15))
+      green_val = round((pot_val*25))
       green_val = int(green_val)
 
       rgb_color_arr = [ 255, green_val, 0 ]
@@ -33,18 +33,18 @@ class SimpleFadeController(object):
 
       return strip_arr
 
-    def genOrangeToYellow(self, pot_val, length):
-      strip_arr = []
+    # def genOrangeToYellow(self, pot_val, length):
+    #   strip_arr = []
 
-      pot_val = (pot_val/9.5)
-      green_val = round( (150 + (pot_val * 10)) )
-      green_val = int(green_val)
+    #   pot_val = (pot_val/9.5)
+    #   green_val = round( (150 + (pot_val * 10)) )
+    #   green_val = int(green_val)
       
-      rgb_color_arr = [255, green_val, 0]
+    #   rgb_color_arr = [255, green_val, 0]
 
-      strip_arr.extend(self.fillStripWithColor(rgb_color_arr, length))
+    #   strip_arr.extend(self.fillStripWithColor(rgb_color_arr, length))
 
-      return strip_arr
+    #   return strip_arr
 
     def genYellowToGreen(self, pot_val, length):
       strip_arr = []
@@ -123,10 +123,10 @@ class SimpleFadeController(object):
           if pot_val == 1:
             pot_val = 0
           
-          self._universe_one_array = array('B', self.genPinkToRed(pot_val, 180))
+          self._universe_one_array = array('B', self.genBlueToPink(pot_val, 180))
           self._universe_two_array = array('B', self.genGreenToAqua(pot_val, 60))
-          self._universe_three_array = array('B', self.genBlueToPink(pot_val, 180))
-          self._universe_four_array = array('B', self.genYellowToGreen(pot_val, 60))
+          self._universe_three_array = array('B', self.genPinkToRed(pot_val, 180))
+          self._universe_four_array = array('B', self.genRedToYellow(pot_val, 60))
 
         # if pot_val >= 81 and pot_val <= 100:
         #   # Keep the pot_val between 1 and 20, for ez multiplication.
